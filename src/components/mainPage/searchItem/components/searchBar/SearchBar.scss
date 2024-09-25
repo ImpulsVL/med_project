@@ -1,0 +1,54 @@
+.input_wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Центровка внутри контейнера */
+    position: relative;
+    width: 100%;
+    max-width: 200.5em; /* Ограничение ширины для поля и кнопки */
+    margin: 0 auto; /* Центрирование по горизонтали */
+    padding: 0 45px; /* Отступы по краям */
+
+    input {
+        width: 100%;
+        padding: 1.1em;
+        padding-right: 3.5em; /* Отступ для кнопки с иконкой */
+        border-radius: 10px;
+        border: 1px solid #ccc;
+        font-size: 1.4rem;
+        background-color: #fafafa;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        outline: none;
+        border: none;
+        box-sizing: border-box;
+    }
+
+    input::placeholder {
+        color: #999;
+        transition: opacity 0.3s ease;
+    }
+
+    input:focus {
+        border-color: #999;
+        
+        &:focus::placeholder {
+            opacity: 0;
+          }
+    }
+
+    .icon_button {
+        position: absolute;
+        right: 65px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: none;
+        border: none;
+        padding: 0;
+        cursor: pointer;
+    }
+
+    #search_icon, #clear_icon {
+        width: 2.2em;
+        height: 2.2em;
+        fill: #72725c;
+    }
+}

@@ -1,0 +1,56 @@
+.footer_wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 0 45px; /* Отступы от краев экрана */
+    background-color: transparent;
+    z-index: 10;
+}
+
+.footer_info{
+    bottom: 0px;
+    z-index: 20;
+    left: 40px;
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    align-items: center;
+    width: 54%;
+    max-width: 1000px;
+    min-width: 550px;
+    height: 82px;
+    margin-top: 10px;
+    margin-bottom: 0px;
+    padding: 0px 32px;
+    border-radius: 3px;
+    background: rgb(255, 255, 255);
+    box-shadow: rgba(71, 25, 53, 0.09) 0px 2px 31px;
+    pointer-events: all;
+    transition: bottom 0.3s ease;
+}
+
+.footer_text{
+    color: rgb(47, 71, 25);
+    font-size: 17px;
+    line-height: 23px;
+}
+
+.footer_button{
+    display: block;
+    color: rgb(243, 243, 243);
+    background: rgb(73, 116, 33);
+    font-size: 15px;
+    font-weight: 600;
+    border: none;
+    outline: none;
+    user-select: none;
+    cursor: pointer;
+    transition: 200ms;
+    padding: 18px;
+    border-radius: 4px;
+}
+
+.footer_button:hover{
+    background-color: rgb(92, 146, 42);
+}

@@ -1,0 +1,70 @@
+.wrapper_musa {
+    width: 100%;
+    height: 100vh;
+    min-height: 100%; /* Сделать минимальную высоту 100% высоты экрана */
+    background-color: #f0f0e1;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 10px;
+    position: relative;
+}
+
+.musa_wrapper {
+    padding-top: 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    flex-grow: 1; /* Заставляем wrapper растягиваться */
+}
+
+.pictures_block_musa {
+    background-color: #ffffff;
+    padding: 50px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Сетка с автоматическим заполнением */
+    gap: 20px;
+    width: 90%;
+    max-width: 1200px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.musa_row {
+    display: flex;
+    justify-content: space-around; /* Равномерное распределение элементов */
+    flex-wrap: wrap; /* Чтобы элементы переходили на новую строку, если их слишком много */
+    gap: 20px; /* Расстояние между блоками */
+}
+
+.musa_text_and_picture {
+    display: flex;
+    justify-content: space-around; /* Равномерное распределение элементов */
+    margin-bottom: 10px;
+    flex-direction: row;
+    gap: 10px; /* Расстояние между картинкой и текстом */
+    width: 200px; /* Фиксированная ширина для элементов */
+}
+
+.musa_img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+span {
+    font-size: 16px;
+    color: rgb(73, 116, 33);
+    text-align: center; /* Текст рядом с изображением */
+}
+
+.musa_header {
+    font-family: "Graphik LCG", Helvetica, Arial, sans-serif;
+    font-size: 24px;
+}
+
+.musa_block {
+    margin-bottom: 20px;
+}

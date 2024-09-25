@@ -1,0 +1,318 @@
+.wrapper_four {
+    width: 100%;
+    height: 100vh;
+    min-height: 100vh;
+    background-color: #f0f0e1;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding-bottom: 25px;
+}
+
+.header {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start; // Выровнять текст по левому краю
+    padding: 1em 3em;
+    position: absolute; // Зафиксировать заголовок в верхней части
+    top: 0;
+    left: 0;
+}
+
+.main_block_page {
+    display: flex;
+    flex-direction: column;
+    padding-top: 5em;
+    //align-items: center;
+    //justify-content: center;
+    font-family: "Graphik LCG", Helvetica, Arial, sans-serif;
+    text-align: center;
+}
+
+.back_wrapper {
+    width: 220px;
+    max-width: 500px;
+    display: flex;
+    align-items: center;
+    /* Центрирование текста и иконки по вертикали */
+    padding-top: 18px;
+    pointer-events: all;
+    margin-left: 40px;
+    /* Отступ от левого края экрана */
+}
+
+.icon_back {
+    display: flex;
+    align-items: center;
+    /* Центрирование иконки по вертикали */
+    margin-right: 10px;
+    /* Отступ между иконкой и текстом */
+}
+
+.back_button_text {
+    font-size: 17px;
+    color: gray
+}
+
+.wrapper_box {
+    position: relative;
+    width: 50%;
+    max-width: 1000px;
+    min-height: 160px;
+    min-width: 550px;
+    margin-top: 20px;
+    color: rgb(38, 38, 38);
+    background: rgb(255, 255, 255);
+    box-shadow: rgba(0, 0, 0, 0.027) 0px 7px 9px;
+    border-radius: 5px;
+    padding: 6px 0px 0px 0px; // Добавьте отступ внутри контейнера
+    pointer-events: all;
+    margin-left: 40px;
+}
+
+a {
+    background-color: transparent;
+    text-decoration: none;
+    color: inherit;
+}
+
+.option_panel {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    flex-grow: 1;
+}
+
+.button_comments_force {
+    padding-left: 0;
+    border: none;
+    background: none;
+    margin-left: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    transition: transform 0.3s ease;
+}
+
+.button_comments_name{
+    padding-right: 5px;
+}
+
+.button_comments_force:hover{
+    color: rgb(73, 116, 33);
+}
+
+.button_comments{
+    padding: 2px 5px 5px 5px;
+    border-radius: 5px;
+}
+
+.button_comments:hover{
+    background-color: rgb(241, 241, 241);
+}
+
+.option_bold{
+    padding-left: 0;
+    border: none;
+    background: none;
+    margin-left: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    transition: transform 0.3s ease;
+    width: 21px;
+    height: 21px;
+    border-radius: 5px;
+}
+
+.option_bold:hover{
+    background-color: rgb(241, 241, 241);
+}
+
+.option_stroke{
+    padding-left: 0;
+    border: none;
+    background: none;
+    margin-left: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    transition: transform 0.3s ease;
+    width: 21px;
+    height: 21px;
+    border-radius: 5px;
+}
+
+.option_stroke:hover{
+    background-color: rgb(241, 241, 241);
+}
+
+.option_link{
+    padding-left: 0;
+    border: none;
+    background: none;
+    margin-left: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    transition: transform 0.3s ease;
+    width: 21px;
+    height: 21px;
+    border-radius: 5px;
+}
+
+.option_link:hover{
+    background-color: rgb(241, 241, 241);
+}
+
+.option_wrapper{
+    margin-left: 5px;
+}
+
+.option_dot{
+    padding-left: 0;
+    border: none;
+    background: none;
+    margin-left: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    transition: transform 0.3s ease;
+    width: 21px;
+    height: 21px;
+    border-radius: 5px;
+}
+
+.option_dot:hover{
+    background-color: rgb(241, 241, 241);
+}
+
+.option_number{
+    padding-left: 0;
+    border: none;
+    background: none;
+    margin-left: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    transition: transform 0.3s ease;
+    width: 21px;
+    height: 21px;
+    border-radius: 5px;
+}
+
+.option_number:hover{
+    background-color: rgb(241, 241, 241);
+}
+
+.option_back{
+    padding-left: 0;
+    border: none;
+    background: none;
+    margin-left: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    transition: transform 0.3s ease;
+    width: 21px;
+    height: 21px;
+    border-radius: 5px;
+}
+
+.option_back:hover{
+    background-color: rgb(241, 241, 241);
+}
+
+.option_next{
+    padding-left: 0;
+    border: none;
+    background: none;
+    margin-left: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    transition: transform 0.3s ease;
+    width: 21px;
+    height: 21px;
+    border-radius: 5px;
+}
+
+.option_next:hover{
+    background-color: rgb(241, 241, 241);
+}
+
+.write_wrapper{
+    padding: 5px 5px 5px 5px;
+    border: none;
+}
+
+.write_wrapper_box {
+    outline: none; /* Убираем выделение при фокусировке */
+    background-color: transparent; /* Убираем фон */
+    padding: 10px; /* Внутренние отступы */
+    min-height: 50px; /* Минимальная высота для поля ввода */
+    border-radius: 5px; /* Закругление углов */
+    width: 100%;
+    text-align: left;
+}
+
+.write_buttons_wrapper{
+    display: flex;
+    flex-wrap: nowrap;
+    width: 100%;
+    gap: 16px;
+    position: sticky;
+    bottom: 0px;
+    left: 0px;
+    margin-bottom: 0px;
+    padding: 16px 16px 16px 16px;
+    background: rgb(255, 255, 255);
+    box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 31px;
+    border-radius: 3px;
+    justify-content: space-between;
+}
+
+.copy_box, .printer_box {
+    flex-grow: 1; /* Заставляем оба блока занимать равное пространство */
+    display: flex;
+    justify-content: center; /* Центрируем кнопки внутри блоков */
+}
+
+.copy_button, .printer_button {
+    width: 100%; /* Кнопки занимают всю ширину своих контейнеров */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgb(243, 243, 243);
+    background: rgb(73, 116, 33);
+    font-size: 15px;
+    font-weight: 600;
+    border: none;
+    outline: none;
+    user-select: none;
+    cursor: pointer;
+    transition: 200ms;
+    padding: 12px;
+    border-radius: 4px;
+    text-align: center;
+    gap: 8px;
+}
+
+.copy_button svg, .printer_button svg {
+    width: 26px; /* Задаем одинаковый размер для всех иконок */
+    height: 26px; /* Задаем одинаковый размер для всех иконок */
+    vertical-align: middle; /* Выравнивание иконок по центру */
+}
+
+.copy_button:hover, .printer_button:hover {
+    background-color: rgb(92, 146, 42);
+}
+
+.option_bold.active, .option_stroke.active {
+    background-color: rgb(92, 146, 42); /* Цвет фона для активной кнопки */
+    color: white; /* Цвет текста и иконки */
+}
+
+.option_bold.active svg, .option_stroke.active svg {
+    fill: white; /* Меняем цвет иконки на белый при активном состоянии */
+}

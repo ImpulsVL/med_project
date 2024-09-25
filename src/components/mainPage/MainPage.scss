@@ -1,0 +1,66 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* Это убирает лишние отступы и корректно считает ширину */
+}
+
+.wrapper {
+    width: 100%;
+    height: 100vh; // Высота на весь экран
+    background-color: #f0f0e1; // Бежевый цвет
+    display: flex;
+    flex-direction: column;
+ // Центрирование содержимого по вертикали
+    position: relative;
+}
+
+.header {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start; // Выровнять текст по левому краю
+    padding: 1em 3em;
+    position: absolute; // Зафиксировать заголовок в верхней части
+    top: 0;
+    left: 0;
+}
+
+.text_main{
+    width: 600px;
+    padding-top: 60px;
+    padding-bottom: 40px;
+    padding-left: 40px;
+    font-size: 38px;
+    line-height: 50px;
+    color: #333;
+    text-align: left
+}
+
+.assistant_header {
+    font-size: 1.5rem;
+    color: #333;
+}
+
+.calculators {
+    font-size: 1rem;
+    color: #5f5b5b;
+    padding-left: 3em;
+    padding-top: 0.45em;
+}
+
+.scales {
+    font-size: 1rem;
+    color: #5f5b5b;
+    padding-left: 3em;
+    padding-top: 0.45em;
+}
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    padding-top: 5em;
+    //align-items: center;
+    //justify-content: center;
+    font-family: "Graphik LCG", Helvetica, Arial, sans-serif;
+    text-align: center;
+}

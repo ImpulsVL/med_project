@@ -1,0 +1,65 @@
+.plates_wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 0 45px; /* Отступы от краев экрана */
+}
+
+.diagnosis_plate {
+    position: relative;
+    display: flex;
+    flex-shrink: 0;
+    justify-content: space-between;
+    align-items: center;
+    width: calc(50% - 10px); /* Две плитки в ряд с небольшим отступом */
+    height: 60px;
+    margin-top: 10px;
+    padding: 0px 32px;
+    border-radius: 5px;
+    background-color: #fafafa;
+    font-size: 17px;
+    line-height: 23px;
+    text-decoration: none;
+    box-sizing: border-box;
+    transition: background-color 300ms;
+}
+
+.a {
+    color: inherit;
+}
+
+.force_diagnosis_plate {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 6px;
+    height: 100%;
+    border-radius: 5px 0px 0px 5px;
+    background: rgb(47, 71, 25);
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 300ms, opacity 300ms; /* Плавный переход для видимости и прозрачности */
+}
+
+.text_diagnosis_plate {
+    color: rgb(47, 71, 25);
+    transition: color 300ms; /* Плавный переход для цвета текста */
+}
+
+.count_diagnosis_plate {
+    color: rgb(181, 163, 174);
+}
+
+/* Эффект наведения */
+.diagnosis_plate:hover {
+    background-color: #ecebeb; /* Можно изменить цвет фона при наведении */
+}
+
+.diagnosis_plate:hover .force_diagnosis_plate {
+    visibility: visible;
+    opacity: 1;
+}
+
+.diagnosis_plate:hover .text_diagnosis_plate {
+    color: rgb(73, 116, 33); /* Цвет текста при наведении */
+}

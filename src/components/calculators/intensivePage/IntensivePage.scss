@@ -1,0 +1,224 @@
+.wrapper_intensive {
+    width: 100%;
+    height: 155vh;
+    min-height: 100%; /* Сделать минимальную высоту 100% высоты экрана */
+    background-color: #f0f0e1;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 10px;
+    position: relative;
+}
+
+.intensive_tanner {
+    font-family: Circe-Regular, Arial, Helvetica, sans-serif;
+    font-size: 28px;
+    line-height: 60px;
+    margin-top: 0;
+}
+
+.intensive_wrapper {
+    padding-top: 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.intensive_block {
+    margin-bottom: 20px;
+}
+
+.intensive_block {
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    margin-bottom: 30px;
+}
+
+.tools_group {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.table_pads_header{
+    display: flex;
+    border-top: 2px solid #ebebeb;
+}
+
+.header_item_pr{
+    padding-left: 35px;
+    padding-bottom: 15px;
+}
+
+.header_pads{
+    margin-top: 20px;
+    padding-left: 6%;
+}
+
+.tools_content {
+    width: 45%;
+    flex-direction: column;
+    box-shadow: 0 0 4px rgba(0, 0, 0, .05);
+    border-radius: 3px;
+    background: #fff;
+    margin-bottom: 28px;
+    font-size: 16px;
+    line-height: 23px;
+    font-family: Circe-Light, Arial, Helvetica, sans-serif;
+
+    padding-left: 20px;
+    line-height: 23px;
+    font-family: Circe-Light, Arial, Helvetica, sans-serif;
+}
+
+.table_pads_row {
+    display: flex;
+    border-top: 1px solid #ebebeb;
+}
+
+.pads_picture {
+    width: 30%;
+    padding-left: 20px;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    display: flex;
+}
+
+.pads_info {
+    display: flex;
+    width: 70%;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    border-left: 2px solid #ebebeb;
+}
+
+.pads_info_item {
+    height: 50%;
+    display: flex;
+    border-bottom: 2px solid #ebebeb;
+}
+
+.info_item_span {
+    width: 50%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    padding: 0px 0 15px 20px;
+}
+
+.info_item_input {
+    border: 2px solid #ebebeb;
+    border-radius: 4px;
+    width: 81px;
+    height: 37px;
+    text-align: center;
+}
+
+.info_item_left{
+    width: 50%;
+    display: block;
+    padding: 15px 0 15px 20px;
+}
+
+.result_line_bg {
+    height: 10px;
+    background-color: #e0e0e0;
+    position: relative;
+    width: 90%;
+    margin-top: 10px;
+    border-radius: 5px;
+}
+
+.result_line_progress {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background-color: #126324;
+    border-radius: 5px;
+    transition: width 0.3s ease-in-out;  /* Smooth progress bar transition */
+}
+
+.header_secret{
+    padding-top: 20px;
+    color:#126324;
+}
+
+.tools_group_result {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 95%;
+    padding: 40px;
+    background-color: #fff;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.05);
+    border-radius: 3px;
+    margin-bottom: 28px;
+    position: relative;
+}
+
+.start_result_line, .end_result_line {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+}
+
+.start_result_line {
+    left: 0;
+}
+
+.end_result_line {
+    right: 0;
+}
+
+.result_line_name {
+    position: relative;
+    top: -50px;  /* Adjust the vertical position */
+    font-size: 14px;
+    color: #126324; /* Adjust color as needed */
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.result_line_number {
+    position: relative;
+    top: -45px; 
+    left: -33px;
+    font-size: 12px;
+}
+
+.result_line_picture {
+    width: 1px;
+    height: 21px;
+    background: #4a4a4a;
+    position: relative;
+    top: -18px; 
+    left: -58px;
+}
+
+.result_line_bg {
+    width: 100%;
+    height: 12px;
+    background: #e0e0e0;
+    position: relative;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.result_line_progress {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background: #126324;
+    transition: width 0.4s ease-in-out;
+    border-radius: 6px;
+}

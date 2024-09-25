@@ -1,0 +1,177 @@
+.wrapper_roma {
+    width: 100%;
+    min-height: 100vh;
+    background-color: #f0f0e1;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 25px;
+    position: relative;
+}
+
+.roma_wrapper {
+    padding-top: 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.roma_block {
+    margin-bottom: 20px;
+}
+
+.pictures_block {
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    max-width: 1500px;
+    text-align: left;
+    font-family: Circe-Regular, Arial, Helvetica, sans-serif;
+}
+
+.pictures_block_roma{
+    display: flex;
+    justify-content: space-around; /* Выравнивание по горизонтали */
+    width: 100%;
+}
+
+.roma_column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px; /* Расстояние между изображениями и текстом */
+}
+
+.top_picture_roma, .bottom_picture_roma {
+    margin-bottom: 10px;
+}
+
+span {
+    font-size: 16px;
+    color: rgb(73, 116, 33);
+    text-align: center;
+}
+
+.roma_tanner {
+    font-family: Circe-Regular, Arial, Helvetica, sans-serif;
+    font-size: 28px;
+    line-height: 60px;
+    margin-top: 0;
+}
+
+.roma_img{
+    display: flex;
+    width: 350px;
+    height: 250px;
+    justify-content: center;
+    align-items: center;
+}
+
+.form_wrap {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+    gap: 20px;
+}
+
+.form_group {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.form_input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.button_calculate {
+    background-color: #28a745; /* Green background for the button */
+    color: white; /* White text */
+    border: none; /* No border */
+    border-radius: 8px; /* Rounded corners */
+    padding: 11px 19px; /* Padding */
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Smooth hover effect */
+    height: 100%; /* Make the button the same height as input fields */
+    margin-top: 20px;
+}
+
+.button_calculate:hover {
+    background-color: #218838; /* Darker green on hover */
+}
+
+.radio_group {
+    display: flex;
+    justify-content: space-around; /* Центрирование и равномерное распределение */
+    margin-top: 10px;
+}
+
+.radio_group label {
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding-left: 35px; /* Место для кастомной радио-кнопки */
+    cursor: pointer;
+    font-size: 16px;
+    color: #333;
+    user-select: none; /* Отключение выделения текста */
+}
+
+.radio_group label input {
+    position: absolute;
+    opacity: 0; /* Прячем настоящую радио-кнопку */
+    cursor: pointer;
+}
+
+.radio_custom {
+    position: absolute;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    background-color: #fff;
+    border: 2px solid #ccc;
+    border-radius: 50%;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+    margin-bottom: 20px;
+}
+
+.radio_group label:hover input ~ .radio_custom {
+    border-color: #28a745; /* Зеленая рамка при наведении */
+}
+
+.radio_group label input:checked ~ .radio_custom {
+    background-color: #28a745; /* Зеленый фон при выборе */
+    border-color: #28a745;
+}
+
+.radio_custom:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.radio_group label input:checked ~ .radio_custom:after {
+    display: block;
+}
+
+.radio_group label .radio_custom:after {
+    top: 17%;
+    left: 22%;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: white;
+}

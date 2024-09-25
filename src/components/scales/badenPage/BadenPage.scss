@@ -1,0 +1,108 @@
+.wrapper_baden {
+    width: 100%;
+    min-height: 100%; /* Сделать минимальную высоту 100% высоты экрана */
+    background-color: #f0f0e1;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 25px;
+    position: relative;
+}
+
+.baden_wrapper {
+    padding-top: 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    flex-grow: 1; /* Заставляем wrapper растягиваться */
+}
+
+.pictures_block_baden {
+    background-color: #ffffff;
+    padding: 50px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Гибкая сетка */
+    gap: 20px;
+    width: 90%;
+    max-width: 1200px;
+    justify-content: center; /* Центрируем элементы внутри сетки */
+}
+
+.baden_row {
+    display: flex;
+    justify-content: space-around; /* Равномерное распределение элементов */
+    flex-wrap: wrap; /* Чтобы элементы переходили на новую строку, если их слишком много */
+    gap: 20px; /* Расстояние между блоками */
+}
+
+.baden_text_and_picture {
+    display: flex; /* Выравнивание внутри блока */
+    flex-direction: column; /* Разместить текст под изображением */
+    align-items: center; /* Центрирование по горизонтали */
+    margin-bottom: 20px;
+    width: 100%; /* Разрешаем контейнеру растягиваться */
+}
+
+.baden_img {
+    display: block; /* Сброс дефолтного поведения */
+    max-width: 100%; /* Ограничиваем изображение по ширине контейнера */
+    height: auto; /* Сохраняем пропорции изображения */
+    margin: 0 auto; /* Центрируем изображение */
+}
+
+span {
+    font-size: 16px;
+    color: rgb(73, 116, 33);
+    text-align: center; /* Текст рядом с изображением */
+}
+
+.baden_header {
+    font-family: "Graphik LCG", Helvetica, Arial, sans-serif;
+    font-size: 24px;
+    margin-bottom: 20px; /* Отступ между заголовком и блоками */
+}
+
+.baden_block {
+    margin-bottom: 20px;
+}
+
+.pto_table {
+    width: 100%; /* Таблица занимает всю ширину */
+    border-collapse: collapse; /* Убираем промежутки между ячейками */
+    margin-top: 20px; /* Отступ сверху */
+}
+
+.pto_table_row {
+    display: grid; /* Используем grid для равномерного распределения колонок */
+    grid-template-columns: 1fr 3fr 1fr; /* Три колонки: первая и последняя равны, средняя шире */
+    align-items: center; /* Вертикальное выравнивание текста */
+}
+
+.pto_table_head_first,
+.pto_table_head,
+.pto_table_head_last {
+    padding: 10px; /* Внутренний отступ */
+    text-align: left; /* Выравнивание текста влево */
+    font-weight: bold;
+    color: rgb(73, 116, 33);
+    border-bottom: 2px solid rgb(73, 116, 33); /* Нижняя граница для заголовков */
+}
+
+.pto_table_cell_first,
+.pto_table_cell,
+.pto_table_cell_last {
+    padding: 10px;
+    text-align: left; /* Выравнивание текста влево */
+    border-bottom: 1px solid #ebebeb; /* Нижняя граница для ячеек */
+    font-size: 16px;
+}
+
+.pto_table_cell {
+    text-align: left; /* Выравнивание текста влево */
+}
+
+.pto_table_cell_last {
+    text-align: right; /* Выравнивание текста вправо */
+}

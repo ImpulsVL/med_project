@@ -1,0 +1,112 @@
+.inspection_wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 0 45px; /* Отступы от краев экрана */
+}
+
+.inspection_block{
+    position: relative;
+    display: flex;
+    flex-shrink: 0;
+    justify-content: space-between;
+    align-items: center;
+    width: 54%;
+    max-width: 1000px;
+    min-width: 550px;
+    margin-top: 10px;
+    background: rgb(255, 255, 255);
+    box-shadow: rgba(71, 25, 53, 0.03) 0px 7px 9px;
+    border-radius: 3px;
+    pointer-events: all;
+    user-select: none;
+    display: flex;
+    flex-direction: column;
+}
+
+.header_inspection{
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    align-items: center;
+    width: 100%;
+    padding: 24px 32px 16px;
+    color: rgb(47, 71, 25);
+    border-bottom: 1px solid rgb(238, 233, 236);
+}
+
+.text_inspection{
+    font-size: 22px;
+    line-height: 22px;
+}
+
+.text_icon{
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.text_comments{
+    color: rgb(73, 116, 33);
+    font-size: 17px;
+    line-height: 23px;
+    transition: 300ms;
+}
+
+.icon_book{
+    width: 24px;
+    height: 24px;
+    margin-left: 8px;
+}
+
+.main_inspection{
+    align-items: center;
+    width: 100%;
+    padding: 8px 32px 18px;
+}
+
+.medical_inspection {
+    flex-direction: column; /* Элементы будут располагаться вертикально */
+}
+
+.medical_inspection_header{
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    width: 100%;
+    padding: 24px 0px 12px;
+    color: rgb(47, 71, 25);
+    border-bottom: 1px solid rgb(238, 233, 236);
+    cursor: pointer;
+}
+
+.medical_inspection_info{
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    width: 100%;
+    padding: 12px 0px 12px;
+    color: rgb(47, 71, 25);
+    cursor: pointer;
+}
+
+.check_icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 12px;
+}
+
+.header_info {
+    font-size: 17px;
+    line-height: 24px;
+    text-align: left;
+}
+
+.medical_info {
+    font-size: 15px;
+    line-height: 24px;
+    text-align: left;
+    color: gray
+}

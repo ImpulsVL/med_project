@@ -1,0 +1,71 @@
+.wrapper_figo {
+    width: 100%;
+    min-height: 100vh;
+    background-color: #f0f0e1;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 25px;
+    position: relative;
+}
+
+.figo_wrapper {
+    padding-top: 120px; /* Отступ сверху под заголовок */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Центрирование содержимого */
+    gap: 30px; /* Отступ между блоками */
+}
+
+.figo_block {
+    margin-bottom: 20px;
+}
+
+.pictures_block {
+    background-color: #ffffff;
+    padding: 50px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 90%;
+    max-width: 1200px;
+}
+
+.pictures_block_figo {
+    display: flex;
+    justify-content: space-around; /* Выравнивание по горизонтали */
+    width: 100%;
+}
+
+.figo_column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px; /* Расстояние между изображениями и текстом */
+}
+
+.top_picture_figo, .bottom_picture_figo {
+    margin-bottom: 10px;
+}
+
+span {
+    font-size: 16px;
+    color: rgb(73, 116, 33);
+    text-align: center;
+}
+
+.figo_tanner {
+    font-family: "Graphik LCG", Helvetica, Arial, sans-serif;
+    font-size: 28px;
+    line-height: 60px;
+    margin-top: 0;
+}
+
+.figo_img{
+    display: flex;
+    width: 350px;
+    height: 250px;
+    justify-content: center;
+    align-items: center;
+}

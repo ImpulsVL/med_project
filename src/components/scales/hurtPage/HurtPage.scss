@@ -1,0 +1,143 @@
+.wrapper_hurt {
+    width: 100%;
+    min-height: 100%; /* Сделать минимальную высоту 100% высоты экрана */
+    height: 100vh;
+    background-color: #f0f0e1;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 35px;
+    position: relative;
+}
+
+.hurt_wrapper {
+    padding-top: 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    flex-grow: 1; /* Заставляем wrapper растягиваться */
+}
+
+.pictures_block_hurt {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); /* Гибкая сетка */
+    justify-content: center; /* Центрируем элементы внутри сетки */
+}
+
+.hurt_row {
+    display: flex;
+    justify-content: space-around; /* Равномерное распределение элементов */
+    flex-wrap: wrap; /* Чтобы элементы переходили на новую строку, если их слишком много */
+    gap: 20px; /* Расстояние между блоками */
+}
+
+.hurt_text_and_picture {
+    display: flex; /* Выравнивание внутри блока */
+    flex-direction: column; /* Разместить текст под изображением */
+    align-items: center; /* Центрирование по горизонтали */
+    margin-bottom: 20px;
+    width: 100%; /* Разрешаем контейнеру растягиваться */
+}
+
+.hurt_img {
+    display: block; /* Сброс дефолтного поведения */
+    max-width: 100%; /* Ограничиваем изображение по ширине контейнера */
+    height: auto; /* Сохраняем пропорции изображения */
+    margin: 0 auto; /* Центрируем изображение */
+}
+
+span {
+    font-size: 16px;
+    color: rgb(73, 116, 33);
+    text-align: center; /* Текст рядом с изображением */
+    margin-top: 20px;
+}
+
+.hurt_header {
+    font-family: "Graphik LCG", Helvetica, Arial, sans-serif;
+    font-size: 24px;
+    margin-bottom: 5px; /* Отступ между заголовком и блоками */
+}
+
+.hurt_block {
+    margin-bottom: 20px;
+}
+
+.hurt_item {
+    display: flex;
+    flex-direction: column; /* Размещаем элементы вертикально */
+    align-items: center; /* Центрируем текст и изображение */
+    justify-content: center; /* Вертикальное центрирование */
+    text-align: center; /* Центрируем текст по горизонтали */
+    gap: 5px; /* Отступ между изображением и текстом */
+}
+
+.pain-scale-container {
+    position: relative;
+    width: 100%;
+    margin: 0 auto;
+    padding: 10px;
+}
+
+.scale-line {
+    width: 100%;
+    height: 4px;
+    background-color: rgb(73, 116, 33);
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.numbers {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    color: #333;
+    position: relative;
+    top: -20px; /* Чтобы цифры оказались над линией */
+}
+
+.pain-labels {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    top: -15px; /* Сдвигаем текстовые метки ближе к линии */
+    font-size: 12px;
+    color: #494949;
+    text-align: center;
+}
+
+.pain-labels span {
+    position: absolute;
+}
+
+.label-0 {
+    left: 0%;
+    font-size: 12px;
+}
+
+.label-2 {
+    left: 17%;
+    font-size: 12px;
+}
+
+.label-4 {
+    left: 36%;
+    font-size: 12px;
+}
+
+.label-6 {
+    left: 56%;
+    font-size: 12px;
+}
+
+.label-8 {
+    left: 74%;
+    font-size: 12px;
+}
+
+.label-10 {
+    left: 100%;
+    transform: translateX(-100%);
+    font-size: 12px; /* Чтобы текст не вылез за контейнер */
+}

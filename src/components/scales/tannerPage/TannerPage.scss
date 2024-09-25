@@ -1,0 +1,64 @@
+.wrapper {
+    width: 100%;
+    min-height: 100vh;
+    background-color: #f0f0e1;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 25px;
+    position: relative;
+}
+
+.tanner_wrapper {
+    padding-top: 120px; /* Отступ сверху под заголовок */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Центрирование содержимого */
+    gap: 30px; /* Отступ между блоками */
+}
+
+.tanner_block {
+    margin-bottom: 20px;
+}
+
+.pictures_block {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 90%;
+    max-width: 1200px;
+}
+
+.pictures_block_tanner {
+    display: flex;
+    justify-content: space-around; /* Выравнивание по горизонтали */
+    width: 100%;
+}
+
+.tanner_column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px; /* Расстояние между изображениями и текстом */
+}
+
+.top_picture_tanner, .bottom_picture_tanner {
+    margin-bottom: 10px;
+}
+
+span {
+    font-size: 16px;
+    color: rgb(73, 116, 33);
+    text-align: center;
+}
+
+.header_tanner {
+    font-family: "Graphik LCG", Helvetica, Arial, sans-serif;
+    font-size: 38px;
+    line-height: 60px;
+    margin-top: 0;
+    margin-bottom: 20px; /* Отступ между заголовком и блоком с картинками */
+}

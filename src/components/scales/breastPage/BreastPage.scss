@@ -1,0 +1,65 @@
+.wrapper_ludwig {
+    width: 100%;
+    min-height: 100vh; /* Заменено на min-height, чтобы блок мог расти */
+    background-color: #f0f0e1;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 25px;
+    position: relative;
+}
+
+.breast_wrapper {
+    padding-top: 120px; /* Отступ сверху под заголовок */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Центрирование всего содержимого */
+    gap: 30px; /* Отступ между блоками */
+}
+
+
+.pictures_block {
+    background-color: #ffffff; /* Фон для блока с картинками */
+    padding: 20px; /* Внутренний отступ для блока */
+    border-radius: 5px; /* Закругление краев */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Тень для придания объема */
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Отступы между строками */
+    width: 90%; /* Задать максимальную ширину */
+    max-width: 1200px; /* Ограничение ширины блока */
+}
+
+.ludwig_row {
+    display: flex;
+    justify-content: space-around; /* Равномерное распределение элементов */
+    margin-bottom: 20px;
+}
+
+.ludwig_item {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Центрирование изображений и текста */
+    max-width: 150px; /* Ограничение ширины блока */
+}
+
+.ludwig_picture {
+    margin-bottom: 10px; /* Отступ между изображением и текстом */
+}
+
+.ludwig_img {
+    width: 100px; /* Ограничение по ширине изображения */
+    height: auto; /* Автоматическое изменение высоты */
+}
+
+.ludwig_text {
+    font-size: 14px;
+    color: #333;
+}
+
+.header_ludwig {
+    font-family: "Graphik LCG", Helvetica, Arial, sans-serif;
+    font-size: 38px;
+    line-height: 60px;
+    margin-top: 0;
+    margin-bottom: 10px; /* Отступ между заголовком и блоком с картинками */
+}
