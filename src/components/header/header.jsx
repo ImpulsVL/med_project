@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom'; // Импортируем Link
 import './header.scss';
 
@@ -6,18 +6,43 @@ function Header() {
     const [showCalculators, setShowCalculators] = useState(false);
     const [showScales, setShowScales] = useState(false);
 
+    const headerRef = useRef(null); // Реф для всего хедера
+
+    // Функция для скрытия выпадающих списков
+    const hideDropdowns = () => {
+        setShowCalculators(false);
+        setShowScales(false);
+    };
+
+    // Функция для переключения видимости меню калькуляторов
     const toggleCalculators = () => {
-        setShowCalculators(!showCalculators);
+        setShowCalculators((prev) => !prev);
         setShowScales(false); // Скрываем шкалы при нажатии на калькуляторы
     };
 
+    // Функция для переключения видимости меню шкал
     const toggleScales = () => {
-        setShowScales(!showScales);
+        setShowScales((prev) => !prev);
         setShowCalculators(false); // Скрываем калькуляторы при нажатии на шкалы
     };
 
+    // Обработчик кликов вне элемента
+    const handleClickOutside = (event) => {
+        if (headerRef.current && !headerRef.current.contains(event.target)) {
+            hideDropdowns(); // Скрываем оба меню
+        }
+    };
+
+    // Добавляем обработчик кликов при монтировании и удаляем при размонтировании
+    useEffect(() => {
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, []);
+
     return (
-        <div className='header'>
+        <div className='header' ref={headerRef}>
             <Link to="/">
                 <h1 className="assistant_header">Assistant</h1>
             </Link>

@@ -1,4 +1,5 @@
 import React, { useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 import './BlockPage.scss';
 import { ReactComponent as IconBack } from './icons/Back.svg';
 import { ReactComponent as IconOpenRadio } from './icons/OpenRadio.svg';
@@ -50,15 +51,15 @@ function BlockPage() {
         setIsItalic(!isItalic); // Переключаем состояние кнопки
     };
 
-        // Логика для отмены действия (Ctrl + Z)
-        const handleUndo = () => {
-            document.execCommand('undo');
-        };
-    
-        // Логика для повторения действия (Ctrl + Y)
-        const handleRedo = () => {
-            document.execCommand('redo');
-        };
+    // Логика для отмены действия (Ctrl + Z)
+    const handleUndo = () => {
+        document.execCommand('undo');
+    };
+
+    // Логика для повторения действия (Ctrl + Y)
+    const handleRedo = () => {
+        document.execCommand('redo');
+    };
 
     return (
         <div className='wrapper_four'>
@@ -66,14 +67,16 @@ function BlockPage() {
                 <Header />
             </div>
             <div className="main_block_page">
-                <a className='back_wrapper' href='/diagnosis'>
-                    <div className='icon_back'>
-                        <IconBack id="back_icon" />
-                    </div>
-                    <div className='back_button_text'>
-                        Популярные диагнозы
-                    </div>
-                </a>
+                <Link to='/diagnosis'>
+                    <a className='back_wrapper' href='/diagnosis'>
+                        <div className='icon_back'>
+                            <IconBack id="back_icon" />
+                        </div>
+                        <div className='back_button_text'>
+                            Популярные диагнозы
+                        </div>
+                    </a>
+                </Link>
                 <div className='wrapper_box'>
                     <div className='write_box'>
                         <div className='write_option'>

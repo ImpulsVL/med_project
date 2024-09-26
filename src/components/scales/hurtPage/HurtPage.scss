@@ -51,7 +51,7 @@ span {
     font-size: 16px;
     color: rgb(73, 116, 33);
     text-align: center; /* Текст рядом с изображением */
-    margin-top: 20px;
+    margin-top: 15px;
 }
 
 .hurt_header {
@@ -61,7 +61,7 @@ span {
 }
 
 .hurt_block {
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
 
 .hurt_item {
@@ -70,7 +70,6 @@ span {
     align-items: center; /* Центрируем текст и изображение */
     justify-content: center; /* Вертикальное центрирование */
     text-align: center; /* Центрируем текст по горизонтали */
-    gap: 5px; /* Отступ между изображением и текстом */
 }
 
 .pain-scale-container {

@@ -1,3 +1,8 @@
+.search_bar_wrapper {
+    position: relative; /* Для позиционирования блока результатов */
+    width: 100%;
+}
+
 .input_wrapper {
     display: flex;
     align-items: center;
@@ -5,7 +10,6 @@
     position: relative;
     width: 100%;
     max-width: 200.5em; /* Ограничение ширины для поля и кнопки */
-    margin: 0 auto; /* Центрирование по горизонтали */
     padding: 0 45px; /* Отступы по краям */
 
     input {
@@ -51,4 +55,61 @@
         height: 2.2em;
         fill: #72725c;
     }
+}
+
+.search_results {
+    position: absolute;
+    top: 80px; /* Отступ от поля ввода */
+    left: 45px;
+    right: 45px;
+    max-height: 200px;
+    overflow-y: auto; /* Добавляем скролл, если много элементов */
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    z-index: 10; /* Поверх других элементов */
+    padding: 10px 10px 10px 10px;
+}
+
+.search_result_item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+        background-color: #f1f1f1;
+
+        .diagnosis_code, .diagnosis_name {
+            color: rgb(73, 116, 33); /* Новый цвет текста при наведении */
+        }
+    }
+}
+
+.diagnosis_code {
+    display: inline-block;
+    padding: 4px 8px;
+    border: 2px solid rgb(73, 116, 33);;
+    border-radius: 5px;
+    color: rgb(73, 116, 33);
+    background-color: rgb(227, 231, 223);
+    margin-right: 10px;
+    font-weight: bold;
+    margin-top: 0;
+    transition: color 0.3s ease; /* Плавный переход для цвета */
+}
+
+.diagnosis_name {
+    color: #333;
+    margin-top: 0;
+    transition: color 0.3s ease; /* Плавный переход для цвета */
+}
+
+.no_results {
+    padding: 10px;
+    color: #999;
+    text-align: center;
 }

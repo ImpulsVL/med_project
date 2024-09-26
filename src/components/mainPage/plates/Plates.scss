@@ -63,3 +63,9 @@
 .diagnosis_plate:hover .text_diagnosis_plate {
     color: rgb(73, 116, 33); /* Цвет текста при наведении */
 }
+
+.diagnosis_plate:link, 
+.diagnosis_plate:visited {
+    color: inherit;
+    text-decoration: none;
+}

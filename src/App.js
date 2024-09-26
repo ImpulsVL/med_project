@@ -20,26 +20,28 @@ import IntensivePage from './components/calculators/intensivePage/IntensivePage'
 function App() {
   return (
     <Router >
-    <div className="App">
-      <Routes>
-        <Route path="/" element={<MainPage />} />
-        <Route path="/diagnosis" element={<DiagnosisPage />} />
-        <Route path="/diagnos" element={<DiagnosPage />} />
-        <Route path="/block" element={<BlockPage />} />
-        <Route path="/ludwig-scale" element={<BreastPage />} />
-        <Route path="/tanner-scale" element={<TannerPage />} />
-        <Route path="/figo-scale" element={<FigoPage/>} />
-        <Route path="/musa-scale" element={<MusaPage/>} />
-        <Route path="/baden-scale" element={<BadenPage/>} />
-        <Route path="/hurt-scale" element={<HurtPage/>} />
-        <Route path="/gallay-scale" element={<GallayPage/>} />
-        <Route path="/imt-calc" element={<ImtPage/>} />
-        <Route path="/isa-calc" element={<IsaPage/>} />
-        <Route path="/roma-calc" element={<RomaPage/>} />
-        <Route path="/rmi-calc" element={<RmiPage/>} />
-        <Route path="/intensive-calc" element={<IntensivePage/>} />
-      </Routes>
-    </div>
+      <div className="App">
+        <Routes>
+          <Route path="/" element={<MainPage />} />
+          <Route path="/diagnosis" element={<DiagnosisPage />} />
+          <Route path="/diagnos" element={<DiagnosPage />} />
+          <Route path="/block" element={<BlockPage />} />
+
+          <Route path="/ludwig-scale" element={<BreastPage />} />
+          <Route path="/tanner-scale" element={<TannerPage />} />
+          <Route path="/figo-scale" element={<FigoPage />} />
+          <Route path="/musa-scale" element={<MusaPage />} />
+          <Route path="/baden-scale" element={<BadenPage />} />
+          <Route path="/hurt-scale" element={<HurtPage />} />
+          <Route path="/gallay-scale" element={<GallayPage />} />
+
+          <Route path="/imt-calc" element={<ImtPage />} />
+          <Route path="/isa-calc" element={<IsaPage />} />
+          <Route path="/roma-calc" element={<RomaPage />} />
+          <Route path="/rmi-calc" element={<RmiPage />} />
+          <Route path="/intensive-calc" element={<IntensivePage />} />
+        </Routes>
+      </div>
     </Router >
   );
 }
