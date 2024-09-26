@@ -1,55 +1,48 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Plates.scss';
 
 export const Plates = () => {
+    const [data, setData] = useState([]);
+    const [loading, setLoading] = useState(true); // Состояние для индикации загрузки
+    const [error, setError] = useState(null); // Состояние для хранения ошибок
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await fetch('http://test-asya.ru/api/datafirst.json');
+                if (!response.ok) {
+                    throw new Error(`Ошибка: ${response.status}`);
+                }
+                const result = await response.json();
+                setData(result);
+            } catch (error) {
+                setError(error.message);
+            } finally {
+                setLoading(false); // Убираем индикацию загрузки после завершения запроса
+            }
+        };
+
+        fetchData();
+    }, []);
+
+    if (loading) {
+        return <div>Загрузка...</div>; // Отображаем индикатор загрузки
+    }
+
+    if (error) {
+        return <div>Ошибка: {error}</div>; // Отображаем сообщение об ошибке
+    }
+
     return (
         <div className='plates_wrapper'>
-            <Link className='diagnosis_plate' to='/diagnosis'>
-                <div className='force_diagnosis_plate'></div>
-                <div className='text_diagnosis_plate'>Популярные диагнозы</div>
-                <div className='count_diagnosis_plate'>15</div>
-            </Link>
-            <Link className='diagnosis_plate' to='#'>
-                <div className='force_diagnosis_plate'></div>
-                <div className='text_diagnosis_plate'>Урология</div>
-                <div className='count_diagnosis_plate'>28</div>
-            </Link>
-            <Link className='diagnosis_plate' to='#'>
-                <div className='force_diagnosis_plate'></div>
-                <div className='text_diagnosis_plate'>Андрология</div>
-                <div className='count_diagnosis_plate'>17</div>
-            </Link>
-            <Link className='diagnosis_plate' to='#'>
-                <div className='force_diagnosis_plate'></div>
-                <div className='text_diagnosis_plate'>Гинекология</div>
-                <div className='count_diagnosis_plate'>391</div>
-            </Link>
-            <Link className='diagnosis_plate' to='#'>
-                <div className='force_diagnosis_plate'></div>
-                <div className='text_diagnosis_plate'>Дерматология</div>
-                <div className='count_diagnosis_plate'>57</div>
-            </Link>
-            <Link className='diagnosis_plate' to='#'>
-                <div className='force_diagnosis_plate'></div>
-                <div className='text_diagnosis_plate'>Педиатрия</div>
-                <div className='count_diagnosis_plate'>41</div>
-            </Link>
-            <Link className='diagnosis_plate' to='#'>
-                <div className='force_diagnosis_plate'></div>
-                <div className='text_diagnosis_plate'>Терапия</div>
-                <div className='count_diagnosis_plate'>85</div>
-            </Link>
-            <Link className='diagnosis_plate' to='#'>
-                <div className='force_diagnosis_plate'></div>
-                <div className='text_diagnosis_plate'>Эндокринология</div>
-                <div className='count_diagnosis_plate'>111</div>
-            </Link>
-            <Link className='diagnosis_plate' to='#'>
-                <div className='force_diagnosis_plate'></div>
-                <div className='text_diagnosis_plate'>Акушерство</div>
-                <div className='count_diagnosis_plate'>167</div>
-            </Link>
+            {data.map((item, index) => (
+                <Link className='diagnosis_plate' to='#' key={index}>
+                    <div className='force_diagnosis_plate'></div>
+                    <div className='text_diagnosis_plate'>{item.name}</div>
+                    <div className='count_diagnosis_plate'>{item.itemsCount}</div>
+                </Link>
+            ))}
         </div>
     );
 };
