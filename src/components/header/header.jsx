@@ -47,7 +47,6 @@ function Header() {
                 <h1 className="assistant_header">Assistant</h1>
             </Link>
             <div className="menu_section">
-                <h2 className='calculators' onClick={toggleCalculators}>GGGGG</h2>
                 <h2 className='calculators' onClick={toggleCalculators}>Калькуляторы</h2>
                 {showCalculators && (
                     <ul className="dropdown">
