@@ -1,11 +1,10 @@
 .wrapper_hurt {
     width: 100%;
-    min-height: 100%; /* Сделать минимальную высоту 100% высоты экрана */
-    height: 100vh;
+    min-height: 100vh;
     background-color: #f0f0e1;
     display: flex;
     flex-direction: column;
-    padding-bottom: 35px;
+    padding-bottom: 10px;
     position: relative;
 }
 
@@ -19,7 +18,6 @@
 }
 
 .pictures_block_hurt {
-    margin-top: 20px;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); /* Гибкая сетка */
     justify-content: center; /* Центрируем элементы внутри сетки */

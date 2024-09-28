@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './DiagnosPage.scss';
 import { ReactComponent as IconBack } from './icons/Back.svg'
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import InspectionPlate from './inspectionPlate/InspectionPlate';
 import Medical_treatmentPlate from './medical_treatmentPlate/Medical_treatmentPlate';
 import RecomendPlate from './recomendPlate/RecomendPlate';
@@ -10,6 +10,11 @@ import CommentPlate from './commentPlate/CommentPlate';
 import Header from '../header/header';
 
 function DiagnosPage() {
+    const location = useLocation();
+    const { name } = location.state || { name: 'Популярные диагнозы' };
+    const { code } = location.state || { code: 'Популярные диагнозы' };
+    const { displayName } = location.state || { displayName: 'Популярные диагнозы' };
+    const { codeName } = location.state || { codeName: 'default_code' };
 
     const [showCommentPlate, setShowCommentPlate] = useState(false);
 
@@ -23,7 +28,7 @@ function DiagnosPage() {
                 <Header />
             </div>
             <div className="main-container_third_page ">
-                <Link to='/diagnosis'>
+                <Link to={`/diagnosis/${codeName}`}> {/* Используем code для возврата */}
                     <a className='back_wrapper'>
                         <div className='icon_back'>
                             <IconBack id="back_icon" />
@@ -34,7 +39,7 @@ function DiagnosPage() {
                     </a>
                 </Link>
                 <div className='text_main_third_page'>
-                    E28.2 Cиндром поликистоза яичников
+                    {code} {name}
                 </div>
                 <div className='content_wrapper'>
                     <div className='inspection_plate_wrapper'>

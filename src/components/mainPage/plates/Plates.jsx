@@ -37,7 +37,12 @@ export const Plates = () => {
     return (
         <div className='plates_wrapper'>
             {data.map((item, index) => (
-                <Link className='diagnosis_plate' to='#' key={index}>
+                <Link
+                    className='diagnosis_plate'
+                    to={`/diagnosis/${item.code}`}// передаем code в URL
+                    state={{ displayName: item.name, codeName: item.code }}
+                    key={index}
+                >
                     <div className='force_diagnosis_plate'></div>
                     <div className='text_diagnosis_plate'>{item.name}</div>
                     <div className='count_diagnosis_plate'>{item.itemsCount}</div>

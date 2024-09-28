@@ -24,7 +24,9 @@ function App() {
         <Routes>
           <Route path="/" element={<MainPage />} />
           <Route path="/diagnosis" element={<DiagnosisPage />} />
+          <Route path="/diagnosis/:code" element={<DiagnosisPage />} /> {/* Новый маршрут с параметром code */}
           <Route path="/diagnos" element={<DiagnosPage />} />
+          <Route path="/diagnos/:id" element={<DiagnosPage />} /> {/* Новый маршрут с параметром code */}
           <Route path="/block" element={<BlockPage />} />
 
           <Route path="/ludwig-scale" element={<BreastPage />} />

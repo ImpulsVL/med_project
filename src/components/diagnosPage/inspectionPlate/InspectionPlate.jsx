@@ -1,19 +1,50 @@
 import React, { useState } from 'react';
 import './InspectionPlate.scss';
-import { ReactComponent as IconBook } from './icons/Book.svg'
-import { ReactComponent as IconCheck } from './icons/Check.svg'
-import { ReactComponent as ActiveCheck } from './icons/ActiveCheck.svg'
-import { useNavigate } from 'react-router-dom';
+import { ReactComponent as IconBook } from './icons/Book.svg';
+import { ReactComponent as IconCheck } from './icons/Check.svg';
+import { useParams } from 'react-router-dom';
 import CommentPlate from '../commentPlate/CommentPlate';
-
+import useFetchData from '../../hooks/useFetchData'; // Import custom hook
 
 function InspectionPlate({ onToggleCommentPlate }) {
-
+    const { id } = useParams();
+    const { data: inspectionData, loading, error } = useFetchData(id, 'testapi3.php'); // Use custom hook
     const [showCommentPlate, setShowCommentPlate] = useState(false);
 
     const toggleCommentPlate = () => {
         setShowCommentPlate(!showCommentPlate);
     };
+
+    const renderInspectionItems = () => {
+        return inspectionData?.survey?.items?.map((inspection, index) => (
+            <div className='medical_inspection' key={index}>
+                <div className='medical_inspection_header'>
+                    <div className='check_icon'><IconCheck /></div>
+                    <div className='header_info'>{inspection.name}</div>
+                </div>
+                {inspection.values.map((value, i) => (
+                    <div className='medical_inspection_info' key={i}>
+                        <div className='check_icon'><IconCheck /></div>
+                        <div className='medical_info'>{value}</div>
+                    </div>
+                ))}
+            </div>
+        ));
+    };
+
+    if (!id) {
+        return <div>Ошибка: не указан идентификатор обследования.</div>;
+    }
+
+    if (loading) {
+        return <div>Загрузка...</div>;
+    }
+
+    if (error || !inspectionData?.survey?.items) {
+        return <div>Ошибка: {error || 'Данные обследования отсутствуют.'}</div>;
+    }
+
+    const commentData = inspectionData.survey.comment;
 
     return (
         <div className='inspection_wrapper'>
@@ -26,77 +57,10 @@ function InspectionPlate({ onToggleCommentPlate }) {
                     </div>
                 </div>
                 <div className='main_inspection'>
-                    <div className='medical_inspection'>
-                        <div className='medical_inspection_header'>
-                            <div className='check_icon'><IconCheck /></div>
-                            <div className='header_info'>Анализ крови(натощах)</div>
-                        </div>
-                        <div className='medical_inspection_info'>
-                            <div className='check_icon'><IconCheck /></div>
-                            <div className='medical_info'>Тиреотропный гормон (ТТГ)</div>
-                        </div>
-                        <div className='medical_inspection_info'>
-                            <div className='check_icon'><IconCheck /></div>
-                            <div className='medical_info'>Пролактин</div>
-                        </div>
-                        <div className='medical_inspection_info'>
-                            <div className='check_icon'><IconCheck /></div>
-                            <div className='medical_info'>Хронический гонадотропин человека (ХГЧ)</div>
-                        </div>
-                        <div className='medical_inspection_info'>
-                            <div className='check_icon'><IconCheck /></div>
-                            <div className='medical_info'>Соматомедин</div>
-                        </div>
-                        <div className='medical_inspection_info'>
-                            <div className='check_icon'><IconCheck /></div>
-                            <div className='medical_info'>Триглицериды (ТГ)</div>
-                        </div>
-                    </div>
-                    <div className='medical_inspection'>
-                        <div className='medical_inspection_header'>
-                            <div className='check_icon'><IconCheck /></div>
-                            <div className='header_info'>Анализ крови на гормоны во вторую фазу цикла (на 5-6 день после дня предполагаемой овуляции)</div>
-                        </div>
-                        <div className='medical_inspection_info'>
-                            <div className='check_icon'><IconCheck /></div>
-                            <div className='medical_info'>Прогестерон</div>
-                        </div>
-                    </div>
-                    <div className='medical_inspection'>
-                        <div className='medical_inspection_header'>
-                            <div className='check_icon'><IconCheck /></div>
-                            <div className='header_info'>Анализ мочи</div>
-                        </div>
-                        <div className='medical_inspection_info'>
-                            <div className='check_icon'><IconCheck /></div>
-                            <div className='medical_info'>Свободный кортизол, суточная моча</div>
-                        </div>
-                    </div>
-                    <div className='medical_inspection'>
-                        <div className='medical_inspection_header'>
-                            <div className='check_icon'><IconCheck /></div>
-                            <div className='header_info'>Инструментальные методы исследования</div>
-                        </div>
-                        <div className='medical_inspection_info'>
-                            <div className='check_icon'><IconCheck /></div>
-                            <div className='medical_info'>Узи органов малого таза</div>
-                        </div>
-                        <div className='medical_inspection_info'>
-                            <div className='check_icon'><IconCheck /></div>
-                            <div className='medical_info'>Фолликулометрия</div>
-                        </div>
-                        <div className='medical_inspection_info'>
-                            <div className='check_icon'><IconCheck /></div>
-                            <div className='medical_info'>КТ надпочечников</div>
-                        </div>
-                        <div className='medical_inspection_info'>
-                            <div className='check_icon'><IconCheck /></div>
-                            <div className='medical_info'>МРТ надпочечников</div>
-                        </div>
-                    </div>
+                    {renderInspectionItems()}
                 </div>
             </div>
-            {showCommentPlate && <CommentPlate onClose={toggleCommentPlate} />}
+            {showCommentPlate && <CommentPlate onClose={toggleCommentPlate} data={commentData} />}
         </div>
     );
 }

@@ -1,77 +1,49 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './CommentPlate.scss';
-import { ReactComponent as IconClose } from './icons/Close.svg'
-import { useNavigate } from 'react-router-dom';
+import { ReactComponent as IconClose } from './icons/Close.svg';
 
-function CommentPlate({ onClose }) {
+function CommentPlate({ onClose, data, section }) {
+    const getRecommendations = () => {
+        if (data && data.recommendations) {
+            return data.recommendations[section] || {};
+        }
+        return {};
+    };
+
+    const getNonRecommendations = () => {
+        if (data && data.recommendations) {
+            return data.recommendations[section] || {};
+        }
+        return {};
+    };
+
+    const recommendations = getRecommendations();
+    const nonRecommendations = getNonRecommendations();
+
     return (
         <div className='comment_wrapper'>
             <div className='comment_header'>
-                <div className='comment_header_text'>
-                    Обследования
-                </div>
+                <div className='comment_header_text'>Обследования</div>
                 <div className='comment_header_close_icon' onClick={onClose}>
                     <IconClose />
                 </div>
             </div>
             <div className='main_recomend_comment'>
-                <div className='recomend_text'>
-                    РЕКОМЕНДУЕМ
-                </div>
+                <div className='recomend_text'>РЕКОМЕНДУЕМ</div>
                 <div className='recomend_comment_info'>
-                    <p>Для постановки диагноза СПЯ необходимо подтвердить клинические и/или лабораторные проявления гиперандрогении, оценить менструальную и овуляторную функцию,
-                        выявить морфологические изменения яичников с помощью ультрасонографии, и оценить уровень АМГ.  Необходимо указывать в диагнозе фенотип СПЯ:
-                    </p>
-                    <p>
-                        Фенотип А – СПЯ: олигоановуляция, гиперандрогения (клиническая и/или лабораторная), поликистозная морфология яичников
-                    </p>
-                    <p>
-                        Фенотип В – СПЯ: олигоановуляция, гиперандрогения (клиническая и/или лабораторная)
-                    </p>
-                    <p>
-                        Фенотип С –  – СПЯ: гиперандрогения (клиническая и/или лабораторная), поликистозная морфология яичников
-                    </p>
-                    <p>
-                        Фенотип D –  – СПЯ: олигоановуляция, поликистозная морфология яичников
-                    </p>
-                    <p>
-                        Диагностика АМГ
-                    </p>
-                    <p>
-                        Согласно результатам нескольких исследований уровень антимюллерова гормона должен составлять  больше 4,8нг/Мл.
-                        В соответствии с рекомендациями ESHRE 2023 АМГ может использоваться как диагностический критерий СПКЯ (кроме подростков) и быть альтернативой УЗД
-                    </p>
-                    <p>
-                        Согласно результатам нескольких исследований уровень антимюллерова гормона должен составлять  больше 4,8нг/Мл.
-                        В соответствии с рекомендациями ESHRE 2023 АМГ может использоваться как диагностический критерий СПКЯ (кроме подростков) и быть альтернативой УЗД
-                    </p>
-                    <p>
-                        Согласно результатам нескольких исследований уровень антимюллерова гормона должен составлять  больше 4,8нг/Мл.
-                        В соответствии с рекомендациями ESHRE 2023 АМГ может использоваться как диагностический критерий СПКЯ (кроме подростков) и быть альтернативой УЗД
-                    </p>
+                    <p>{recommendations.comment?.recomendation}</p>
+                    {recommendations.items?.map((item, index) => (
+                        <p key={index}>{item.name}: {item.values.join(', ')}</p>
+                    ))}
                 </div>
             </div>
             <div className='main_nonrecomend_comment'>
-                <div className='nonrecomend_text'>
-                    НЕ РЕКОМЕНДУЕМ
-                </div>
+                <div className='nonrecomend_text'>НЕ РЕКОМЕНДУЕМ</div>
                 <div className='nonrecomend_comment_info'>
                     <ul>
-                        <li>
-                            Не рекомендуется использование АМГ в качестве диагностического критерия СПЯ. АМГ может использоваться как вспомогательный маркер у пациенток с бесплодием и СПЯ. 
-                        </li>
-                        <li>
-                            Не следует проводить исследование уровня стероидных гормонов на фоне приема КОК. 
-                        </li>
-                        <li>
-                            Оценка ультразвуковых критериев у женщин, принимающих КОК, не допустима. 
-                        </li>
-                        <li>
-                            Оценка состоявшейся овуляции только на основании свободной жидкости в малом тазу невозможна. Определение состоявшейся овуляции зависит от квалификации врача УЗД и является субъективным признаком. 
-                        </li>
-                        <li>
-                            Не рекомендуется использование АМГ в качестве диагностического критерия СПЯ. АМГ может использоваться как вспомогательный маркер у пациенток с бесплодием и СПЯ. 
-                        </li>
+                        {nonRecommendations.items?.map((item, index) => (
+                            <li key={index}>{item.name}</li>
+                        ))}
                     </ul>
                 </div>
             </div>

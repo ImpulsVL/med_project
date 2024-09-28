@@ -2,10 +2,13 @@ import React from 'react';
 import './DiagnosisPage.scss';
 import DiagnosisPlates from "./diagnosisPlates/DiagnosisPlates";
 import { ReactComponent as IconBack } from './diagnosisPlates/icons/Back.svg'
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import Header from '../header/header';
 
 function DiagnosisPage() {
+    const location = useLocation();
+    const { displayName } = location.state || { displayName: 'Популярные диагнозы' };
+
     return (
         <div className='second_wrapper'>
             <div className='header-1'>
@@ -23,7 +26,7 @@ function DiagnosisPage() {
                     </a>
                 </Link>
                 <div className='text_main_second_page'>
-                    Популярные диагнозы
+                    {displayName}
                 </div>
                 <div className='Plates'>
                     <DiagnosisPlates />
