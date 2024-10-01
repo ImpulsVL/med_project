@@ -1,58 +1,80 @@
-import React, { useState } from 'react';
+import React, { Children, useState } from 'react';
 import './RecomendPlate.scss';
 import { ReactComponent as IconBook } from './icons/Book.svg';
 import { ReactComponent as IconCheck } from './icons/Check.svg';
 import CommentPlate from '../commentPlate/CommentPlate';
 import { useParams } from 'react-router-dom';
-import useFetchData from '../../hooks/useFetchData'; // Import custom hook
 
-function RecomendPlate({ onToggleCommentPlate }) {
+function RecomendPlate({ onToggleCommentPlate, diagnos, onSelectionChange, onChange }) {
     const { id } = useParams();
-    const { data: recommendationData, loading, error } = useFetchData(id, 'testapi3.php'); // Use custom hook
     const [showCommentPlate, setShowCommentPlate] = useState(false);
+    const [selectedItems, setSelectedItems] = useState([]); // State to store selected items
+
+    const recommendationData = diagnos.items;
+    const comment = diagnos.comment;
 
     const toggleCommentPlate = () => {
         setShowCommentPlate(!showCommentPlate);
     };
 
-    const renderRecommendationItems = () => {
-        return recommendationData?.recommendations?.items?.map((recommendation, index) => (
-            <div className='medical_recomend' key={index}>
-                <div className='medical_recomend_info'>
-                    <div className='check_icon'><IconCheck /></div>
-                    <div className='medical_info'>{recommendation.name}</div>
-                </div>
-                {recommendation.values.length > 0 ? (
-                    recommendation.values.map((value, i) => (
-                        <div className='medical_recomend_comments' key={i}>
-                            {value}
-                        </div>
-                    ))
-                ) : (
-                    <div className='medical_recomend_comments'>Нет дополнительных комментариев.</div>
-                )}
-            </div>
-        ));
+    const handleToggleCommentPlate = () => {
+        onToggleCommentPlate(recommendationData, 'recommendations');
+        toggleCommentPlate();
     };
 
-    if (!id) {
-        return <div>Error: Recommendation ID not specified.</div>;
-    }
+    const handleItemClick = (recommendation) => {
+        const isSelected = selectedItems.some(item => item.parent === recommendation.name);
+        let updatedSelection = [];
 
-    if (loading) {
-        return <div>Loading...</div>;
-    }
+        if (isSelected) {
+            // Unselect parent and all children
+            updatedSelection = selectedItems.filter(item => item.parent !== recommendation.name);
+        } else {
+            // Select parent and all children
+            updatedSelection = [
+                ...selectedItems,
+                { parent: recommendation.name, children: [...recommendation.values]}
+            ];
+        }
 
-    if (error || !recommendationData?.recommendations?.items) {
-        return <div>Error: {error || 'No recommendation data available.'}</div>;
-    }
+        setSelectedItems(updatedSelection);
+        onSelectionChange(updatedSelection); // Pass selected items to the parent
+        onChange(updatedSelection);
+    };
+
+    const renderRecommendationItems = () => {
+        return recommendationData?.map((recommendation, index) => {
+            const isSelected = selectedItems.some(item => item.parent === recommendation.name);
+
+            return (
+                <div className='medical_recomend' key={index}>
+                    <div 
+                        className={`medical_recomend_info ${isSelected ? 'selected' : ''}`}
+                        onClick={() => handleItemClick(recommendation)}
+                    >
+                        <div className='check_icon'><IconCheck /></div>
+                        <div className='medical_info'>{recommendation.name}</div>
+                    </div>
+                    {recommendation.values.length > 0 ? (
+                        recommendation.values.map((value, i) => (
+                            <div className='medical_recomend_comments' key={i}>
+                                {value}
+                            </div>
+                        ))
+                    ) : (
+                        <div className='medical_recomend_comments'></div>
+                    )}
+                </div>
+            );
+        });
+    };
 
     return (
         <div className='recomend_wrapper'>
             <div className='recomend_block'>
                 <div className='header_recomend'>
                     <div className='text_recomend'>Рекомендации</div>
-                    <div className='text_icon' onClick={onToggleCommentPlate}>
+                    <div className='text_icon' onClick={handleToggleCommentPlate}>
                         <div className='text_comments'>Комментарий</div>
                         <div className='icon_book'><IconBook /></div>
                     </div>
@@ -61,7 +83,7 @@ function RecomendPlate({ onToggleCommentPlate }) {
                     {renderRecommendationItems()}
                 </div>
             </div>
-            {showCommentPlate && <CommentPlate onClose={toggleCommentPlate} />}
+            {showCommentPlate && <CommentPlate onClose={toggleCommentPlate} data={comment} section="recommendations" title="Рекомендации"/>}
         </div>
     );
 }

@@ -110,3 +110,19 @@
     text-align: left;
     color: gray
 }
+
+.medical_inspection_header:hover .checked,
+.medical_inspection_info:hover .checked {
+    stroke: rgb(73, 116, 33);
+}
+
+/* Изменяем цвет иконки на светло-зелёный, когда элемент выбран */
+.selected .check_icon path {
+    stroke: rgb(73, 116, 33);
+}
+
+/* Для текста также можно изменить цвет при выборе */
+.medical_inspection_header.selected .header_info,
+.medical_inspection_info.selected .medical_info {
+    color: rgb(73, 116, 33);
+}

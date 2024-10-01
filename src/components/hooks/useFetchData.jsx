@@ -38,7 +38,7 @@ function useFetchData(id, endpoint) {
         };
 
         fetchData();
-    }, [id, endpoint]);
+    }, []);
 
     return { data, loading, error };
 }

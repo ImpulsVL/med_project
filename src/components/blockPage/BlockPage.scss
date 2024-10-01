@@ -102,7 +102,7 @@ a {
 }
 
 .button_comments{
-    padding: 2px 5px 5px 5px;
+    padding: 2px 5px 2px 0px;
     border-radius: 5px;
 }
 
@@ -307,11 +307,34 @@ a {
     background-color: rgb(92, 146, 42);
 }
 
-.option_bold.active, .option_stroke.active {
+.option_bold.active, .option_stroke.active, .option_dot.active, .option_number.active {
     background-color: rgb(92, 146, 42); /* Цвет фона для активной кнопки */
     color: white; /* Цвет текста и иконки */
 }
 
 .option_bold.active svg, .option_stroke.active svg {
     fill: white; /* Меняем цвет иконки на белый при активном состоянии */
+}
+
+.write_wrapper_box ul{
+    margin-left: 15px;
+}
+
+.write_wrapper_box ol{
+    margin-left: 15px;
+}
+
+.custom-select {
+    border: none; /* Убираем рамку */
+    background-color: transparent; /* Прозрачный фон */
+    font-size: 14px; /* Размер шрифта */
+    color: #333; /* Цвет текста */
+    padding: 5px 10px; /* Внутренние отступы */
+    appearance: none; /* Убираем стандартный вид браузера */
+    outline: none; /* Убираем фокусную обводку */
+    cursor: pointer; /* Изменение курсора */
+}
+
+.custom-select option {
+    color: #333; /* Цвет текста для опций */
 }

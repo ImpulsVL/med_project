@@ -64,7 +64,6 @@ function IntensivePage() {
         });
 
         const total = Math.min((totalPads + totalTampons) / 80 * 100, 100); // Приведение к процентам
-        console.log(total)
         return total; // Возвращение итогового значения
     };
 

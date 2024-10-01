@@ -7,17 +7,23 @@ import CommentPlate from '../commentPlate/CommentPlate';
 import { useParams } from 'react-router-dom';
 import useFetchData from '../../hooks/useFetchData'; // Импортируем кастомный хук
 
-function Medical_treatmentPlate({ onToggleCommentPlate }) {
-    const { id } = useParams(); // Получаем id из URL
-    const { data: treatmentData, loading, error } = useFetchData(id, 'testapi3.php'); // Используем хук для получения данных
+function Medical_treatmentPlate({ onToggleCommentPlate, diagnos, onSelectionChange, onChange }) {
+    const { id } = useParams();
+    const treatmentData = diagnos.items;
+    const comment = diagnos.comment;
     const [showCommentPlate, setShowCommentPlate] = useState(false);
-    const [expandedItems, setExpandedItems] = useState({}); // Состояние для каждого элемента списка
+    const [expandedItems, setExpandedItems] = useState({});
+    const [selectedItems, setSelectedItems] = useState([]); // For selected parent and child items
 
-    // Переключение состояния комментариев
+    const [count, setCount] = useState(0);
+    const handleCountChange = () => {
+        onChange(selectedItems)
+    }
+
     const toggleExpand = (index) => {
         setExpandedItems(prevState => ({
             ...prevState,
-            [index]: !prevState[index] // Переключаем только конкретный элемент
+            [index]: !prevState[index]
         }));
     };
 
@@ -25,60 +31,130 @@ function Medical_treatmentPlate({ onToggleCommentPlate }) {
         setShowCommentPlate(!showCommentPlate);
     };
 
-    // Рендеринг элементов лечения
-    const renderTreatmentItems = () => {
-        return treatmentData?.drug_treatment?.items?.map((treatment, index) => (
-            <div className='medical_medical_treatment' key={index}>
-                <div>
-                    <div className='medical_treatment_info'>
-                        <div className='check_icon'><IconCheck /></div>
-                        <div className='medical_medical_info'>{treatment.name}</div>
-                        <button
-                            className={`openRadio_icon ${expandedItems[index] ? 'rotated' : ''}`}
-                            onClick={() => toggleExpand(index)} // Передаем индекс
-                        >
-                            <OpenRadio />
-                        </button>
-                    </div>
-                    <div className='medical_treatment_comments'>
-                        {treatment.values.length > 0}
-                        {/*{treatment.values.length > 0 ? treatment.values.join(', ') : 'Нет дополнительных комментариев.'}*/}
-                    </div>
-                </div>
-                {expandedItems[index] && (
-                    <div className='radio_wrapper'>
-                        {treatment.values.map((value, i) => (
-                            <div className='radio_info' key={i}>
-                                <div className='radio_treatment_info'>
-                                    <div className='check_icon'><IconCheck /></div>
-                                    <div className='radio_medical_info'>{value}</div>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                )}
-            </div>
-        ));
+    const handleToggleCommentPlate = () => {
+        onToggleCommentPlate(treatmentData, 'drug_treatment');
+        toggleCommentPlate();
     };
 
-    if (!id) {
-        return <div>Error: Treatment ID not specified.</div>;
-    }
+    const handleParentClick = (treatment) => {
+        const isSelected = selectedItems.some(item => item.parent === treatment.name);
+        let updatedSelection = [];
 
-    if (loading) {
-        return <div>Loading...</div>;
-    }
+        if (isSelected) {
+            // Unselect parent and all children
+            updatedSelection = selectedItems.filter(item => item.parent !== treatment.name);
+        } else {
+            // Select parent and all children
+            updatedSelection = [
+                ...selectedItems,
+                { parent: treatment.name, children: [...treatment.values] }
+            ];
+        }
 
-    if (error || !treatmentData?.drug_treatment?.items) {
-        return <div>Error: {error || 'No treatment data available.'}</div>;
-    }
+        setSelectedItems(updatedSelection);
+        onSelectionChange(updatedSelection);
+        onChange(updatedSelection);
+    };
+
+    const handleChildClick = (treatment, value) => {
+        const parentItem = selectedItems.find(item => item.parent === treatment.name);
+        const isChildSelected = parentItem?.children.includes(value);
+
+        let updatedSelection = [];
+
+        if (isChildSelected) {
+            // Unselect specific child
+            updatedSelection = selectedItems.map(item => {
+                if (item.parent === treatment.name) {
+                    return {
+                        ...item,
+                        children: item.children.filter(child => child !== value)
+                    };
+                }
+                return item;
+            }).filter(item => item.children.length > 0);
+        } else {
+            if (parentItem) {
+                // Add child to already selected parent
+                updatedSelection = selectedItems.map(item => {
+                    if (item.parent === treatment.name) {
+                        return {
+                            ...item,
+                            children: [...item.children, value]
+                        };
+                    }
+                    return item;
+                });
+            } else {
+                // Select both parent and child
+                updatedSelection = [
+                    ...selectedItems,
+                    { parent: treatment.name, children: [value] }
+                ];
+            }
+        }
+
+        setSelectedItems(updatedSelection);
+        onSelectionChange(updatedSelection);
+        onChange(updatedSelection);
+    };
+
+    const renderTreatmentItems = () => {
+        return treatmentData?.map((treatment, index) => {
+            const isParentSelected = selectedItems.some(item => item.parent === treatment.name);
+
+            return (
+                <div className='medical_medical_treatment' key={index}>
+                    <div>
+                        <div
+                            className={`medical_treatment_info ${isParentSelected ? 'selected' : ''}`}
+                            onClick={() => handleParentClick(treatment)}
+                        >
+                            <div className='check_icon'><IconCheck /></div>
+                            <div className='medical_medical_info'>{treatment.name}</div>
+                        </div>
+                        <div className='block_open_radio'>
+                            <button
+                                className={`openRadio_icon ${expandedItems[index] ? 'rotated' : ''}`}
+                                onClick={() => toggleExpand(index)}
+                            >
+                                <OpenRadio />
+                            </button>
+                        </div>
+                        <div className='medical_treatment_comments'>
+                            {treatment.values.length > 0}
+                        </div>
+                    </div>
+                    {expandedItems[index] && (
+                        <div className='radio_wrapper'>
+                            {treatment.values.map((value, i) => {
+                                const isChildSelected = selectedItems.some(item => item.parent === treatment.name && item.children.includes(value));
+
+                                return (
+                                    <div
+                                        className={`radio_info ${isChildSelected ? 'selected' : ''}`}
+                                        key={i}
+                                        onClick={() => handleChildClick(treatment, value)}
+                                    >   <div className='radio_treatment_info'>
+                                            <div className='check_icon'><IconCheck /></div>
+                                            <div className='radio_medical_info'>{value}</div>
+                                        </div>
+                                    </div>
+                                );
+                            })}
+                        </div>
+                    )}
+                </div>
+            );
+        });
+    };
 
     return (
         <div className='medical_treatment_wrapper'>
             <div className='medical_treatment_block'>
                 <div className='header_medical_treatment'>
                     <div className='text_medical_treatment'>Медикаментозное лечение</div>
-                    <div className='text_icon' onClick={onToggleCommentPlate}>
+                    <div className='text_icon' onClick={handleToggleCommentPlate}>
                         <div className='text_comments'>Комментарий</div>
                         <div className='icon_book'><IconBook /></div>
                     </div>
@@ -87,7 +163,7 @@ function Medical_treatmentPlate({ onToggleCommentPlate }) {
                     {renderTreatmentItems()}
                 </div>
             </div>
-            {showCommentPlate && <CommentPlate onClose={toggleCommentPlate} />}
+            {showCommentPlate && <CommentPlate onClose={toggleCommentPlate} data={comment} section="drug_treatment" title="Медикаментозное лечение" />}
         </div>
     );
 }

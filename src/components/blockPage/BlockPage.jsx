@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useParams } from 'react-router-dom';
 import './BlockPage.scss';
 import { ReactComponent as IconBack } from './icons/Back.svg';
 import { ReactComponent as IconOpenRadio } from './icons/OpenRadio.svg';
@@ -13,12 +13,55 @@ import { ReactComponent as IconBackOption } from './icons/BackOption.svg';
 import { ReactComponent as CopyIcon } from './icons/Copy.svg';
 import { ReactComponent as PrinterIcon } from './icons/Printer.svg';
 import Header from '../header/header';
+import useFetchData from '../hooks/useFetchData';
 
 function BlockPage() {
+    const location = useLocation();
+    const inspectionList = location.state?.inspectionList || [];
+    const medicalTreatmentList = location.state?.medicalTreatmentList || [];
+    const recomendList = location.state?.recomendList || [];
+
+    const sectionCode = location.state.sectionCode;
 
     const textRef = useRef(null); // Референс на блок с текстом
     const [isBold, setIsBold] = useState(false);
     const [isItalic, setIsItalic] = useState(false);
+    const [isDot, setIsDot] = useState(false);
+    const [isNumber, setIsNumber] = useState(false);
+
+    const [selectedFormat, setSelectedFormat] = useState('Choose heading');
+
+    // Handler for applying styles
+    const applyFormat = (format) => {
+        setSelectedFormat(format);
+        if (format === 'Heading') {
+            document.execCommand('formatBlock', false, 'h1');
+        } else if (format === 'Subheading') {
+            document.execCommand('formatBlock', false, 'h2');
+        } else if (format === 'Comment') {
+            document.execCommand('fontSize', false, 'small');
+            document.execCommand('foreColor', false, 'gray');
+        } else if (format === 'Text') {;
+            document.execCommand('foreColor', false, 'black');
+        }else {
+            document.execCommand('formatBlock', false, 'span');
+        }
+    };
+
+    // Function to handle Enter or line breaks, resetting to normal text
+    const handleKeyDown = (e) => {
+        if (e.key === 'Enter') {
+            const selection = window.getSelection();
+            const parentElement = selection.anchorNode.parentElement;
+
+            // Если текущий блок — это заголовок, то добавляем новый абзац
+            if (parentElement.tagName === 'H1' || parentElement.tagName === 'H2') {
+                e.preventDefault(); // Останавливаем стандартное поведение Enter
+                document.execCommand('formatBlock', false, 'p'); // Создаем новый абзац
+                setSelectedFormat('Text'); // Сбрасываем формат на текст
+            }
+        }
+    };
 
     // Функция для копирования текста
     const handleCopyText = () => {
@@ -61,13 +104,38 @@ function BlockPage() {
         document.execCommand('redo');
     };
 
+    const insertUnorderedList = () => {
+        document.execCommand('insertUnorderedList');
+        setIsDot(!isDot);
+    };
+
+    // Логика для создания нумерованного списка
+    const insertOrderedList = () => {
+        document.execCommand('insertOrderedList');
+        setIsNumber(!isNumber);
+    };
+
+    // Функция для печати текста
+    const handlePrintText = () => {
+        const printContent = textRef.current.innerHTML; // Получаем HTML из блока
+        const newWindow = window.open('', '', 'height=500, width=800');
+        newWindow.document.write('<html><head><title></title>');
+        newWindow.document.write('</head><body>');
+        newWindow.document.write(printContent); // Вставляем контент
+        newWindow.document.write('</body></html>');
+        newWindow.document.close(); // Закрываем документ для завершения загрузки
+        newWindow.focus(); // Фокусируем окно
+        newWindow.print(); // Запускаем печать
+        newWindow.close(); // Закрываем окно после печати
+    };
+
     return (
         <div className='wrapper_four'>
             <div className='header-1'>
                 <Header />
             </div>
             <div className="main_block_page">
-                <Link to='/diagnosis'>
+                <Link to={`/diagnosis/${sectionCode}`}>
                     <a className='back_wrapper' href='/diagnosis'>
                         <div className='icon_back'>
                             <IconBack id="back_icon" />
@@ -85,8 +153,17 @@ function BlockPage() {
                                     <div className='button_comments'>
                                         <button className='button_comments_force'>
                                             <div className='button_comments_options'>
-                                                <span className="button_comments_name">Комментарий</span>
-                                                <IconOpenRadio />
+                                                <select
+                                                    className="custom-select"
+                                                    value={selectedFormat}
+                                                    onChange={(e) => applyFormat(e.target.value)}
+                                                >
+                                                    <option value="Choose heading">Choose heading</option>
+                                                    <option value="Heading">Заголовок</option>
+                                                    <option value="Subheading">Подзаголовок</option>
+                                                    <option value="Text">Текст</option>
+                                                    <option value="Comment">Комментарий</option>
+                                                </select>
                                             </div>
                                         </button>
                                     </div>
@@ -105,10 +182,10 @@ function BlockPage() {
                                     <button className='option_link'>
                                         <IconLink />
                                     </button>
-                                    <button className='option_dot'>
+                                    <button className={`option_dot ${isDot ? 'active' : ''}`} onClick={insertUnorderedList}>
                                         <IconDot />
                                     </button>
-                                    <button className='option_number'>
+                                    <button className={`option_number ${isNumber ? 'active' : ''}`} onClick={insertOrderedList}>
                                         <IconNumber />
                                     </button>
                                     <button
@@ -130,8 +207,59 @@ function BlockPage() {
                                     className='write_wrapper_box'
                                     contentEditable="true"
                                     ref={textRef} // Присваиваем референс блоку с текстом
+                                    onKeyDown={handleKeyDown}
                                 >
-                                    {/* Добавлено contentEditable */}
+                                    {inspectionList.length > 0 &&
+                                        <ul>
+                                            <h2>Обследования</h2>
+                                            {inspectionList.map((item, index) => (
+                                                <li key={index}>
+                                                    <strong>{item.parent}</strong>
+                                                    {item.children.length > 0 && (
+                                                        <ul>
+                                                            {item.children.map((child, i) => (
+                                                                <li key={i}>{child}</li>
+                                                            ))}
+                                                        </ul>
+                                                    )}
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    }
+                                    {medicalTreatmentList.length > 0 &&
+                                        <ul>
+                                            <h2>Медикаментозное лечение</h2>
+                                            {medicalTreatmentList.map((item, index) => (
+                                                <li key={index}>
+                                                    <strong>{item.parent}</strong>
+                                                    {item.children.length > 0 && (
+                                                        <ul>
+                                                            {item.children.map((child, i) => (
+                                                                <li key={i}>{child}</li>
+                                                            ))}
+                                                        </ul>
+                                                    )}
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    }
+                                    {recomendList.length > 0 &&
+                                        <ul>
+                                            <h2>Рекомендации</h2>
+                                            {recomendList.map((item, index) => (
+                                                <li key={index}>
+                                                    <strong>{item.parent}</strong>
+                                                    {item.children.length > 0 && (
+                                                        <ul>
+                                                            {item.children.map((child, i) => (
+                                                                <li key={i}>{child}</li>
+                                                            ))}
+                                                        </ul>
+                                                    )}
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    }
                                 </div>
                             </div>
                         </div>
@@ -145,7 +273,7 @@ function BlockPage() {
                                     </button>
                                 </div>
                                 <div className='printer_box'>
-                                    <button className='printer_button'>
+                                    <button className='printer_button' onClick={handlePrintText}>
                                         <div className='printer_button_text'>
                                             <PrinterIcon /> Распечатать
                                         </div>

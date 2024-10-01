@@ -1,32 +1,50 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom'; // For navigation
 import { ReactComponent as SearchLogo } from './icons/Search.svg';
 import { ReactComponent as ClearIcon } from './icons/Clear.svg';
 import './SearchBar.scss';
 
-// Тестовые данные для поиска
-const testDiagnoses = [
-  { code: 'E21', name: 'Хандрид' },
-  { code: 'A01', name: 'Тестовый диагноз 1' },
-  { code: 'B02', name: 'Тестовый диагноз 2' },
-  { code: 'C03', name: 'Тестовый диагноз 3' },
-  { code: 'D04', name: 'Тестовый диагноз 4' },
-  { code: 'F05', name: 'Тестовый диагноз 5' },
-];
-
 export const SearchBar = () => {
   const [searchText, setSearchText] = useState('');
-  const [showResults, setShowResults] = useState(false); // Управление видимостью результатов
+  const [showResults, setShowResults] = useState(false);
+  const [diagnoses, setDiagnoses] = useState([]); // State to hold fetched data
+  const [loading, setLoading] = useState(false); // Loading state
   const inputRef = useRef(null);
-  const wrapperRef = useRef(null); // Реф для отслеживания кликов вне компонента
+  const wrapperRef = useRef(null);
+  const navigate = useNavigate(); // For programmatic navigation
+
+  // Fetch data from API when searchText changes
+  useEffect(() => {
+    if (searchText) {
+      const fetchData = async () => {
+        setLoading(true); // Set loading state before fetching data
+        try {
+          const response = await fetch(`http://test-asya.ru/api/testapi4.php?SEARCH=${searchText}`);
+          const data = await response.json();
+          const parsedData = JSON.parse(data.result); // Parse nested JSON string
+          setDiagnoses(parsedData); // Assuming the API returns one diagnosis at a time
+          setShowResults(true); // Show the results when data is fetched
+        } catch (error) {
+          setDiagnoses([]); // Clear diagnoses if there's an error
+        } finally {
+          setLoading(false); // Remove loading state after fetching ends
+        }
+      };
+
+      fetchData();
+    } else {
+      setShowResults(false); // Hide results when the search text is cleared
+      setDiagnoses([]); // Clear results if search text is empty
+    }
+  }, [searchText]); // Dependency on searchText, triggers fetch when it changes
 
   const handleInputChange = (e) => {
     setSearchText(e.target.value);
-    setShowResults(true); // Показываем результаты при вводе текста
   };
 
   const clearSearch = () => {
     setSearchText('');
-    setShowResults(false); // Скрываем результаты при очистке поля
+    setShowResults(false);
   };
 
   const handleSearchIconClick = () => {
@@ -35,21 +53,14 @@ export const SearchBar = () => {
     }
   };
 
-  // Фильтрация данных на основе введенного текста
-  const filteredDiagnoses = testDiagnoses.filter(
-    (diagnosis) =>
-      diagnosis.name.toLowerCase().includes(searchText.toLowerCase()) ||
-      diagnosis.code.toLowerCase().includes(searchText.toLowerCase())
-  );
-
-  // Обработчик клика вне компонента поиска
+  // Handle click outside the search component
   const handleClickOutside = (event) => {
     if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
-      setShowResults(false); // Скрываем результаты
+      setShowResults(false);
     }
   };
 
-  // Добавляем и удаляем обработчик события на document
+  // Attach event listener to detect clicks outside
   useEffect(() => {
     document.addEventListener('mousedown', handleClickOutside);
     return () => {
@@ -57,21 +68,26 @@ export const SearchBar = () => {
     };
   }, []);
 
+  // Navigate to the diagnosis page
+  const handleDiagnosisClick = (diagnosis) => {
+    navigate(`/diagnos/${diagnosis.ID}`); // Navigate to the diagnosis page
+  };
+
   return (
     <div className="search_bar_wrapper" ref={wrapperRef}>
-      <div className='input_wrapper'>
+      <div className="input_wrapper">
         <input
           ref={inputRef}
           type="text"
           value={searchText}
           onChange={handleInputChange}
-          placeholder='Введите название диагноза или код по МКБ'
+          placeholder="Введите название диагноза или код по МКБ"
         />
         <button
           type="button"
           className="icon_button"
           onClick={clearSearch}
-          style={{ display: searchText ? 'block' : 'none' }} // Показ крестика если есть текст
+          style={{ display: searchText ? 'block' : 'none' }}
         >
           <ClearIcon id="clear_icon" />
         </button>
@@ -79,20 +95,26 @@ export const SearchBar = () => {
           type="button"
           className="icon_button"
           onClick={handleSearchIconClick}
-          style={{ display: searchText ? 'none' : 'block' }} // Показ лупы если нет текста
+          style={{ display: searchText ? 'none' : 'block' }}
         >
           <SearchLogo id="search_icon" />
         </button>
       </div>
-      
-      {/* Блок результатов поиска */}
+
+      {/* Search results */}
       {showResults && searchText && (
         <div className="search_results">
-          {filteredDiagnoses.length > 0 ? (
-            filteredDiagnoses.map((diagnosis, index) => (
-              <div key={index} className="search_result_item">
-                <span className="diagnosis_code">{diagnosis.code}</span>
-                <span className="diagnosis_name">{diagnosis.name}</span>
+          {loading ? (
+            <div className="loading">Загрузка...</div>
+          ) : diagnoses.length > 0 ? (
+            diagnoses.map((diagnosis, index) => (
+              <div
+                key={index}
+                className="search_result_item"
+                onClick={() => handleDiagnosisClick(diagnosis)} // Handle click
+              >
+                <span className="diagnosis_code">{diagnosis.CODE}</span>
+                <span className="diagnosis_name">{diagnosis.NAME}</span>
               </div>
             ))
           ) : (
