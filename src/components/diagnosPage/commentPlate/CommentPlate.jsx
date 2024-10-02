@@ -24,9 +24,9 @@ function CommentPlate({ onClose, data, section, title  }) {
         <div className='comment_wrapper'>
             <div className='comment_header'>
                 <div className='comment_header_text'>{title}</div>
-                <div className='comment_header_close_icon' onClick={onClose}>
+                {/* <div className='comment_header_close_icon' onClick={onClose}>
                     <IconClose />
-                </div>
+                </div> */}
             </div>
             <div className='main_recomend_comment'>
                 <div className='recomend_text'>РЕКОМЕНДУЕМ</div>

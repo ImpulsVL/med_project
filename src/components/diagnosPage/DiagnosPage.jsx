@@ -21,27 +21,41 @@ function DiagnosPage() {
     const [medicalTreatmentList, updateMedicalTreament] = useState([]);
     const [recomendList, updateRecomend] = useState([]);
 
-    if (loading){
+    const [activeCommentPlate, setActiveCommentPlate] = useState(null);
+
+    if (loading) {
         return <div>Loading...</div>;
     }
 
-    const toggleCommentPlate = () => {
-        setShowCommentPlate(!showCommentPlate);
+    const toggleCommentPlate = (plateName) => {
+        if (activeCommentPlate === plateName) {
+            setActiveCommentPlate(null); // Закрываем форму
+        } else {
+            setActiveCommentPlate(plateName); // Открываем форму
+        }
     };
 
     const handleSelectionChange = (newSelection) => {
         setSelectedItems(newSelection);
     };
 
-    const updatePlateInspection = (plate) =>{
+    // const handleToggleCommentPlate = (plateName) => {
+    //     if (activeCommentPlate === plateName) {
+    //         setActiveCommentPlate(null); // Закрыть, если тот же
+    //     } else {
+    //         setActiveCommentPlate(plateName); // Открыть новый и закрыть старый
+    //     }
+    // };
+
+    const updatePlateInspection = (plate) => {
         updateInspection(plate)
     }
 
-    const updateMedicalTreamentPlate = (plate) =>{
+    const updateMedicalTreamentPlate = (plate) => {
         updateMedicalTreament(plate)
     }
 
-    const updateRecomendPlate = (plate) =>{
+    const updateRecomendPlate = (plate) => {
         updateRecomend(plate)
     }
 
@@ -51,33 +65,35 @@ function DiagnosPage() {
                 <Header />
             </div>
             <div className="main-container_third_page ">
-                <Link to={`/diagnosis/${recommendationData.section}`}> {/* Используем code для возврата */}
-                    <a className='back_wrapper'>
-                        <div className='icon_back'>
-                            <IconBack id="back_icon" />
-                        </div>
-                        <div className='back_button_text'>
-                            Вернуться к диагнозам
-                        </div>
-                    </a>
-                </Link>
+                <div className='style_for_link'>
+                    <Link to={`/diagnosis/${recommendationData.section}`}> {/* Используем code для возврата */}
+                        <a className='back_wrapper'>
+                            <div className='icon_back'>
+                                <IconBack id="back_icon" />
+                            </div>
+                            <div className='back_button_text'>
+                                Вернуться к диагнозам
+                            </div>
+                        </a>
+                    </Link>
+                </div>
                 <div className='text_main_third_page'>
                     {recommendationData.code} {recommendationData.name}
                 </div>
                 <div className='content_wrapper'>
                     <div className='inspection_plate_wrapper'>
-                        <InspectionPlate diagnos={recommendationData.survey} onChange={updatePlateInspection} onToggleCommentPlate={toggleCommentPlate} onSelectionChange={handleSelectionChange}/>
+                        <InspectionPlate diagnos={recommendationData.survey} onChange={updatePlateInspection} onToggleCommentPlate={() => toggleCommentPlate('inspection')} isActive={activeCommentPlate === 'inspection'} onSelectionChange={handleSelectionChange} />
                     </div>
                     <div className='medical_treatment_plate_wrapper'>
-                        <Medical_treatmentPlate diagnos={recommendationData.drug_treatment} onChange={updateMedicalTreamentPlate} onToggleCommentPlate={toggleCommentPlate}  onSelectionChange={handleSelectionChange}/>
+                        <Medical_treatmentPlate diagnos={recommendationData.drug_treatment} onChange={updateMedicalTreamentPlate} onToggleCommentPlate={() => toggleCommentPlate('treatment')} isActive={activeCommentPlate === 'treatment'} onSelectionChange={handleSelectionChange} />
                     </div>
                     <div className='recomend_plate_wrapper'>
-                        <RecomendPlate diagnos={recommendationData.recommendations} onChange={updateRecomendPlate} onToggleCommentPlate={toggleCommentPlate}  onSelectionChange={handleSelectionChange}/>
+                        <RecomendPlate diagnos={recommendationData.recommendations} onChange={updateRecomendPlate} onToggleCommentPlate={() => toggleCommentPlate('recommendation')} isActive={activeCommentPlate === 'recommendation'} onSelectionChange={handleSelectionChange} />
                     </div>
 
                 </div>
                 <div className='footer'>
-                    <MoveFooter inspectionList={inspectionList} medicalTreatmentList={medicalTreatmentList} recomendList={recomendList} sectionCode = {recommendationData.section}/>
+                    <MoveFooter inspectionList={inspectionList} medicalTreatmentList={medicalTreatmentList} recomendList={recomendList} sectionCode={recommendationData.section} />
                 </div>
             </div>
         </div>

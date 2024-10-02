@@ -5,7 +5,7 @@ import { ReactComponent as IconCheck } from './icons/Check.svg';
 import { useParams } from 'react-router-dom';
 import CommentPlate from '../commentPlate/CommentPlate';
 
-function InspectionPlate({ onToggleCommentPlate, diagnos, onSelectionChange, onChange }) {
+function InspectionPlate({ onToggleCommentPlate, diagnos, onSelectionChange, onChange, isActive }) {
     const inspectionData = diagnos.items;
     const comment = diagnos.comment;
     const [showCommentPlate, setShowCommentPlate] = useState(false);
@@ -133,7 +133,7 @@ function InspectionPlate({ onToggleCommentPlate, diagnos, onSelectionChange, onC
                     {renderInspectionItems()}
                 </div>
             </div>
-            {showCommentPlate && <CommentPlate onClose={toggleCommentPlate} data={comment} section="survey" title="Обследования" />}
+            {isActive && <CommentPlate onClose={toggleCommentPlate} data={comment} section="survey" title="Обследования" />}
         </div>
     );
 }

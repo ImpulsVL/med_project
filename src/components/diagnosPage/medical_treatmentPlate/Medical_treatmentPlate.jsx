@@ -7,7 +7,7 @@ import CommentPlate from '../commentPlate/CommentPlate';
 import { useParams } from 'react-router-dom';
 import useFetchData from '../../hooks/useFetchData'; // Импортируем кастомный хук
 
-function Medical_treatmentPlate({ onToggleCommentPlate, diagnos, onSelectionChange, onChange }) {
+function Medical_treatmentPlate({ onToggleCommentPlate, diagnos, onSelectionChange, onChange, isActive}) {
     const { id } = useParams();
     const treatmentData = diagnos.items;
     const comment = diagnos.comment;
@@ -166,7 +166,7 @@ function Medical_treatmentPlate({ onToggleCommentPlate, diagnos, onSelectionChan
                     {renderTreatmentItems()}
                 </div>
             </div>
-            {showCommentPlate && <CommentPlate onClose={toggleCommentPlate} data={comment} section="drug_treatment" title="Медикаментозное лечение" />}
+            {isActive && <CommentPlate onClose={toggleCommentPlate} data={comment} section="drug_treatment" title="Медикаментозное лечение" />}
         </div>
     );
 }

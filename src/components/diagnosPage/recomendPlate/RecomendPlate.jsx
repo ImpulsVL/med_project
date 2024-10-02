@@ -5,7 +5,7 @@ import { ReactComponent as IconCheck } from './icons/Check.svg';
 import CommentPlate from '../commentPlate/CommentPlate';
 import { useParams } from 'react-router-dom';
 
-function RecomendPlate({ onToggleCommentPlate, diagnos, onSelectionChange, onChange }) {
+function RecomendPlate({ onToggleCommentPlate, diagnos, onSelectionChange, onChange, isActive }) {
     const { id } = useParams();
     const [showCommentPlate, setShowCommentPlate] = useState(false);
     const [selectedItems, setSelectedItems] = useState([]); // State to store selected items
@@ -83,7 +83,7 @@ function RecomendPlate({ onToggleCommentPlate, diagnos, onSelectionChange, onCha
                     {renderRecommendationItems()}
                 </div>
             </div>
-            {showCommentPlate && <CommentPlate onClose={toggleCommentPlate} data={comment} section="recommendations" title="Рекомендации"/>}
+            {isActive && <CommentPlate onClose={toggleCommentPlate} data={comment} section="recommendations" title="Рекомендации"/>}
         </div>
     );
 }
