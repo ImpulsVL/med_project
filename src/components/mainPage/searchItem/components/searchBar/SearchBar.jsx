@@ -19,10 +19,10 @@ export const SearchBar = () => {
       const fetchData = async () => {
         setLoading(true); // Set loading state before fetching data
         try {
-          const response = await fetch(`http://test-asya.ru/api/testapi4.php?SEARCH=${searchText}`);
+          const response = await fetch(`http://test-asya.ru/api/find?search=${searchText}`);
           const data = await response.json();
-          const parsedData = JSON.parse(data.result); // Parse nested JSON string
-          setDiagnoses(parsedData); // Assuming the API returns one diagnosis at a time
+          const parsedData = (data.result); // Parse nested JSON string
+          setDiagnoses(parsedData.items); // Assuming the API returns one diagnosis at a time
           setShowResults(true); // Show the results when data is fetched
         } catch (error) {
           setDiagnoses([]); // Clear diagnoses if there's an error
@@ -70,8 +70,10 @@ export const SearchBar = () => {
 
   // Navigate to the diagnosis page
   const handleDiagnosisClick = (diagnosis) => {
-    navigate(`/diagnos/${diagnosis.ID}`); // Navigate to the diagnosis page
+    navigate(`/diagnos/${diagnosis.id}`); // Navigate to the diagnosis page
   };
+
+  console.log(diagnoses)
 
   return (
     <div className="search_bar_wrapper" ref={wrapperRef}>
@@ -106,15 +108,15 @@ export const SearchBar = () => {
         <div className="search_results">
           {loading ? (
             <div className="loading">Загрузка...</div>
-          ) : diagnoses.length > 0 ? (
+          ) : diagnoses !== undefined ? (
             diagnoses.map((diagnosis, index) => (
               <div
                 key={index}
                 className="search_result_item"
                 onClick={() => handleDiagnosisClick(diagnosis)} // Handle click
               >
-                <span className="diagnosis_code">{diagnosis.CODE}</span>
-                <span className="diagnosis_name">{diagnosis.NAME}</span>
+                <span className="diagnosis_code">{diagnosis.code}</span>
+                <span className="diagnosis_name">{diagnosis.name}</span>
               </div>
             ))
           ) : (

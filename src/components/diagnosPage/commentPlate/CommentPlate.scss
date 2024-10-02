@@ -116,3 +116,11 @@
     padding-left: 15px;
 }
 
+.comment_wrapper a {
+    color: blue; /* Цвет ссылки */
+    text-decoration: underline; /* Подчеркивание */
+}
+
+.comment_wrapper a:hover {
+    color: darkblue; /* Цвет ссылки при наведении */
+}
