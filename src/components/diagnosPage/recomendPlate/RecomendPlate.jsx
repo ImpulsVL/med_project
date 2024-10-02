@@ -57,7 +57,7 @@ function RecomendPlate({ onToggleCommentPlate, diagnos, onSelectionChange, onCha
                     </div>
                     {recommendation.values.length > 0 ? (
                         recommendation.values.map((value, i) => (
-                            <div className='medical_recomend_comments' key={i}>
+                            <div className={`medical_recomend_comments ${isSelected ? 'selected' : ''}`} key={i}>
                                 {value}
                             </div>
                         ))

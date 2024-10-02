@@ -120,3 +120,8 @@
     color: gray;
     text-align: left;
 }
+
+.medical_recomend_info.selected .medical_info,
+.medical_recomend_comments.selected {
+    color: rgb(70, 116, 33);
+}

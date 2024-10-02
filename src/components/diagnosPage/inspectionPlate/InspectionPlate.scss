@@ -2,10 +2,11 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    padding: 0 45px; /* Отступы от краев экрана */
+    padding: 0 45px;
+    /* Отступы от краев экрана */
 }
 
-.inspection_block{
+.inspection_block {
     position: relative;
     display: flex;
     flex-shrink: 0;
@@ -24,7 +25,7 @@
     flex-direction: column;
 }
 
-.header_inspection{
+.header_inspection {
     display: flex;
     -webkit-box-pack: justify;
     justify-content: space-between;
@@ -36,42 +37,43 @@
     border-bottom: 1px solid rgb(238, 233, 236);
 }
 
-.text_inspection{
+.text_inspection {
     font-size: 22px;
     line-height: 22px;
 }
 
-.text_icon{
+.text_icon {
     display: flex;
     -webkit-box-align: center;
     align-items: center;
     cursor: pointer;
 }
 
-.text_comments{
+.text_comments {
     color: rgb(73, 116, 33);
     font-size: 17px;
     line-height: 23px;
     transition: 300ms;
 }
 
-.icon_book{
+.icon_book {
     width: 24px;
     height: 24px;
     margin-left: 8px;
 }
 
-.main_inspection{
+.main_inspection {
     align-items: center;
     width: 100%;
     padding: 8px 32px 18px;
 }
 
 .medical_inspection {
-    flex-direction: column; /* Элементы будут располагаться вертикально */
+    flex-direction: column;
+    /* Элементы будут располагаться вертикально */
 }
 
-.medical_inspection_header{
+.medical_inspection_header {
     display: flex;
     -webkit-box-align: center;
     align-items: center;
@@ -82,7 +84,7 @@
     cursor: pointer;
 }
 
-.medical_inspection_info{
+.medical_inspection_info {
     display: flex;
     -webkit-box-align: center;
     align-items: center;
@@ -90,6 +92,7 @@
     padding: 12px 0px 12px;
     color: rgb(47, 71, 25);
     cursor: pointer;
+    margin-left: 15px;
 }
 
 .check_icon {
@@ -113,11 +116,17 @@
 
 .medical_inspection_header:hover .checked,
 .medical_inspection_info:hover .checked {
-    stroke: rgb(73, 116, 33);
+    fill: rgb(73, 116, 33);
 }
 
 /* Изменяем цвет иконки на светло-зелёный, когда элемент выбран */
 .selected .check_icon path {
+    fill: rgb(238, 250, 227);
+    stroke: rgb(73, 116, 33);
+}
+
+.selected .check_icon path:last-child{
+    fill: rgb(238, 250, 227);
     stroke: rgb(73, 116, 33);
 }
 
