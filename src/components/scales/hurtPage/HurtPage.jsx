@@ -44,21 +44,21 @@ function HurtPage() {
                     </h3>
                     <div className='pictures_block_hurt'>
                         <div className='hurt_item'>
-                            <img src={img1} className='hurt_img' />
+                            <img src={img3} className='hurt_img' />
                             <span>Боль отсутствует</span>
                         </div>
                         <div className='hurt_item'>
-                            <img src={img2} className='hurt_img' />
+                            <img src={img4} className='hurt_img' />
                             <span>
                                 Лёгкая боль
                             </span>
                         </div>
                         <div className='hurt_item'>
-                            <img src={img3} className='hurt_img' />
+                            <img src={img1} className='hurt_img' />
                             <span>Умеренная боль</span>
                         </div>
                         <div className='hurt_item'>
-                            <img src={img4} className='hurt_img' />
+                            <img src={img2} className='hurt_img' />
                             <span>Сильная боль</span>
                         </div>
                         <div className='hurt_item'>
