@@ -73,8 +73,6 @@ export const SearchBar = () => {
     navigate(`/diagnos/${diagnosis.id}`); // Navigate to the diagnosis page
   };
 
-  console.log(diagnoses)
-
   return (
     <div className="search_bar_wrapper" ref={wrapperRef}>
       <div className="input_wrapper">
