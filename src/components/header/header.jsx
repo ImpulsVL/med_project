@@ -68,6 +68,7 @@ function Header() {
                         <li><Link to="/baden-scale">POP-Q и Baden-Walker</Link></li>
                         <li><Link to="/musa-scale">Ультразвуковые признаки аденомиоза, MUSA 2022</Link></li>
                         <li><Link to="/figo-scale">Миома матки: классификация FIGO</Link></li>
+                        <li><Link to="/tanner-scale">Оценка развития молочных желез</Link></li>
                     </ul>
                 )}
             </div>
