@@ -41,9 +41,10 @@ function BlockPage() {
         } else if (format === 'Comment') {
             document.execCommand('fontSize', false, 'small');
             document.execCommand('foreColor', false, 'gray');
-        } else if (format === 'Text') {;
+        } else if (format === 'Text') {
+            ;
             document.execCommand('foreColor', false, 'black');
-        }else {
+        } else {
             document.execCommand('formatBlock', false, 'span');
         }
     };
@@ -179,9 +180,9 @@ function BlockPage() {
                                     >
                                         <IconStroke />
                                     </button>
-                                    <button className='option_link'>
+                                    {/* <button className='option_link'>
                                         <IconLink />
-                                    </button>
+                                    </button> */}
                                     <button className={`option_dot ${isDot ? 'active' : ''}`} onClick={insertUnorderedList}>
                                         <IconDot />
                                     </button>

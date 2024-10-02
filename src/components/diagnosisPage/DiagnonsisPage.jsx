@@ -18,14 +18,13 @@ function DiagnosisPage() {
         const fetchDiagnoses = async () => {
             try {
                 // Делаем запрос с параметром code
-                const response = await fetch(`http://test-asya.ru/api/testapi2.php?CODE=${code}`);
+                const response = await fetch(`http://test-asya.ru/api/getdiagnoses?code=${code}`);
                 if (!response.ok) {
                     throw new Error(`Ошибка: ${response.status}`);
                 }
                 const result = await response.json();
-                
                 // Парсим поле result как JSON
-                const parsedResult = JSON.parse(result.result);
+                const parsedResult = (result.result);
 
                 // Проверяем наличие items в parsedResult и сохраняем его в состоянии
                 if (parsedResult) {

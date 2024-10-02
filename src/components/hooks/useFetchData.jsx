@@ -10,7 +10,7 @@ function useFetchData(id, endpoint) {
 
         const fetchData = async () => {
             try {
-                const response = await fetch(`http://test-asya.ru/api/${endpoint}?id=${id}`);
+                const response = await fetch(`http://test-asya.ru/api/getdiagnosis?id=${id}`);
                 if (!response.ok) {
                     throw new Error(`HTTP error: ${response.status}`);
                 }
@@ -24,7 +24,7 @@ function useFetchData(id, endpoint) {
                 }
 
                 if (result && result.result) {
-                    const data = JSON.parse(result.result);
+                    const data = (result.result);
                     setData(data);
                 } else {
                     throw new Error('Invalid data format from server.');

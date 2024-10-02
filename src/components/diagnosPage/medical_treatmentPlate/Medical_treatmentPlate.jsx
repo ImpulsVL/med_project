@@ -108,18 +108,21 @@ function Medical_treatmentPlate({ onToggleCommentPlate, diagnos, onSelectionChan
                     <div>
                         <div
                             className={`medical_treatment_info ${isParentSelected ? 'selected' : ''}`}
-                            onClick={() => handleParentClick(treatment)}
                         >
-                            <div className='check_icon'><IconCheck /></div>
-                            <div className='medical_medical_info'>{treatment.name}</div>
-                        </div>
-                        <div className='block_open_radio'>
+                            <div className={`check_icon ${isParentSelected ? 'selected' : ''}`}
+                            onClick={() => handleParentClick(treatment)}><IconCheck /></div>
+                            
+                            <div className={`medical_medical_info ${isParentSelected ? 'selected' : ''}`}
+                            onClick={() => handleParentClick(treatment)}>{treatment.name}</div>
+
+                            <div className='block_open_radio'>
                             <button
                                 className={`openRadio_icon ${expandedItems[index] ? 'rotated' : ''}`}
                                 onClick={() => toggleExpand(index)}
                             >
                                 <OpenRadio />
                             </button>
+                        </div>
                         </div>
                         <div className='medical_treatment_comments'>
                             {treatment.values.length > 0}

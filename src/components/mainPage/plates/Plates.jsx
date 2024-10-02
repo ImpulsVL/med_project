@@ -10,12 +10,13 @@ export const Plates = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch('http://test-asya.ru/api/testapi.php');
+                const response = await fetch('http://test-asya.ru/api/?getsections');
                 if (!response.ok) {
                     throw new Error(`Ошибка: ${response.status}`);
                 }
                 const result = await response.json();
-                setData(result);
+                const data = (result.result);
+                setData(data);
             } catch (error) {
                 setError(error.message);
             } finally {

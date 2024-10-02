@@ -13,7 +13,7 @@ import useFetchData from '../hooks/useFetchData';
 function DiagnosPage() {
     const { id } = useParams();
     const { data: recommendationData, loading, error } = useFetchData(id, 'testapi3.php');
-    const [selectedItems, setSelectedItems] = useState([]);
+    const [selectedItems, setSelectedItems] = useState([]);;
 
     const [showCommentPlate, setShowCommentPlate] = useState(false);
 

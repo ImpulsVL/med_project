@@ -32,7 +32,7 @@ function CommentPlate({ onClose, data, section, title  }) {
                 <div className='recomend_text'>РЕКОМЕНДУЕМ</div>
                 <div className='recomend_comment_info'>
                     <p>
-                        {recommendations}
+                        <p dangerouslySetInnerHTML={{ __html: recommendations }} />
                     </p>
                 </div>
             </div>
@@ -40,7 +40,7 @@ function CommentPlate({ onClose, data, section, title  }) {
                 <div className='nonrecomend_text'>НЕ РЕКОМЕНДУЕМ</div>
                 <div className='nonrecomend_comment_info'>
                     <p>
-                        {nonRecommendations}
+                        <p dangerouslySetInnerHTML={{ __html: nonRecommendations }} />
                     </p>
                 </div>
             </div>
