@@ -16,6 +16,18 @@ import IsaPage from './components/calculators/isaPage/IsaPage';
 import RomaPage from './components/calculators/romaPage/RomaPage';
 import RmiPage from './components/calculators/rmiPage/RmiPage';
 import IntensivePage from './components/calculators/intensivePage/IntensivePage';
+import VteoPage from './components/forms/vteoPage/VteoPage';
+import PreeclampsiaPage from "./components/forms/preeclampsiaPage/PreeclampsiaPage";
+import EdinburgPage from "./components/forms/edinburgPage/EdinburgPage";
+import ChecklistPage from "./components/forms/checklistPage/ChecklistPage";
+import OralPage from "./components/forms/oralPage/OralPage";
+import MetalPage from "./components/forms/metalPage/MetalPage";
+import LngPage from "./components/forms/lngPage/LngPage";
+import ImplantPage from "./components/forms/implantPage/ImplantPage";
+import InjectionPage from "./components/forms/injectionPage/InjectionPage";
+import ProlapsPage from "./components/forms/prolapsPage/ProlapsPage";
+import DiagnosticsPage from "./components/forms/diagnosticsPage/DiagnosticsPage";
+import PmdrPage from "./components/forms/pmdrPage/PmdrPage";
 
 function App() {
   return (
@@ -42,6 +54,19 @@ function App() {
           <Route path="/roma-calc" element={<RomaPage />} />
           <Route path="/rmi-calc" element={<RmiPage />} />
           <Route path="/intensive-calc" element={<IntensivePage />} />
+
+          <Route path="/vteo-form" element={<VteoPage />} />
+          <Route path="/preeclampsia-form" element={<PreeclampsiaPage />} />
+          <Route path="/edinburg-form" element={<EdinburgPage />} />
+          <Route path="/checklist-form" element={<ChecklistPage />} />
+          <Route path="/oral-form" element={<OralPage />} />
+          <Route path="/metal-form" element={<MetalPage />} />
+          <Route path="/lng-form" element={<LngPage />} />
+          <Route path="/implant-form" element={<ImplantPage />} />
+          <Route path="/injection-form" element={<InjectionPage />} />
+          <Route path="/prolaps-form" element={<ProlapsPage />} />
+          <Route path="/diagnostics-form" element={<DiagnosticsPage />} />
+          <Route path="/pmdr-form" element={<PmdrPage />} />
         </Routes>
       </div>
     </Router >
