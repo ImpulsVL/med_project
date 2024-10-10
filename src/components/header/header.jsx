@@ -5,6 +5,7 @@ import './header.scss';
 function Header() {
     const [showCalculators, setShowCalculators] = useState(false);
     const [showScales, setShowScales] = useState(false);
+    const [showTables, setShowTables] = useState(false);
 
     const headerRef = useRef(null); // Реф для всего хедера
 
@@ -12,18 +13,28 @@ function Header() {
     const hideDropdowns = () => {
         setShowCalculators(false);
         setShowScales(false);
+        setShowTables(false);
     };
 
     // Функция для переключения видимости меню калькуляторов
     const toggleCalculators = () => {
         setShowCalculators((prev) => !prev);
         setShowScales(false); // Скрываем шкалы при нажатии на калькуляторы
+        setShowTables(false);
     };
 
     // Функция для переключения видимости меню шкал
     const toggleScales = () => {
         setShowScales((prev) => !prev);
         setShowCalculators(false); // Скрываем калькуляторы при нажатии на шкалы
+        setShowTables(false);
+    };
+
+    // Функция для переключения видимости меню
+    const toggleTables = () => {
+        setShowTables((prev) => !prev);
+        setShowCalculators(false); // Скрываем калькуляторы при нажатии на шкалы
+        setShowScales(false);
     };
 
     // Обработчик кликов вне элемента
@@ -69,6 +80,17 @@ function Header() {
                         <li><Link to="/musa-scale">Ультразвуковые признаки аденомиоза, MUSA 2022</Link></li>
                         <li><Link to="/figo-scale">Миома матки: классификация FIGO</Link></li>
                         <li><Link to="/tanner-scale">Оценка развития молочных желез</Link></li>
+                    </ul>
+                )}
+            </div>
+            <div className="menu_section">
+                <h2 className='tables' onClick={toggleTables}>Таблицы</h2>
+                {showTables && (
+                    <ul className="dropdown">
+                        <li><Link to="/contracepts-table">Таблица контрацептивов</Link></li>
+                        <li><Link to="/vteo-table">Профилактика ВТЭО</Link></li>
+                        <li><Link to="/nmg-table">Дозы НМГ</Link></li>
+                        <li><Link to="/holestaz-table">Дифференциальная диагностика</Link></li>
                     </ul>
                 )}
             </div>

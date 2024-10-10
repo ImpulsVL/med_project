@@ -18,6 +18,8 @@ import RmiPage from './components/calculators/rmiPage/RmiPage';
 import IntensivePage from './components/calculators/intensivePage/IntensivePage';
 import ContraceptsPage from './components/tables/contraceptsPage/ContraceptsPage';
 import VteoPage from "./components/tables/vteoPage/VteoPage";
+import NmgPage from './components/tables/nmgPage/NmgPage';
+import HolestazPage from './components/tables/holestazPage/HolestazPage';
 
 function App() {
   return (
@@ -47,6 +49,8 @@ function App() {
 
           <Route path="/contracepts-table" element={<ContraceptsPage />} />
           <Route path="/vteo-table" element={<VteoPage />} />
+          <Route path="/nmg-table" element={<NmgPage />} />
+          <Route path="/holestaz-table" element={<HolestazPage />} />
         </Routes>
       </div>
     </Router >
