@@ -56,16 +56,67 @@ function InjectionPage() {
             </div>
             <div className="forms_wrapper">
                 <div className="forms_block_header">
-                    <h2 className='forms_header'>Эдинбургская шкала послеродовой депрессии</h2>
+                    <h2 className='forms_header'>Чек-лист перед использованием прогестиновых инъекционных контрацептивов</h2>
                 </div>
                 <div className='forms_block'>
                     <div className='pdf-list'>
                         <a href="">
                             <div className='pdf-item'>
                                 <img src={PDFIcon} alt=""/>
-                                Чек-лист перед назначением комбинированных гормональных контрацептивов.
+                                Чек-лист перед использованием прогестиновых инъекционных контрацептивов
                             </div>
                         </a>
+                    </div>
+                </div>
+                <div className='forms_block'>
+                    <div className="forms-table">
+                        <div className="table-header no-left">Вопрос</div>
+                        <div className="table-header">Да</div>
+                        <div className="table-header">Нет</div>
+
+                        <div className="table-item">— Есть ли у Вас ребенок в возрасте до 6 недель, находится ли он на грудном вскармливании; Используете ли Вы метод лактационной аменореи?</div>
+                        <div className="table-item"></div>
+                        <div className="table-item"></div>
+
+                        <div className="table-item">— У Вас повышено артериальное давление?</div>
+                        <div className="table-item"></div>
+                        <div className="table-item"></div>
+
+                        <div className="table-item">— Болели ли Вы диабетом в течение предыдущих 20 лет? Есть ли у Вас диабетическое повреждение артериальных сосудов, органов зрения, почек или нервной системы?</div>
+                        <div className="table-item"></div>
+                        <div className="table-item"></div>
+
+                        <div className="table-item">— Имеется ли у Вас какое-либо из перечисленных заболеваний: цирроз, инфекционное/опухолевое/холестатическое заболевание печени? Наблюдали ли Вы необычный желтый оттенок белков глаз в период приема КОК?</div>
+                        <div className="table-item"></div>
+                        <div className="table-item"></div>
+
+                        <div className="table-item">— Переносили ли Вы инсульт, тромбоз вен нижних конечностей или легких, инфаркт миокарда или другие серьезные заболевания сердечно-сосудистой системы?</div>
+                        <div className="table-item"></div>
+                        <div className="table-item"></div>
+
+                        <div className="table-item">— Относитесь ли Вы к группе повышенного риска по сердечным заболеваниями (сужение артерий сердца) или инсульту (курение, повышенное артериальное давление, диабет и т.д.)?</div>
+                        <div className="table-item"></div>
+                        <div className="table-item"></div>
+
+                        <div className="table-item">— Сообщал ли Вам врач, что Вы относитесь к группе повышенного риска по сердечным заболеваниям (сужение артерий сердца) или инсульту (курение, повышенное артериальное давление, диабет и т.д.)?</div>
+                        <div className="table-item"></div>
+                        <div className="table-item"></div>
+
+                        <div className="table-item">— Диагностировали ли у Вас антифосфолипидный синдром?</div>
+                        <div className="table-item"></div>
+                        <div className="table-item"></div>
+
+                        <div className="table-item">— Диагностировали ли у Вас значительное снижение числа тромбоцитов?</div>
+                        <div className="table-item"></div>
+                        <div className="table-item"></div>
+
+                        <div className="table-item">— Диагностировали ли у Вас рак молочной железы?</div>
+                        <div className="table-item"></div>
+                        <div className="table-item"></div>
+
+                        <div className="table-item">— Бывают ли у Вас вагинальные кровотечения без установленного диагноза?</div>
+                        <div className="table-item"></div>
+                        <div className="table-item"></div>
                     </div>
                 </div>
             </div>

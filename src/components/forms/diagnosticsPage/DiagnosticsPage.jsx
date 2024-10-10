@@ -56,17 +56,33 @@ function DiagnosticsPage() {
             </div>
             <div className="forms_wrapper">
                 <div className="forms_block_header">
-                    <h2 className='forms_header'>Эдинбургская шкала послеродовой депрессии</h2>
+                    <h2 className='forms_header'>Опрос для оценки обильности менструальных кровотечений</h2>
                 </div>
                 <div className='forms_block'>
-                    <div className='pdf-list'>
-                        <a href="">
-                            <div className='pdf-item'>
-                                <img src={PDFIcon} alt=""/>
-                                Чек-лист перед назначением комбинированных гормональных контрацептивов.
-                            </div>
-                        </a>
+                    <div className='question-list'>
+                        <div className="question-list-item">
+                            <h3 className="question-list-header">1. Насколько обильны Ваши кровотечения?</h3>
+                            <p>— Меняете ли Вы санитарные средства ночью/просыпаетесь ли для того, чтобы сменить прокладки?</p>
+                            <p>— Во время дней наиболее обильного кровотечения промокают ли полностью Ваши средства защиты после 2 ч?</p>
+                        </div>
+                        <div className="question-list-item">
+                            <h3 className="question-list-header">2. Влияет ли это на Ваше физическое состояние?</h3>
+                            <p>— Наблюдаете ли вы выделение больших сгустков во время менструации?</p>
+                            <p>— Была ли у вас выявлена анемия или дефицит железа?</p>
+                        </div>
+                        <div className="question-list-item">
+                            <h3 className="question-list-header">3. Влияет ли это на качество жизни?</h3>
+                            <p>— Вынуждены ли Вы специально организовывать Вашу социальную жизнь в эти дни?</p>
+                            <p>— Беспокоитесь ли Вы о неприятных моментах, связанных с кровотечением?</p>
+                        </div>
+                        <button>
+                            Распечатать
+                        </button>
                     </div>
+                </div>
+                <div className="forms_block">
+                    <h3 className="question-list-header">Интерпретация</h3>
+                    <p><color>Хотя бы 1 положительный ответ</color> позволяет предположить наличие обильных менструаций</p>
                 </div>
             </div>
         </div>

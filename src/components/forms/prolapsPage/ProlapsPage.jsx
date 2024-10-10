@@ -56,14 +56,32 @@ function ProlapsPage() {
             </div>
             <div className="forms_wrapper">
                 <div className="forms_block_header">
-                    <h2 className='forms_header'>Эдинбургская шкала послеродовой депрессии</h2>
+                    <h2 className='forms_header'>Анкеты для пациентов с пролапсом гениталий</h2>
                 </div>
                 <div className='forms_block'>
                     <div className='pdf-list'>
                         <a href="">
                             <div className='pdf-item'>
                                 <img src={PDFIcon} alt=""/>
-                                Чек-лист перед назначением комбинированных гормональных контрацептивов.
+                                Анкета PISQ 12
+                            </div>
+                        </a>
+                        <a href="">
+                            <div className='pdf-item'>
+                                <img src={PDFIcon} alt=""/>
+                                Анкета ICIQ – SF
+                            </div>
+                        </a>
+                        <a href="">
+                            <div className='pdf-item'>
+                                <img src={PDFIcon} alt=""/>
+                                Анкета PFDI-20
+                            </div>
+                        </a>
+                        <a href="">
+                            <div className='pdf-item'>
+                                <img src={PDFIcon} alt=""/>
+                                Анкета PFIQ-7
                             </div>
                         </a>
                     </div>

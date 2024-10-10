@@ -9,6 +9,23 @@ span {
     color: rgb(73, 116, 33);
     text-align: center;
 }
+.forms-table {
+    display: grid;
+    grid-template-columns: 8fr 1fr 1fr;
+}
+.table-header{
+    color: rgb(73, 116, 33);
+    border-bottom: solid rgb(73, 116, 33) 1px;
+    text-align: center;
+    padding: 10px 10px;
+}
+.table-item{
+    border: solid #acacac 1px;
+    padding: 10px 10px;
+}
+.no-left {
+    text-align: left;
+}
 .wrapper_forms {
     width: 100%;
     min-height: 100%; /* Сделать минимальную высоту 100% высоты экрана */

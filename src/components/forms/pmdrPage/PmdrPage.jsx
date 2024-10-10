@@ -34,12 +34,9 @@ function PmdrPage() {
 
     const [riskInterpretation, setRiskInterpretation] = useState('');
     const interpretate = (result) => {
-        let interpretationRisk = result < 12
-            ? "Низкая вероятность наличия послеродовой депрессии"
-            : "Высокая вероятность наличия послеродовой депрессии. Для подтверждения диагноза и разработки плана лечения необходима тщательная клиническая оценка медицинским работником";
-        if(KnownRisksFactorValue[10] > 1) {
-            interpretationRisk = "Высокая вероятность наличия послеродовой депрессии. За вопрос №10 получено " + KnownRisksFactorValue[10] + " балла, рекомендуется консультация психиатра";
-        }
+        let interpretationRisk = result < 5
+            ? "Критерии диагноза «предменструальное дисфорическое расстройство» не соблюдаются. Пожалуйста, обратитесь к врачу."
+            : "Предменструальное дисфорическое расстройство. Пожалуйста, обратитесь к врачу.";
         setRisk(interpretationRisk);
     };
     const handleRisksChange = (e) => {
@@ -56,16 +53,143 @@ function PmdrPage() {
             </div>
             <div className="forms_wrapper">
                 <div className="forms_block_header">
-                    <h2 className='forms_header'>Эдинбургская шкала послеродовой депрессии</h2>
+                    <h2 className='forms_header'>Определение диагноза "ПМДР"</h2>
+                </div>
+                <div className="forms_block">
+                    <p>ПМДР — предменструальное дисфорическое расстройство. Симптомы встречаются в большинстве циклов за предшествующий год и выражены настолько, что серьезно ухудшают качество жизни. По крайней мере 5 из них появляются за неделю до начала менструации и сохраняются несколько дней от ее начала.</p>
                 </div>
                 <div className='forms_block'>
-                    <div className='pdf-list'>
-                        <a href="">
-                            <div className='pdf-item'>
-                                <img src={PDFIcon} alt=""/>
-                                Чек-лист перед назначением комбинированных гормональных контрацептивов.
-                            </div>
-                        </a>
+                    <form className='form_wrap' onSubmit={calculate}>
+                        <h3 className='form_select_lead'>Выберите симптомы</h3>
+                        <label className='form_select_item'>
+                            <input
+                                className='input-select'
+                                type='checkbox'
+                                name='1'
+                                value="1"
+                                checked={KnownRisksFactorValue[1]}
+                                onChange={handleRisksChange}
+                            />
+                            Эмоциональная лабильность: плаксивость, быстрая смена настроения
+                        </label>
+                        <label className='form_select_item'>
+                            <input
+                                className='input-select'
+                                type='checkbox'
+                                name='2'
+                                value="1"
+                                checked={KnownRisksFactorValue[2]}
+                                onChange={handleRisksChange}
+                            />
+                            Гневливость, раздражительность
+                        </label>
+                        <label className='form_select_item'>
+                            <input
+                                className='input-select'
+                                type='checkbox'
+                                name='3'
+                                value="1"
+                                checked={KnownRisksFactorValue[3]}
+                                onChange={handleRisksChange}
+                            />
+                            Чувство безысходности, тревоги, самоуничижительные мысли
+                        </label>
+                        <label className='form_select_item'>
+                            <input
+                                className='input-select'
+                                type='checkbox'
+                                name='4'
+                                value="1"
+                                checked={KnownRisksFactorValue[4]}
+                                onChange={handleRisksChange}
+                            />
+                            Напряженность, беспокойство, чувство нервозности
+                        </label>
+                        <label className='form_select_item'>
+                            <input
+                                className='input-select'
+                                type='checkbox'
+                                name='5'
+                                value="1"
+                                checked={KnownRisksFactorValue[5]}
+                                onChange={handleRisksChange}
+                            />
+                            Трудности с концентрацией внимания
+                        </label>
+                        <label className='form_select_item'>
+                            <input
+                                className='input-select'
+                                type='checkbox'
+                                name='6'
+                                value="1"
+                                checked={KnownRisksFactorValue[6]}
+                                onChange={handleRisksChange}
+                            />
+                            Усиление аппетита, склонность к перееданию
+                        </label>
+                        <label className='form_select_item'>
+                            <input
+                                className='input-select'
+                                type='checkbox'
+                                name='7'
+                                value="1"
+                                checked={KnownRisksFactorValue[7]}
+                                onChange={handleRisksChange}
+                            />
+                            Снижение интереса к обычным занятиям
+                        </label>
+                        <label className='form_select_item'>
+                            <input
+                                className='input-select'
+                                type='checkbox'
+                                name='8'
+                                value="1"
+                                checked={KnownRisksFactorValue[8]}
+                                onChange={handleRisksChange}
+                            />
+                            Быстрая утомляемость, слабость
+                        </label>
+                        <label className='form_select_item'>
+                            <input
+                                className='input-select'
+                                type='checkbox'
+                                name='9'
+                                value="1"
+                                checked={KnownRisksFactorValue[9]}
+                                onChange={handleRisksChange}
+                            />
+                            Чувство подавленности или потери контроля
+                        </label>
+                        <label className='form_select_item'>
+                            <input
+                                className='input-select'
+                                type='checkbox'
+                                name='10'
+                                value="1"
+                                checked={KnownRisksFactorValue[10]}
+                                onChange={handleRisksChange}
+                            />
+                            Напряжение в молочных железах, вздутие живота, набор веса, боли в мышцах/суставах
+                        </label>
+                        <label className='form_select_item'>
+                            <input
+                                className='input-select'
+                                type='checkbox'
+                                name='11'
+                                value="1"
+                                checked={KnownRisksFactorValue[11]}
+                                onChange={handleRisksChange}
+                            />
+                            Нарушения сна
+                        </label>
+                    </form>
+                    <button type='submit' className='button_calculate' onClick={calculate}>Рассчитать</button>
+                </div>
+                <div className='forms_block'>
+                    <div className='forms_result'>
+                        <h2 className='form_result_lead'>Результаты</h2>
+                        <p className='form_result_item'>Категория</p>
+                        <p className='form_result_item'>{Risk}</p>
                     </div>
                 </div>
             </div>
