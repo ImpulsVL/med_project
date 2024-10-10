@@ -64,7 +64,7 @@ span {
 
 .form_wrap {
     display: flex;
-    flex-direction: column;
+    flex-direction: column !important;
 }
 
 .form_select_lead {

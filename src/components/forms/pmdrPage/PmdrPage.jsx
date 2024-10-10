@@ -6,25 +6,28 @@ import Header from '../../header/header';
 function PmdrPage() {
     const [result, setResult] = useState(0);
     const [Risk, setRisk] = useState('');
-    const [KnownRisksFactorValue, setKnownRisksFactorValue] = useState({
-        1: 0,
-        2: 0,
-        3: 0,
-        4: 0,
-        5: 0,
-        6: 0,
-        7: 0,
-        8: 0,
-        9: 0,
-        10: 0
+    const [KnownRisksFactor, setKnownRisksCriteria] = useState({
+        1: false,
+        2: false,
+        3: false,
+        4: false,
+        5: false,
+        6: false,
+        7: false,
+        8: false,
+        9: false,
+        10: false,
+        11: false
     });
     const calculate = (e) => {
         e.preventDefault();
         let temp = 0;
 
-         Object.values(KnownRisksFactorValue).map((item) => {
-             temp += Number(item);
-         });
+        Object.keys(KnownRisksFactor).map((item) => {
+            if(KnownRisksFactor[item]) {
+                temp += 1;
+            }
+        });
 
         setResult(temp);
         console.log(temp);
@@ -40,10 +43,8 @@ function PmdrPage() {
         setRisk(interpretationRisk);
     };
     const handleRisksChange = (e) => {
-        const { name } = e.target;
-        // setKnownRisksCriteria(prev => ({ ...prev, [name]: checked }));
-        setKnownRisksFactorValue(val => ({ ...val, [name]: Number(e.target.value)}))
-        console.log(e.target.value);
+        const { name, checked } = e.target;
+        setKnownRisksCriteria(prev => ({ ...prev, [name]: checked }));
     };
 
     return (
@@ -67,7 +68,7 @@ function PmdrPage() {
                                 type='checkbox'
                                 name='1'
                                 value="1"
-                                checked={KnownRisksFactorValue[1]}
+                                checked={KnownRisksFactor[1]}
                                 onChange={handleRisksChange}
                             />
                             Эмоциональная лабильность: плаксивость, быстрая смена настроения
@@ -78,7 +79,7 @@ function PmdrPage() {
                                 type='checkbox'
                                 name='2'
                                 value="1"
-                                checked={KnownRisksFactorValue[2]}
+                                checked={KnownRisksFactor[2]}
                                 onChange={handleRisksChange}
                             />
                             Гневливость, раздражительность
@@ -89,7 +90,7 @@ function PmdrPage() {
                                 type='checkbox'
                                 name='3'
                                 value="1"
-                                checked={KnownRisksFactorValue[3]}
+                                checked={KnownRisksFactor[3]}
                                 onChange={handleRisksChange}
                             />
                             Чувство безысходности, тревоги, самоуничижительные мысли
@@ -100,7 +101,7 @@ function PmdrPage() {
                                 type='checkbox'
                                 name='4'
                                 value="1"
-                                checked={KnownRisksFactorValue[4]}
+                                checked={KnownRisksFactor[4]}
                                 onChange={handleRisksChange}
                             />
                             Напряженность, беспокойство, чувство нервозности
@@ -111,7 +112,7 @@ function PmdrPage() {
                                 type='checkbox'
                                 name='5'
                                 value="1"
-                                checked={KnownRisksFactorValue[5]}
+                                checked={KnownRisksFactor[5]}
                                 onChange={handleRisksChange}
                             />
                             Трудности с концентрацией внимания
@@ -122,7 +123,7 @@ function PmdrPage() {
                                 type='checkbox'
                                 name='6'
                                 value="1"
-                                checked={KnownRisksFactorValue[6]}
+                                checked={KnownRisksFactor[6]}
                                 onChange={handleRisksChange}
                             />
                             Усиление аппетита, склонность к перееданию
@@ -133,7 +134,7 @@ function PmdrPage() {
                                 type='checkbox'
                                 name='7'
                                 value="1"
-                                checked={KnownRisksFactorValue[7]}
+                                checked={KnownRisksFactor[7]}
                                 onChange={handleRisksChange}
                             />
                             Снижение интереса к обычным занятиям
@@ -144,7 +145,7 @@ function PmdrPage() {
                                 type='checkbox'
                                 name='8'
                                 value="1"
-                                checked={KnownRisksFactorValue[8]}
+                                checked={KnownRisksFactor[8]}
                                 onChange={handleRisksChange}
                             />
                             Быстрая утомляемость, слабость
@@ -155,7 +156,7 @@ function PmdrPage() {
                                 type='checkbox'
                                 name='9'
                                 value="1"
-                                checked={KnownRisksFactorValue[9]}
+                                checked={KnownRisksFactor[9]}
                                 onChange={handleRisksChange}
                             />
                             Чувство подавленности или потери контроля
@@ -166,7 +167,7 @@ function PmdrPage() {
                                 type='checkbox'
                                 name='10'
                                 value="1"
-                                checked={KnownRisksFactorValue[10]}
+                                checked={KnownRisksFactor[10]}
                                 onChange={handleRisksChange}
                             />
                             Напряжение в молочных железах, вздутие живота, набор веса, боли в мышцах/суставах
@@ -177,7 +178,7 @@ function PmdrPage() {
                                 type='checkbox'
                                 name='11'
                                 value="1"
-                                checked={KnownRisksFactorValue[11]}
+                                checked={KnownRisksFactor[11]}
                                 onChange={handleRisksChange}
                             />
                             Нарушения сна
