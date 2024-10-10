@@ -19,9 +19,7 @@ function PreeclampsiaPage() {
         10: false,
         11: false,
         12: false,
-        13: false,
-        14: false,
-        15: false
+        13: false
     });
 
     const [KnownRisksFactorValue] = useState({
