@@ -113,6 +113,7 @@ function Header() {
                         <li><Link to="/prolaps-form">Анкета для пациенток с пролапсом</Link></li>
                         <li><Link to="/diagnostics-form">Диагностика ОМК</Link></li>
                         <li><Link to="/pmdr-form">Определение диагноза "ПМДР"</Link></li>
+                    </ul>
                 )}
             </div>
             <div className="menu_section">
