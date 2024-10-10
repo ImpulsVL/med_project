@@ -147,6 +147,7 @@ function RmiPage() {
                         <button type='submit' className='button_calculate'>Рассчитать</button>
                     </form>
                 </div>
+
                 <div className='pictures_block'>
                     <h2 className='rmi_lead'>Результаты</h2>
                     <p>RMI индекс: {rmiIndex !== null ? rmiIndex : '-'}</p>

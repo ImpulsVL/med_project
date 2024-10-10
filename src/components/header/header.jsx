@@ -5,6 +5,7 @@ import './header.scss';
 function Header() {
     const [showCalculators, setShowCalculators] = useState(false);
     const [showScales, setShowScales] = useState(false);
+    const [showForms, setShowForms] = useState(false);
     const [showTables, setShowTables] = useState(false);
 
     const headerRef = useRef(null); // Реф для всего хедера
@@ -13,6 +14,7 @@ function Header() {
     const hideDropdowns = () => {
         setShowCalculators(false);
         setShowScales(false);
+        setShowForms(false);
         setShowTables(false);
     };
 
@@ -20,21 +22,33 @@ function Header() {
     const toggleCalculators = () => {
         setShowCalculators((prev) => !prev);
         setShowScales(false); // Скрываем шкалы при нажатии на калькуляторы
-        setShowTables(false);
+        setShowForms(false); // Скрываем анкеты при нажатии на калькуляторы
+        setShowTables(false); // Скрываем таблицы при нажатии на калькуляторы
+
     };
 
     // Функция для переключения видимости меню шкал
     const toggleScales = () => {
         setShowScales((prev) => !prev);
         setShowCalculators(false); // Скрываем калькуляторы при нажатии на шкалы
-        setShowTables(false);
+        setShowForms(false); // Скрываем анкеты при нажатии на калькуляторы
+        setShowTables(false); // Скрываем таблицы при нажатии на калькуляторы
     };
 
-    // Функция для переключения видимости меню
+    // Функция для переключения видимости меню анкет
+    const toggleForms = () => {
+        setShowForms((prev) => !prev);
+        setShowCalculators(false); // Скрываем калькуляторы при нажатии на шкалы
+        setShowScales(false); // Скрываем шкалы при нажатии на калькуляторы
+        setShowTables(false); // Скрываем таблицы при нажатии на калькуляторы
+    };
+
+    // Функция для переключения видимости меню таблиц
     const toggleTables = () => {
         setShowTables((prev) => !prev);
         setShowCalculators(false); // Скрываем калькуляторы при нажатии на шкалы
-        setShowScales(false);
+        setShowForms(false); // Скрываем анкеты при нажатии на калькуляторы
+        setShowScales(false); // Скрываем шкалы при нажатии на калькуляторы
     };
 
     // Обработчик кликов вне элемента
@@ -81,6 +95,24 @@ function Header() {
                         <li><Link to="/figo-scale">Миома матки: классификация FIGO</Link></li>
                         <li><Link to="/tanner-scale">Оценка развития молочных желез</Link></li>
                     </ul>
+                )}
+            </div>
+            <div className="menu_section">
+                <h2 className='scales' onClick={toggleForms}>Анкеты</h2>
+                {showForms && (
+                    <ul className="dropdown">
+                        <li><Link to="/vteo-form">Оценка риска ВТЭО во время беременности и после родов</Link></li>
+                        <li><Link to="/preeclampsia-form">Определение группы риска развития преэклампсии</Link></li>
+                        <li><Link to="/edinburg-form">Эдинбургская шкала послеродовой депрессии</Link></li>
+                        <li><Link to="/checklist-form">Чек-лист перед назначением комбинированных гормональных контрацептивов</Link></li>
+                        <li><Link to="/oral-form">Чек-лист перед назначением чисто прогестиновых оральных контрацептивов</Link></li>
+                        <li><Link to="/metal-form">Чек-лист перед установкой металлсодержащего ВМК</Link></li>
+                        <li><Link to="/lng-form">Чек-лист перед установкой ЛНГ-ВМС</Link></li>
+                        <li><Link to="/implant-form">Чек-лист перед установкой чисто прогестинового контрацептивного имплантата</Link></li>
+                        <li><Link to="/injection-form">Чек-лист перед использованием прогестиновых инъекционных контрацептивов</Link></li>
+                        <li><Link to="/prolaps-form">Анкета для пациенток с пролапсом</Link></li>
+                        <li><Link to="/diagnostics-form">Диагностика ОМК</Link></li>
+                        <li><Link to="/pmdr-form">Определение диагноза "ПМДР"</Link></li>
                 )}
             </div>
             <div className="menu_section">
