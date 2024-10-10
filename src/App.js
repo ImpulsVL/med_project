@@ -16,6 +16,8 @@ import IsaPage from './components/calculators/isaPage/IsaPage';
 import RomaPage from './components/calculators/romaPage/RomaPage';
 import RmiPage from './components/calculators/rmiPage/RmiPage';
 import IntensivePage from './components/calculators/intensivePage/IntensivePage';
+import ContraceptsPage from './components/tables/contraceptsPage/ContraceptsPage';
+import VteoPage from "./components/tables/vteoPage/VteoPage";
 
 function App() {
   return (
@@ -42,6 +44,9 @@ function App() {
           <Route path="/roma-calc" element={<RomaPage />} />
           <Route path="/rmi-calc" element={<RmiPage />} />
           <Route path="/intensive-calc" element={<IntensivePage />} />
+
+          <Route path="/contracepts-table" element={<ContraceptsPage />} />
+          <Route path="/vteo-table" element={<VteoPage />} />
         </Routes>
       </div>
     </Router >
