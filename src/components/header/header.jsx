@@ -24,6 +24,7 @@ function Header() {
         setShowScales(false); // Скрываем шкалы при нажатии на калькуляторы
         setShowForms(false); // Скрываем анкеты при нажатии на калькуляторы
         setShowTables(false); // Скрываем таблицы при нажатии на калькуляторы
+
     };
 
     // Функция для переключения видимости меню шкал
@@ -112,6 +113,16 @@ function Header() {
                         <li><Link to="/prolaps-form">Анкета для пациенток с пролапсом</Link></li>
                         <li><Link to="/diagnostics-form">Диагностика ОМК</Link></li>
                         <li><Link to="/pmdr-form">Определение диагноза "ПМДР"</Link></li>
+                )}
+            </div>
+            <div className="menu_section">
+                <h2 className='tables' onClick={toggleTables}>Таблицы</h2>
+                {showTables && (
+                    <ul className="dropdown">
+                        <li><Link to="/contracepts-table">Таблица контрацептивов</Link></li>
+                        <li><Link to="/vteo-table">Профилактика ВТЭО</Link></li>
+                        <li><Link to="/nmg-table">Дозы НМГ</Link></li>
+                        <li><Link to="/holestaz-table">Дифференциальная диагностика</Link></li>
                     </ul>
                 )}
             </div>

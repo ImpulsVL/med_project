@@ -16,7 +16,8 @@ import IsaPage from './components/calculators/isaPage/IsaPage';
 import RomaPage from './components/calculators/romaPage/RomaPage';
 import RmiPage from './components/calculators/rmiPage/RmiPage';
 import IntensivePage from './components/calculators/intensivePage/IntensivePage';
-import VteoPage from './components/forms/vteoPage/VteoPage';
+
+import VteoPage1 from './components/forms/vteoPage/VteoPage';
 import PreeclampsiaPage from "./components/forms/preeclampsiaPage/PreeclampsiaPage";
 import EdinburgPage from "./components/forms/edinburgPage/EdinburgPage";
 import ChecklistPage from "./components/forms/checklistPage/ChecklistPage";
@@ -28,6 +29,11 @@ import InjectionPage from "./components/forms/injectionPage/InjectionPage";
 import ProlapsPage from "./components/forms/prolapsPage/ProlapsPage";
 import DiagnosticsPage from "./components/forms/diagnosticsPage/DiagnosticsPage";
 import PmdrPage from "./components/forms/pmdrPage/PmdrPage";
+
+import ContraceptsPage from './components/tables/contraceptsPage/ContraceptsPage';
+import VteoPage from "./components/tables/vteoPage/VteoPage";
+import NmgPage from './components/tables/nmgPage/NmgPage';
+import HolestazPage from './components/tables/holestazPage/HolestazPage';
 
 function App() {
   return (
@@ -55,7 +61,7 @@ function App() {
           <Route path="/rmi-calc" element={<RmiPage />} />
           <Route path="/intensive-calc" element={<IntensivePage />} />
 
-          <Route path="/vteo-form" element={<VteoPage />} />
+          <Route path="/vteo-form" element={<VteoPage1 />} />
           <Route path="/preeclampsia-form" element={<PreeclampsiaPage />} />
           <Route path="/edinburg-form" element={<EdinburgPage />} />
           <Route path="/checklist-form" element={<ChecklistPage />} />
@@ -67,6 +73,11 @@ function App() {
           <Route path="/prolaps-form" element={<ProlapsPage />} />
           <Route path="/diagnostics-form" element={<DiagnosticsPage />} />
           <Route path="/pmdr-form" element={<PmdrPage />} />
+
+          <Route path="/contracepts-table" element={<ContraceptsPage />} />
+          <Route path="/vteo-table" element={<VteoPage />} />
+          <Route path="/nmg-table" element={<NmgPage />} />
+          <Route path="/holestaz-table" element={<HolestazPage />} />
         </Routes>
       </div>
     </Router >
