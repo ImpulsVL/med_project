@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import './ProlapsPage.scss';
 import PDFIcon from '../icons/pdf.svg';
 import Header from '../../header/header';
@@ -32,6 +32,29 @@ function ProlapsPage() {
         interpretate(temp);
     };
 
+    const [pdfList, setPdfList] = useState([]); // State to store the list of PDFs
+
+    useEffect(() => {
+        // Fetch the PDF URLs from the API
+        fetch('http://test-asya.ru/api/getPdf?code=pdf1')
+            .then(response => response.json())
+            .then(data => {
+                const pdfs = data.result.map(item => {
+                    let url = item.url;
+
+                    // Check if the URL starts with 'http' or 'https', if not, prepend 'http://'
+                    if (!url.startsWith('http://') && !url.startsWith('https://')) {
+                        url = 'http://' + url;
+                    }
+
+                    return { ...item, url }; // Return each item with a corrected URL
+                });
+                setPdfList(pdfs); // Set the PDF list in state
+            })
+            .catch(error => console.log('Error fetching PDF URLs:', error));
+    }, []);
+    
+
     const [riskInterpretation, setRiskInterpretation] = useState('');
     const interpretate = (result) => {
         let interpretationRisk = result < 12
@@ -60,30 +83,14 @@ function ProlapsPage() {
                 </div>
                 <div className='forms_block'>
                     <div className='pdf-list'>
-                        <a href="">
-                            <div className='pdf-item'>
-                                <img src={PDFIcon} alt=""/>
-                                Анкета PISQ 12
-                            </div>
-                        </a>
-                        <a href="">
-                            <div className='pdf-item'>
-                                <img src={PDFIcon} alt=""/>
-                                Анкета ICIQ – SF
-                            </div>
-                        </a>
-                        <a href="">
-                            <div className='pdf-item'>
-                                <img src={PDFIcon} alt=""/>
-                                Анкета PFDI-20
-                            </div>
-                        </a>
-                        <a href="">
-                            <div className='pdf-item'>
-                                <img src={PDFIcon} alt=""/>
-                                Анкета PFIQ-7
-                            </div>
-                        </a>
+                        {pdfList.map((pdf, index) => (
+                            <a key={index} href={pdf.url} target="_blank" rel="noopener noreferrer">
+                                <div className='pdf-item'>
+                                    <img src={PDFIcon} alt="" />
+                                    {pdf.name}
+                                </div>
+                            </a>
+                        ))}
                     </div>
                 </div>
             </div>
