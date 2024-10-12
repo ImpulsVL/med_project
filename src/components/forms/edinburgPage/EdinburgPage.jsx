@@ -56,14 +56,14 @@ function ChecklistPage() {
             </div>
             <div className="forms_wrapper">
                 <div className="forms_block_header">
-                    <h2 className='forms_header'>Чек-лист перед назначением комбинированных гормональных контрацептивов.</h2>
+                    <h2 className='forms_header'>Эдинбургская шкала послеродовой депрессии</h2>
                 </div>
                 <div className='forms_block'>
                     <div className='pdf-list'>
                         <a href="">
                             <div className='pdf-item'>
                                 <img src={PDFIcon} alt=""/>
-                                Чек-лист перед назначением комбинированных гормональных контрацептивов.
+                                Эдинбургская шкала послеродовой депрессии
                             </div>
                         </a>
                     </div>
