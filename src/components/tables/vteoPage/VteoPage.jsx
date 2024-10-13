@@ -15,19 +15,19 @@ function VteoPage() {
                     </div>
                     <div className="table">
                         <div className='row-item'>
-                            <p className='column-item-header'>Степень риска</p>
-                            <p className='column-item-header'>Анамнез</p>
-                            <p className='column-item-header'>Способ профилактики</p></div>
+                            <p className='column-item-header2'>Степень риска</p>
+                            <p className='column-item-header2'>Анамнез</p>
+                            <p className='column-item-header2'>Способ профилактики</p></div>
                         <div className='row-item'>
-                            <p className='column-item'>Очень высокий</p>
-                            <div className='column-item'>
+                            <p className='column-item2'>Очень высокий</p>
+                            <div className='column-item2'>
                                 <ul>
                                     <li>Перенесенное ранее ВТЭО на фоне длительного приема оральных антикоагулянтов</li>
                                     <li>Дефицит антитромбина-III</li>
                                     <li>АФС с ВТЭО в анамнезе</li>
                                 </ul>
                             </div>
-                            <div className='column-item'>
+                            <div className='column-item2'>
                                 <ul>
                                     <li>Во время беременности назначить НМГ в терапевтических дозах</li>
                                     <li>В послеродовом периоде продолжить применение НМГ в терапевтических дозах по
@@ -45,8 +45,8 @@ function VteoPage() {
                             </div>
                         </div>
                         <div className='row-item'>
-                            <p className='column-item'>Высокий</p>
-                            <div className='column-item'>
+                            <p className='column-item2'>Высокий</p>
+                            <div className='column-item2'>
                                 <ul>
                                     <li>ВТЭО в анамнезе (за исключением одного случая ВТЭО, ассоциированного с большим
                                         оперативным
@@ -54,7 +54,7 @@ function VteoPage() {
                                     </li>
                                 </ul>
                             </div>
-                            <div className='column-item'>
+                            <div className='column-item2'>
                                 <ul>
                                     <li>Во время беременности и в течение 6 недель после родов назначить НМГ в
                                         профилактических дозах
@@ -63,8 +63,8 @@ function VteoPage() {
                             </div>
                         </div>
                         <div className='row-item'>
-                            <p className='column-item'>Умеренный</p>
-                            <div className='column-item'>
+                            <p className='column-item2'>Умеренный</p>
+                            <div className='column-item2'>
                                 <ul>
                                     <li>Бессимптомная тромбофилия высокого риска</li>
                                     <li>Однократное ВТЭО в анамнезе, ассоциированное с большим оперативным
@@ -74,7 +74,7 @@ function VteoPage() {
                                     </li>
                                 </ul>
                             </div>
-                            <div className='column-item'>
+                            <div className='column-item2'>
                                 <ul>
                                     <li>Во время беременности и в течение 6 недель после родов назначить НМГ в
                                         профилактических дозах
@@ -83,13 +83,13 @@ function VteoPage() {
                             </div>
                         </div>
                         <div className='row-item'>
-                            <p className='column-item'>Низкий</p>
-                            <div className='column-item'>
+                            <p className='column-item2'>Низкий</p>
+                            <div className='column-item2'>
                                 <ul>
                                     <li>Бессимптомная тромбофилия низкого риска</li>
                                 </ul>
                             </div>
-                            <div className='column-item'>
+                            <div className='column-item2'>
                                 <ul>
                                     <li>Учитывать как фактор риска при индивидуальной оценке риска ВТЭО во время
                                         беременности и в
