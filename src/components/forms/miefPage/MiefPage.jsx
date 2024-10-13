@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import './EdinburgPage.scss';
+import './MiefPage.scss';
 import PDFIcon from '../icons/pdf.svg';
 import Header from '../../header/header';
 
-function EdinburgPage() {
+function MiefPage() {
     const [result, setResult] = useState(0);
     const [Risk, setRisk] = useState('');
     const [KnownRisksFactorValue, setKnownRisksFactorValue] = useState({
@@ -36,7 +36,7 @@ function EdinburgPage() {
 
     useEffect(() => {
         // Fetch the PDF URLs from the API
-        fetch('http://test-asya.ru/api/getpdf?code=EdinburgPage')
+        fetch('http://test-asya.ru/api/getpdf?code=MiefPage')
             .then(response => response.json())
             .then(data => {
                 const pdfs = data.result.map(item => {
@@ -56,12 +56,9 @@ function EdinburgPage() {
 
     const [riskInterpretation, setRiskInterpretation] = useState('');
     const interpretate = (result) => {
-        let interpretationRisk = result < 12
-            ? "Низкая вероятность наличия послеродовой депрессии"
-            : "Высокая вероятность наличия послеродовой депрессии. Для подтверждения диагноза и разработки плана лечения необходима тщательная клиническая оценка медицинским работником";
-        if (KnownRisksFactorValue[10] > 1) {
-            interpretationRisk = "Высокая вероятность наличия послеродовой депрессии. За вопрос №10 получено " + KnownRisksFactorValue[10] + " балла, рекомендуется консультация психиатра";
-        }
+        let interpretationRisk = result < 5
+            ? "недостаточно данных"
+            : result < 11 ? "выраженная эректильная дисфункция" : result < 21 ? "эректильная дисфункция умеренной степени" : "эректильная дисфункция отсутствует";
         setRisk(interpretationRisk);
     };
     const handleRisksChange = (e) => {
@@ -78,7 +75,7 @@ function EdinburgPage() {
             </div>
             <div className="forms_wrapper">
                 <div className="forms_block_header">
-                    <h2 className='forms_header'>Чек-лист перед назначением комбинированных гормональных контрацептивов.</h2>
+                    <h2 className='forms_header'>Опрос по диагностике эректильной дисфункции (МИЭФ-5)</h2>
                 </div>
                 <div className='forms_block'>
                     <div className='pdf-list'>
@@ -130,7 +127,7 @@ function EdinburgPage() {
                     <form className='form_wrap' onSubmit={calculate}>
                         <div className='radio-group'>
                             <div className="radio-group-item">
-                                <h4 className="forms-info-header">1. Я была готова смеяться и видеть светлую сторону происходящего</h4>
+                                <h4 className="forms-info-header">1. Как часто у Вас возникала эрекция при сексуальной активности за последнее время?</h4>
                                 <label>
                                     <input
                                         type="radio"
@@ -140,7 +137,7 @@ function EdinburgPage() {
                                         defaultChecked={true}
                                     />
                                     <span className="radio-custom"></span>
-                                    0 – так же, как всегда
+                                    0 - Сексуальной активности не было
                                 </label>
                                 <label>
                                     <input
@@ -150,7 +147,7 @@ function EdinburgPage() {
                                         onChange={handleRisksChange}
                                     />
                                     <span className="radio-custom"></span>
-                                    1 – теперь несколько меньше, чем всегда
+                                    1 - Почти никогда или никогда
                                 </label>
                                 <label>
                                     <input
@@ -160,7 +157,7 @@ function EdinburgPage() {
                                         onChange={handleRisksChange}
                                     />
                                     <span className="radio-custom"></span>
-                                    2 – определенно меньше
+                                    2 - Изредка (реже, чем в половине случаев)
                                 </label>
                                 <label>
                                     <input
@@ -170,11 +167,31 @@ function EdinburgPage() {
                                         onChange={handleRisksChange}
                                     />
                                     <span className="radio-custom"></span>
-                                    3 – совсем не вижу
+                                    3 - Иногда (примерно в половине случаев)
+                                </label>
+                                <label>
+                                    <input
+                                        type="radio"
+                                        name="1"
+                                        value="4"
+                                        onChange={handleRisksChange}
+                                    />
+                                    <span className="radio-custom"></span>
+                                    4 - Часто (более, чем в половине случаев)
+                                </label>
+                                <label>
+                                    <input
+                                        type="radio"
+                                        name="1"
+                                        value="5"
+                                        onChange={handleRisksChange}
+                                    />
+                                    <span className="radio-custom"></span>
+                                    5 - Почти всегда или всегда
                                 </label>
                             </div>
                             <div className="radio-group-item">
-                                <h4 className="forms-info-header">2. Я смотрела в будущее с удовольствием к окружающим обстоятельствам</h4>
+                                <h4 className="forms-info-header">2. Как часто за последнее время возникающая у Вас эрекция была достаточной для введения полового члена (для начала полового акта)?</h4>
                                 <label>
                                     <input
                                         type="radio"
@@ -184,7 +201,7 @@ function EdinburgPage() {
                                         defaultChecked={true}
                                     />
                                     <span className="radio-custom"></span>
-                                    0 – так же, как всегда
+                                    0 - Сексуальной активности не было
                                 </label>
                                 <label>
                                     <input
@@ -194,7 +211,7 @@ function EdinburgPage() {
                                         onChange={handleRisksChange}
                                     />
                                     <span className="radio-custom"></span>
-                                    1 - меньше, чем обычно
+                                    1 - Почти никогда или никогда
                                 </label>
                                 <label>
                                     <input
@@ -204,7 +221,7 @@ function EdinburgPage() {
                                         onChange={handleRisksChange}
                                     />
                                     <span className="radio-custom"></span>
-                                    2 - определенно меньше, чем обычно
+                                    2 - Изредка (реже, чем в половине случаев)
                                 </label>
                                 <label>
                                     <input
@@ -214,11 +231,31 @@ function EdinburgPage() {
                                         onChange={handleRisksChange}
                                     />
                                     <span className="radio-custom"></span>
-                                    3 - вряд ли
+                                    3 - Иногда (примерно в половине случаев)
+                                </label>
+                                <label>
+                                    <input
+                                        type="radio"
+                                        name="2"
+                                        value="4"
+                                        onChange={handleRisksChange}
+                                    />
+                                    <span className="radio-custom"></span>
+                                    4 - Часто (более, чем в половине случаев)
+                                </label>
+                                <label>
+                                    <input
+                                        type="radio"
+                                        name="2"
+                                        value="5"
+                                        onChange={handleRisksChange}
+                                    />
+                                    <span className="radio-custom"></span>
+                                    5 - Почти всегда или всегда
                                 </label>
                             </div>
                             <div className="radio-group-item">
-                                <h4 className="forms-info-header">3. Я без надобности винила себя, если что-то происходило неправильно</h4>
+                                <h4 className="forms-info-header">3. При половом акте как часто у Вас получалось осуществить введение полового члена (начать половой акт)?</h4>
                                 <label>
                                     <input
                                         type="radio"
@@ -228,7 +265,7 @@ function EdinburgPage() {
                                         defaultChecked={true}
                                     />
                                     <span className="radio-custom"></span>
-                                    0 - нет, никогда
+                                    0 - Сексуальной активности не было
                                 </label>
                                 <label>
                                     <input
@@ -238,7 +275,7 @@ function EdinburgPage() {
                                         onChange={handleRisksChange}
                                     />
                                     <span className="radio-custom"></span>
-                                    1 - нет, не часто
+                                    1 - Почти никогда или никогда
                                 </label>
                                 <label>
                                     <input
@@ -248,7 +285,7 @@ function EdinburgPage() {
                                         onChange={handleRisksChange}
                                     />
                                     <span className="radio-custom"></span>
-                                    2 - да, иногда
+                                    2 - Изредка (реже, чем в половине случаев)
                                 </label>
                                 <label>
                                     <input
@@ -258,11 +295,31 @@ function EdinburgPage() {
                                         onChange={handleRisksChange}
                                     />
                                     <span className="radio-custom"></span>
-                                    3 - да, в большинстве случаев
+                                    3 - Иногда (примерно в половине случаев)
+                                </label>
+                                <label>
+                                    <input
+                                        type="radio"
+                                        name="3"
+                                        value="4"
+                                        onChange={handleRisksChange}
+                                    />
+                                    <span className="radio-custom"></span>
+                                    4 - Часто (более, чем в половине случаев)
+                                </label>
+                                <label>
+                                    <input
+                                        type="radio"
+                                        name="3"
+                                        value="5"
+                                        onChange={handleRisksChange}
+                                    />
+                                    <span className="radio-custom"></span>
+                                    5 - Почти всегда или всегда
                                 </label>
                             </div>
                             <div className="radio-group-item">
-                                <h4 className="forms-info-header">4. Мне было тревожно и беспокойно без видимой причины</h4>
+                                <h4 className="forms-info-header">4. Как часто за последнее время Вам удавалось сохранить эрекцию после начала полового акта?</h4>
                                 <label>
                                     <input
                                         type="radio"
@@ -272,7 +329,7 @@ function EdinburgPage() {
                                         defaultChecked={true}
                                     />
                                     <span className="radio-custom"></span>
-                                    0 - нет, нисколько
+                                    0 - Сексуальной активности не было
                                 </label>
                                 <label>
                                     <input
@@ -282,7 +339,7 @@ function EdinburgPage() {
                                         onChange={handleRisksChange}
                                     />
                                     <span className="radio-custom"></span>
-                                    1 - едва ли когда-нибудь
+                                    1 - Почти никогда или никогда
                                 </label>
                                 <label>
                                     <input
@@ -292,7 +349,7 @@ function EdinburgPage() {
                                         onChange={handleRisksChange}
                                     />
                                     <span className="radio-custom"></span>
-                                    2 - да, иногда
+                                    2 - Изредка (реже, чем в половине случаев)
                                 </label>
                                 <label>
                                     <input
@@ -302,11 +359,31 @@ function EdinburgPage() {
                                         onChange={handleRisksChange}
                                     />
                                     <span className="radio-custom"></span>
-                                    3 - да, очень часто
+                                    3 - Иногда (примерно в половине случаев)
+                                </label>
+                                <label>
+                                    <input
+                                        type="radio"
+                                        name="4"
+                                        value="4"
+                                        onChange={handleRisksChange}
+                                    />
+                                    <span className="radio-custom"></span>
+                                    4 - Часто (более, чем в половине случаев)
+                                </label>
+                                <label>
+                                    <input
+                                        type="radio"
+                                        name="4"
+                                        value="5"
+                                        onChange={handleRisksChange}
+                                    />
+                                    <span className="radio-custom"></span>
+                                    5 - Почти всегда или всегда
                                 </label>
                             </div>
                             <div className="radio-group-item">
-                                <h4 className="forms-info-header">5. Я чувствовала испуг или панику без значительного повода</h4>
+                                <h4 className="forms-info-header">5. Насколько трудным было сохранить эрекцию в течении и до конца полового акта?</h4>
                                 <label>
                                     <input
                                         type="radio"
@@ -316,7 +393,7 @@ function EdinburgPage() {
                                         defaultChecked={true}
                                     />
                                     <span className="radio-custom"></span>
-                                    0 - нет, нисколько
+                                    0 - Не пытался совершить половой акт
                                 </label>
                                 <label>
                                     <input
@@ -326,7 +403,7 @@ function EdinburgPage() {
                                         onChange={handleRisksChange}
                                     />
                                     <span className="radio-custom"></span>
-                                    1 - нет, не много
+                                    1 - Чрезвычайно трудно
                                 </label>
                                 <label>
                                     <input
@@ -336,7 +413,7 @@ function EdinburgPage() {
                                         onChange={handleRisksChange}
                                     />
                                     <span className="radio-custom"></span>
-                                    2 - да, иногда
+                                    2 - Очень трудно
                                 </label>
                                 <label>
                                     <input
@@ -346,227 +423,27 @@ function EdinburgPage() {
                                         onChange={handleRisksChange}
                                     />
                                     <span className="radio-custom"></span>
-                                    3 - да, довольно много
-                                </label>
-                            </div>
-                            <div className="radio-group-item">
-                                <h4 className="forms-info-header">6. Обстоятельства были сильнее меня</h4>
-                                <label>
-                                    <input
-                                        type="radio"
-                                        name="6"
-                                        value="0"
-                                        onChange={handleRisksChange}
-                                        defaultChecked={true}
-                                    />
-                                    <span className="radio-custom"></span>
-                                    0 - нет, я справлялась так же, как всегда
+                                    3 - Трудно
                                 </label>
                                 <label>
                                     <input
                                         type="radio"
-                                        name="6"
-                                        value="1"
+                                        name="5"
+                                        value="4"
                                         onChange={handleRisksChange}
                                     />
                                     <span className="radio-custom"></span>
-                                    1 - нет, большинство времени я справлялась достаточно хорошо
+                                    4 – Не очень трудновато
                                 </label>
                                 <label>
                                     <input
                                         type="radio"
-                                        name="6"
-                                        value="2"
+                                        name="5"
+                                        value="5"
                                         onChange={handleRisksChange}
                                     />
                                     <span className="radio-custom"></span>
-                                    2 - да, иногда я не справлялась так же, как обычно
-                                </label>
-                                <label>
-                                    <input
-                                        type="radio"
-                                        name="6"
-                                        value="3"
-                                        onChange={handleRisksChange}
-                                    />
-                                    <span className="radio-custom"></span>
-                                    3 - да, большинство времени я не была готова справиться с ними вообще
-                                </label>
-                            </div>
-                            <div className="radio-group-item">
-                                <h4 className="forms-info-header">7. Я была так несчастна, что даже плохо спала</h4>
-                                <label>
-                                    <input
-                                        type="radio"
-                                        name="7"
-                                        value="0"
-                                        onChange={handleRisksChange}
-                                        defaultChecked={true}
-                                    />
-                                    <span className="radio-custom"></span>
-                                    0 - нет, нисколько
-                                </label>
-                                <label>
-                                    <input
-                                        type="radio"
-                                        name="7"
-                                        value="1"
-                                        onChange={handleRisksChange}
-                                    />
-                                    <span className="radio-custom"></span>
-                                    1 - нет, не очень часто
-                                </label>
-                                <label>
-                                    <input
-                                        type="radio"
-                                        name="7"
-                                        value="2"
-                                        onChange={handleRisksChange}
-                                    />
-                                    <span className="radio-custom"></span>
-                                    2 - да, иногда
-                                </label>
-                                <label>
-                                    <input
-                                        type="radio"
-                                        name="7"
-                                        value="3"
-                                        onChange={handleRisksChange}
-                                    />
-                                    <span className="radio-custom"></span>
-                                    3 - да, большинство времени
-                                </label>
-                            </div>
-                            <div className="radio-group-item">
-                                <h4 className="forms-info-header">8. Я грустила или была несчастна</h4>
-                                <label>
-                                    <input
-                                        type="radio"
-                                        name="8"
-                                        value="0"
-                                        onChange={handleRisksChange}
-                                        defaultChecked={true}
-                                    />
-                                    <span className="radio-custom"></span>
-                                    0 - нет, нисколько
-                                </label>
-                                <label>
-                                    <input
-                                        type="radio"
-                                        name="8"
-                                        value="1"
-                                        onChange={handleRisksChange}
-                                    />
-                                    <span className="radio-custom"></span>
-                                    1 - нет, не часто
-                                </label>
-                                <label>
-                                    <input
-                                        type="radio"
-                                        name="8"
-                                        value="2"
-                                        onChange={handleRisksChange}
-                                    />
-                                    <span className="radio-custom"></span>
-                                    2 - да, достаточно часто
-                                </label>
-                                <label>
-                                    <input
-                                        type="radio"
-                                        name="8"
-                                        value="3"
-                                        onChange={handleRisksChange}
-                                    />
-                                    <span className="radio-custom"></span>
-                                    3 - да, большинство времени
-                                </label>
-                            </div>
-                            <div className="radio-group-item">
-                                <h4 className="forms-info-header">9. Я была так несчастна, что даже плакала</h4>
-                                <label>
-                                    <input
-                                        type="radio"
-                                        name="9"
-                                        value="0"
-                                        onChange={handleRisksChange}
-                                        defaultChecked={true}
-                                    />
-                                    <span className="radio-custom"></span>
-                                    0 - нет, никогда
-                                </label>
-                                <label>
-                                    <input
-                                        type="radio"
-                                        name="9"
-                                        value="1"
-                                        onChange={handleRisksChange}
-                                    />
-                                    <span className="radio-custom"></span>
-                                    1 - нет, только случайно
-                                </label>
-                                <label>
-                                    <input
-                                        type="radio"
-                                        name="9"
-                                        value="2"
-                                        onChange={handleRisksChange}
-                                    />
-                                    <span className="radio-custom"></span>
-                                    2 - да, достаточно часто
-                                </label>
-                                <label>
-                                    <input
-                                        type="radio"
-                                        name="9"
-                                        value="3"
-                                        onChange={handleRisksChange}
-                                    />
-                                    <span className="radio-custom"></span>
-                                    3 - да, почти всё время
-                                </label>
-                            </div>
-                            <div className="radio-group-item-last">
-                                <h4 className="forms-info-header">10. Мысль о нанесении вреда себе возникала у меня</h4>
-                                <label>
-                                    <input
-                                        type="radio"
-                                        name="10"
-                                        value="0"
-                                        onChange={handleRisksChange}
-                                        defaultChecked={true}
-                                    />
-                                    <span className="radio-custom"></span>
-                                    0 - никогда
-                                </label>
-                                <label>
-                                    <input
-                                        type="radio"
-                                        name="10"
-                                        value="1"
-                                        onChange={handleRisksChange}
-                                    />
-                                    <span className="radio-custom"></span>
-                                    1 - едва ли
-                                </label>
-                                <label>
-                                    <input
-                                        type="radio"
-                                        name="10"
-                                        value="2"
-                                        onChange={handleRisksChange}
-                                    />
-                                    <span className="radio-custom"></span>
-                                    2 - иногда
-                                </label>
-                                <label>
-                                    <input
-                                        type="radio"
-                                        name="10"
-                                        value="3"
-                                        onChange={handleRisksChange}
-                                    />
-                                    <span className="radio-custom"></span>
-                                    3 - да, достаточно часто
+                                    5 – Не трудно
                                 </label>
                             </div>
                         </div>
@@ -587,4 +464,4 @@ function EdinburgPage() {
     );
 }
 
-export default EdinburgPage;
+export default MiefPage;

@@ -113,6 +113,11 @@ function Header() {
                         <li><Link to="/prolaps-form">Анкета для пациенток с пролапсом</Link></li>
                         <li><Link to="/diagnostics-form">Диагностика ОМК</Link></li>
                         <li><Link to="/pmdr-form">Определение диагноза "ПМДР"</Link></li>
+                        <li><Link to="/migrain-form">Экспресс-диагностика мигренозной головной боли</Link></li>
+                        <li><Link to="/krisp-form">Критерии преждевременного семяизвержения (КРИПС)</Link></li>
+                        <li><Link to="/pedt-form">Опросник по диагностике преждевременной эякуляции (PEDT)</Link></li>
+                        <li><Link to="/ams-form">Опрос по симптомам старения у мужчин (AMS)</Link></li>
+                        <li><Link to="/mief-form">Опрос по диагностике эректильной дисфункции (МИЭФ-5)</Link></li>
                     </ul>
                 )}
             </div>

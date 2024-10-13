@@ -36,7 +36,7 @@ function InjectionPage() {
 
     useEffect(() => {
         // Fetch the PDF URLs from the API
-        fetch('http://test-asya.ru/api/getPdf?code=pdf1')
+        fetch('http://test-asya.ru/api/getpdf?code=InjectionPage')
             .then(response => response.json())
             .then(data => {
                 const pdfs = data.result.map(item => {

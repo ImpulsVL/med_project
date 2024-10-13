@@ -35,6 +35,11 @@ import VteoPage from "./components/tables/vteoPage/VteoPage";
 import NmgPage from './components/tables/nmgPage/NmgPage';
 import HolestazPage from './components/tables/holestazPage/HolestazPage';
 import ColoscopyPage from './components/tables/coloscopyPage/ColoscopyPage';
+import MigrainPage from './components/forms/migrainPage/MigrainPage';
+import KrispPage from './components/forms/kripsPage/KrispPage';
+import PedtPage from './components/forms/pedtPage/PedtPage';
+import AmsPage from './components/forms/amsPage/AmsPage';
+import MiefPage from './components/forms/miefPage/MiefPage';
 
 function App() {
   return (
@@ -74,6 +79,11 @@ function App() {
           <Route path="/prolaps-form" element={<ProlapsPage />} />
           <Route path="/diagnostics-form" element={<DiagnosticsPage />} />
           <Route path="/pmdr-form" element={<PmdrPage />} />
+          <Route path="/migrain-form" element={<MigrainPage />} />
+          <Route path="/krisp-form" element={<KrispPage />} />
+          <Route path="/pedt-form" element={<PedtPage />} />
+          <Route path="/ams-form" element={<AmsPage />} />
+          <Route path="/mief-form" element={<MiefPage />} />
 
           <Route path="/contracepts-table" element={<ContraceptsPage />} />
           <Route path="/vteo-table" element={<VteoPage />} />
