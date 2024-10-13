@@ -10,7 +10,7 @@ function ColoscopyPage() {
             </div>
             <div className="imt_wrapper">
                 <div className="imt_block">
-                    <h2 className='imt_tanner'>Дозы НМГ для профилактики ВТЭО во время беременности и после родов</h2>
+                    <h2 className='imt_tanner'>Международная классификация кольпоскопических терминов</h2>
                 </div>
                 <div className="pictures_block">
                     <p>Рио-де-Жанейро, 2011, IFCPC</p>

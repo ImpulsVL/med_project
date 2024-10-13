@@ -130,7 +130,7 @@ function Header() {
                         <li><Link to="/vteo-table">Профилактика ВТЭО</Link></li>
                         <li><Link to="/nmg-table">Дозы НМГ</Link></li>
                         <li><Link to="/holestaz-table">Дифференциальная диагностика</Link></li>
-                        <li><Link to="/coloscopy-table">Классификация кольпоскопических термпинов</Link></li>
+                        <li><Link to="/coloscopy-table">Международная классификация кольпоскопических терминов</Link></li>
                     </ul>
                 )}
             </div>
