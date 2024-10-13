@@ -29,54 +29,72 @@ function ColoscopyPage() {
                         <li>Децидуоз (при беременности)</li></ul>
                 </div>
                 <div className='pictures_block'>
-                    <div className='row-item'><p className='column-item'>Общие принципы</p>
-                        <p className='column-item'>
-                            Степень I (слабовыраженное поражение)</p>
-                        <p className='column-item'>Степень II (выраженное поражение)</p>
-                        <p className='column-item'>Неспецифические признаки</p>
-                        <p className='column-item'>Подозрение на инвазию</p></div>
-                    <div className='row-item'><p className='column-item'>Локализация поражения: в пределах или вне зоны трансформации; соответствие с циферблатом
-                        Размеры области поражения: в процентном соотношении с цервиксом<br></br></p>
-                        <p className='column-item'>
-                            <ul><li>Тонкий ацетобелый эпителий с неровными нечеткими краями</li>
+
+                    <div className='row-item1'>
+                        <p className='column-item-header1'>Общие принципы</p>
+                        <p className='column-item1'>Локализация поражения: в пределах или вне зоны трансформации; соответствие с циферблатом
+                            Размеры области поражения: в процентном соотношении с цервиксом</p>
+                    </div>
+
+                    <div className='row-item1'>
+                        <p className='column-item-header1'>Степень I (слабовыраженное поражение)</p>
+                        <p className='column-item1'>
+                            <ul>
+                                <li>Тонкий ацетобелый эпителий с неровными нечеткими краями</li>
+                            </ul>
+                        </p>
+                        <p className='column-item1'>
+                            <ul>
                                 <li>Нежная мозаика</li>
-                                <li>Нежная пунктация</li></ul></p>
-                        <p className='column-item'>
-                            <ul><li>Плотный ацетобелый эпителий с четкими контурами</li>
-                                <li>Быстрое побеление</li>
-                                <li>Ацетобелый плотный ободок вокруг открытых желез (крипт)</li>
-                                <li>Грубая мозаика</li>
-                                <li>Грубая пунктация</li>
-                                <li>Внутри поражения - контуры более плотного ацетобелого участка (внутренние границы)</li>
-                                <li>Признак бугристости (гребня)</li></ul></p>
-                        <p className='column-item'>
-                            <ul><li>Лейкоплакия (кератоз, гиперкератоз)</li>
-                                <li>Эрозия</li>
-                                <li>Окрашивание раствором Люголя (проба Шиллера): йодопозитивное/йоднегативное.</li></ul></p>
-                        <p className='column-item'>
-                            <ul><li>Атипические сосуды
-                                Дополнительные признаки:</li>
-                                <li>"ломкие" сосуды</li>
-                                <li>неровная поверхность</li>
-                                <li>экзофитное поражение</li>
-                                <li>области некроза, изъязвления</li></ul>
+                                <li>Нежная пунктация</li>
+                            </ul>
                         </p>
                     </div>
-                    {/* <div className='row-item'><p className='column-item'></p>
-                        <p className='column-item'></p>
-                        <p className='column-item'>
-                            <ul><li>Нежная мозаика</li>
-                                <li>Нежная пунктация</li></ul></p>
-                        <p className='column-item'>
+
+                    <div className='row-item1'>
+                        <p className='column-item-header1'>Степень II (выраженное поражение)</p>
+                        <p className='column-item1'>
+                            <ul>
+                                <li>Плотный ацетобелый эпителий с четкими контурами</li>
+                                <li>Быстрое побеление</li>
+                                <li>Ацетобелый плотный ободок вокруг открытых желез (крипт)</li>
+                            </ul>
+                        </p>
+
+                        <p className='column-item1'>
                             <ul>
                                 <li>Грубая мозаика</li>
                                 <li>Грубая пунктация</li>
                                 <li>Внутри поражения - контуры более плотного ацетобелого участка (внутренние границы)</li>
-                                <li>Признак бугристости (гребня)</li></ul></p>
-                        <p className='column-item'></p>
-                        <p className='column-item'></p>
-                    </div> */}
+                                <li>Признак бугристости (гребня)</li>
+                            </ul>
+                        </p>
+                    </div>
 
+                    <div className='row-item1'>
+                        <p className='column-item-header1'>Неспецифические признаки</p>
+                        <p className='column-item1'>
+                            <ul>
+                                <li>Лейкоплакия (кератоз, гиперкератоз)</li>
+                                <li>Эрозия</li>
+                                <li>Окрашивание раствором Люголя (проба Шиллера): йодопозитивное/йоднегативное.</li>
+                            </ul>
+                        </p>
+                    </div>
+
+                    <div className='row-item1'>
+                        <p className='column-item-header1'>Степень II</p>
+                        <p className='column-item1'>
+                            <ul>
+                                <li>Атипические сосуды
+                                Дополнительные признаки:</li>
+                                <li>"ломкие" сосуды</li>
+                                <li>неровная поверхность</li>
+                                <li>экзофитное поражение</li>
+                                <li>области некроза, изъязвления</li>
+                            </ul>
+                        </p>
+                    </div>
                 </div>
                 <div className="pictures_block">
                     <p>Другие кольпоскопические картины</p>

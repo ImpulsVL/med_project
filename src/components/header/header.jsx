@@ -127,9 +127,9 @@ function Header() {
                 {showTables && (
                     <ul className="dropdown">
                         <li><Link to="/contracepts-table">Таблица контрацептивов</Link></li>
-                        <li><Link to="/vteo-table">Профилактика ВТЭО</Link></li>
-                        <li><Link to="/nmg-table">Дозы НМГ</Link></li>
-                        <li><Link to="/holestaz-table">Дифференциальная диагностика</Link></li>
+                        <li><Link to="/vteo-table">Профилактика ВТЭО при наличии тромбофилии и/или ВТЭО во время беременности и после родов</Link></li>
+                        <li><Link to="/nmg-table">Дозы НМГ для профилактики ВТЭО во время беременности и после родов</Link></li>
+                        <li><Link to="/holestaz-table">Дифференциальная диагностика внутрипеченочного холестаза беременных</Link></li>
                         <li><Link to="/coloscopy-table">Международная классификация кольпоскопических терминов</Link></li>
                     </ul>
                 )}

@@ -161,3 +161,39 @@
     width: auto;
   }
   
+  .row-item1 {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    box-sizing: border-box;
+    border-bottom: 2px solid #ebebeb;
+}
+
+.column-item-header1 {
+    width: 20%; /* Уменьшаем ширину заголовка */
+    font-weight: bold;
+    padding: 19px 10px;
+}
+
+.column-item1 {
+    width: 40%; /* Оставляем больше пространства для контента */
+    padding: 19px 10px;
+}
+
+.column-item1::after {
+  content: ''; /* Псевдоэлемент для линии */
+  position: absolute; /* Позиционирование псевдоэлемента */
+  bottom: 0; /* Линия будет внизу */
+  width: 150%;
+  height: 2px; /* Толщина линии */
+  background-color: #ebebeb; /* Цвет линии */
+}
+
+ul {
+    margin: 0;
+    padding-left: 20px;
+}
+
+li {
+    list-style-type: disc;
+}
