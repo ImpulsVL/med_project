@@ -29,7 +29,7 @@ function ColoscopyPage() {
                         <li>Децидуоз (при беременности)</li></ul>
                 </div>
                 <div className='pictures_block'>
-
+                    <p>Аномальные кольпоскопические картины</p>
                     <div className='row-item1'>
                         <p className='column-item-header1'>Общие принципы</p>
                         <p className='column-item1'>Локализация поражения: в пределах или вне зоны трансформации; соответствие с циферблатом
