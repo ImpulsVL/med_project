@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom'; // Импортируем Link
+import PavlovPng from '../header/icon/pavlov.png'
 import './header.scss';
 
 function Header() {
@@ -68,8 +69,9 @@ function Header() {
 
     return (
         <div className='header' ref={headerRef}>
-            <Link to="/">
-                <h1 className="assistant_header">Assistant</h1>
+            <Link className='header_href' to="/">
+                <img className="img_pavlov" src={PavlovPng}></img>
+                <h1 className="assistant_header">Павлов Медикаль</h1>
             </Link>
             <div className="menu_section">
                 <h2 className='calculators' onClick={toggleCalculators}>Калькуляторы</h2>

@@ -8,16 +8,6 @@
     padding-bottom: 25px;
 }
 
-.header {
-    width: 100%;
-    display: flex;
-    justify-content: flex-start; // Выровнять текст по левому краю
-    padding: 1em 3em;
-    position: absolute; // Зафиксировать заголовок в верхней части
-    top: 0;
-    left: 0;
-}
-
 .main_block_page {
     display: flex;
     flex-direction: column;

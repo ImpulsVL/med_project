@@ -15,16 +15,6 @@
     position: relative;
 }
 
-.header {
-    width: 100%;
-    display: flex;
-    justify-content: flex-start; // Выровнять текст по левому краю
-    padding: 1em 3em;
-    position: absolute; // Зафиксировать заголовок в верхней части
-    top: 0;
-    left: 0;
-}
-
 .text_main{
     width: 600px;
     padding-top: 60px;

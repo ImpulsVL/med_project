@@ -9,14 +9,25 @@
     padding-bottom: 25px;
 }
 
+
 .header {
     width: 100%;
     display: flex;
-    justify-content: flex-start; // Выровнять текст по левому краю
-    padding: 1em 3em;
-    position: absolute; // Зафиксировать заголовок в верхней части
+    justify-content: flex-start;
+    padding: 0.8em 2em;
+    position: absolute;
     top: 0;
     left: 0;
+    align-items: center;
+
+    h1{
+        margin-bottom: 0px;
+        padding-left: 10px;
+    }
+
+    h2{
+        margin-bottom: 0px;
+    }
 }
 
 .text_main_second_page{
