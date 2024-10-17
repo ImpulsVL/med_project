@@ -70,7 +70,7 @@ export const SearchBar = () => {
 
   // Navigate to the diagnosis page
   const handleDiagnosisClick = (diagnosis) => {
-    navigate(`/diagnos/${diagnosis.id}`); // Navigate to the diagnosis page
+    navigate(`/diagnos/${diagnosis.id}/${diagnosis.section}`); // Navigate to the diagnosis page
   };
 
   return (
