@@ -72,7 +72,7 @@ function DiagnosPage() {
                                 <IconBack id="back_icon" />
                             </div>
                             <div className='back_button_text'>
-                                Вернуться к диагнозам - {`${recommendationData.sectionName ?? ''}`}
+                                Вернуться к диагнозам
                             </div>
                         </a>
                     </Link>
