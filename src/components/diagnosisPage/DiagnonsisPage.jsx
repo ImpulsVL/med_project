@@ -70,7 +70,7 @@ function DiagnosisPage() {
                     {diagnoses.section}
                 </div>
                 <div className='Plates'>
-                    <DiagnosisPlates diagnoses = {diagnoses.items}/>
+                    <DiagnosisPlates diagnoses = {diagnoses.items} sectionCode = {code}/>
                 </div>
             </div>
         </div>

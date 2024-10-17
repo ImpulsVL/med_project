@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import ReactRouterDOM from 'react-dom/client';
 import './DiagnosPage.scss';
 import { ReactComponent as IconBack } from './icons/Back.svg'
 import { Link, useNavigate, useLocation, useParams } from 'react-router-dom';
@@ -11,7 +12,7 @@ import Header from '../header/header';
 import useFetchData from '../hooks/useFetchData';
 
 function DiagnosPage() {
-    const { id } = useParams();
+    const { id, section } = useParams();
     const { data: recommendationData, loading, error } = useFetchData(id, 'testapi3.php');
     const [selectedItems, setSelectedItems] = useState([]);;
 
@@ -23,6 +24,8 @@ function DiagnosPage() {
 
     const [activeCommentPlate, setActiveCommentPlate] = useState(null);
 
+    console.log(section)
+    
     if (loading) {
         return <div>Loading...</div>;
     }
@@ -66,7 +69,7 @@ function DiagnosPage() {
             </div>
             <div className="main-container_third_page ">
                 <div className='style_for_link'>
-                    <Link to={`/diagnosis/${recommendationData.section}`}> {/* Используем code для возврата */}
+                    <Link to={`/diagnosis/${section ?? recommendationData.section}`}> {/* Используем code для возврата */}
                         <a className='back_wrapper'>
                             <div className='icon_back'>
                                 <IconBack id="back_icon" />
