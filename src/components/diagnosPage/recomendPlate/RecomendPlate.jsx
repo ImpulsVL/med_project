@@ -54,11 +54,12 @@ function RecomendPlate({ onToggleCommentPlate, diagnos, onSelectionChange, onCha
                     >
                         <div className='check_icon'><IconCheck /></div>
                         <div className='medical_info'>{recommendation.name}</div>
+                        {/* <div className='medical_recomend_comments'>{recommendation.comment}</div> */}
                     </div>
                     {recommendation.values.length > 0 ? (
                         recommendation.values.map((value, i) => (
                             <div className={`medical_recomend_comments ${isSelected ? 'selected' : ''}`} key={i}>
-                                {value}
+                                {value.comment}
                             </div>
                         ))
                     ) : (

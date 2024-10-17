@@ -7,7 +7,7 @@ import CommentPlate from '../commentPlate/CommentPlate';
 import { useParams } from 'react-router-dom';
 import useFetchData from '../../hooks/useFetchData'; // Импортируем кастомный хук
 
-function Medical_treatmentPlate({ onToggleCommentPlate, diagnos, onSelectionChange, onChange, isActive}) {
+function Medical_treatmentPlate({ onToggleCommentPlate, diagnos, onSelectionChange, onChange, isActive }) {
     const { id } = useParams();
     const treatmentData = diagnos.items;
     const comment = diagnos.comment;
@@ -36,6 +36,26 @@ function Medical_treatmentPlate({ onToggleCommentPlate, diagnos, onSelectionChan
         toggleCommentPlate();
     };
 
+    // const handleParentClick = (treatment) => {
+    //     const isSelected = selectedItems.some(item => item.parent === treatment.name);
+    //     let updatedSelection = [];
+
+    //     if (isSelected) {
+    //         // Unselect parent and all children
+    //         updatedSelection = selectedItems.filter(item => item.parent !== treatment.name);
+    //     } else {
+    //         // Select parent and all children
+    //         updatedSelection = [
+    //             ...selectedItems,
+    //             { parent: treatment.name, children: [...treatment.values] }
+    //         ];
+    //     }
+
+    //     setSelectedItems(updatedSelection);
+    //     onSelectionChange(updatedSelection);
+    //     onChange(updatedSelection);
+    // };
+
     const handleParentClick = (treatment) => {
         const isSelected = selectedItems.some(item => item.parent === treatment.name);
         let updatedSelection = [];
@@ -44,10 +64,14 @@ function Medical_treatmentPlate({ onToggleCommentPlate, diagnos, onSelectionChan
             // Unselect parent and all children
             updatedSelection = selectedItems.filter(item => item.parent !== treatment.name);
         } else {
-            // Select parent and all children
+            // Select parent and all children, including comments
             updatedSelection = [
                 ...selectedItems,
-                { parent: treatment.name, children: [...treatment.values] }
+                {
+                    parent: treatment.name,
+                    comment: treatment.comment, // Include parent comment
+                    children: treatment.values.map(value => ({ name: value.name, comment: value.comment }))
+                }
             ];
         }
 
@@ -56,9 +80,52 @@ function Medical_treatmentPlate({ onToggleCommentPlate, diagnos, onSelectionChan
         onChange(updatedSelection);
     };
 
+    // const handleChildClick = (treatment, value) => {
+    //     const parentItem = selectedItems.find(item => item.parent === treatment.name);
+    //     const isChildSelected = parentItem?.children.includes(value);
+
+    //     let updatedSelection = [];
+
+    //     if (isChildSelected) {
+    //         // Unselect specific child
+    //         updatedSelection = selectedItems.map(item => {
+    //             if (item.parent === treatment.name) {
+    //                 return {
+    //                     ...item,
+    //                     children: item.children.filter(child => child !== value)
+    //                 };
+    //             }
+    //             return item;
+    //         }).filter(item => item.children.length > 0);
+    //     } else {
+    //         if (parentItem) {
+    //             // Add child to already selected parent
+    //             updatedSelection = selectedItems.map(item => {
+    //                 if (item.parent === treatment.name) {
+    //                     return {
+    //                         ...item,
+    //                         children: [...item.children, value]
+    //                     };
+    //                 }
+    //                 return item;
+    //             });
+    //         } else {
+    //             // Select both parent and child
+    //             updatedSelection = [
+    //                 ...selectedItems,
+    //                 { parent: treatment.name, children: [value] }
+    //             ];
+    //         }
+    //     }
+
+    //     setSelectedItems(updatedSelection);
+    //     onSelectionChange(updatedSelection);
+    //     onChange(updatedSelection);
+    // };
+
     const handleChildClick = (treatment, value) => {
         const parentItem = selectedItems.find(item => item.parent === treatment.name);
-        const isChildSelected = parentItem?.children.includes(value);
+        const isChildSelected = parentItem?.children.some(child => child.name === value.name);
 
         let updatedSelection = [];
 
@@ -68,28 +135,32 @@ function Medical_treatmentPlate({ onToggleCommentPlate, diagnos, onSelectionChan
                 if (item.parent === treatment.name) {
                     return {
                         ...item,
-                        children: item.children.filter(child => child !== value)
+                        children: item.children.filter(child => child.name !== value.name)
                     };
                 }
                 return item;
             }).filter(item => item.children.length > 0);
         } else {
             if (parentItem) {
-                // Add child to already selected parent
+                // Add child to already selected parent, including comments
                 updatedSelection = selectedItems.map(item => {
                     if (item.parent === treatment.name) {
                         return {
                             ...item,
-                            children: [...item.children, value]
+                            children: [...item.children, { name: value.name, comment: value.comment }]
                         };
                     }
                     return item;
                 });
             } else {
-                // Select both parent and child
+                // Select both parent and child, including comments
                 updatedSelection = [
                     ...selectedItems,
-                    { parent: treatment.name, children: [value] }
+                    {
+                        parent: treatment.name,
+                        comment: treatment.comment, // Include parent comment
+                        children: [{ name: value.name, comment: value.comment }]
+                    }
                 ];
             }
         }
@@ -110,28 +181,30 @@ function Medical_treatmentPlate({ onToggleCommentPlate, diagnos, onSelectionChan
                             className={`medical_treatment_info ${isParentSelected ? 'selected' : ''}`}
                         >
                             <div className={`check_icon ${isParentSelected ? 'selected' : ''}`}
-                            onClick={() => handleParentClick(treatment)}><IconCheck /></div>
-                            
+                                onClick={() => handleParentClick(treatment)}><IconCheck /></div>
+
                             <div className={`medical_medical_info ${isParentSelected ? 'selected' : ''}`}
-                            onClick={() => handleParentClick(treatment)}>{treatment.name}</div>
+                                onClick={() => handleParentClick(treatment)}>{treatment.name}
+                                <div className='medical_treatment_comments'>
+                                    {treatment.comment}
+                                </div>
+                            </div>
 
                             <div className='block_open_radio'>
-                            <button
-                                className={`openRadio_icon ${expandedItems[index] ? 'rotated' : ''}`}
-                                onClick={() => toggleExpand(index)}
-                            >
-                                <OpenRadio />
-                            </button>
-                        </div>
-                        </div>
-                        <div className='medical_treatment_comments'>
-                            {treatment.values.length > 0}
+                                <button
+                                    className={`openRadio_icon ${expandedItems[index] ? 'rotated' : ''}`}
+                                    onClick={() => toggleExpand(index)}
+                                >
+                                    <OpenRadio />
+                                </button>
+                            </div>
                         </div>
                     </div>
                     {expandedItems[index] && (
                         <div className='radio_wrapper'>
                             {treatment.values.map((value, i) => {
-                                const isChildSelected = selectedItems.some(item => item.parent === treatment.name && item.children.includes(value));
+                                // const isChildSelected = selectedItems.some(item => item.parent === treatment.name && item.children.includes(value.name));
+                                const isChildSelected = selectedItems.some(item => item.parent === treatment.name && item.children.some(child => child.name === value.name));
 
                                 return (
                                     <div
@@ -140,7 +213,12 @@ function Medical_treatmentPlate({ onToggleCommentPlate, diagnos, onSelectionChan
                                         onClick={() => handleChildClick(treatment, value)}
                                     >   <div className='radio_treatment_info'>
                                             <div className='check_icon'><IconCheck /></div>
-                                            <div className='radio_medical_info'>{value}</div>
+                                            <div className='radio_medical_info'>
+                                                {value.name}
+                                                <div className='medical_treatment_comments'>
+                                                    {value.comment}
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 );

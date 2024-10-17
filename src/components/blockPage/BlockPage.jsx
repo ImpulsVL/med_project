@@ -216,10 +216,14 @@ function BlockPage() {
                                             {inspectionList.map((item, index) => (
                                                 <li key={index}>
                                                     <strong>{item.parent}</strong>
+                                                    <p className='strong_box'>{item.comment}</p>
                                                     {item.children.length > 0 && (
                                                         <ul>
                                                             {item.children.map((child, i) => (
-                                                                <li key={i}>{child}</li>
+                                                                <React.Fragment key={i}>
+                                                                    <li key={`${i}-name`}>{child.name}</li>
+                                                                    <lo className="lo_box" key={`${i}-comment`}>{child.comment}</lo>
+                                                                </React.Fragment>
                                                             ))}
                                                         </ul>
                                                     )}
@@ -229,16 +233,20 @@ function BlockPage() {
                                     }
                                     {medicalTreatmentList.length > 0 &&
                                         <ul>
-                                            <h2>Медикаментозное лечение</h2>
+                                            <h2 className='med_box'>Медикаментозное лечение</h2>
                                             {medicalTreatmentList.map((item, index) => (
                                                 <li key={index}>
                                                     <strong>{item.parent}</strong>
+                                                    <p className='strong_box'>{item.comment}</p>
                                                     {item.children.length > 0 && (
                                                         <ul>
-                                                            {item.children.map((child, i) => (
-                                                                <li key={i}>{child}</li>
-                                                            ))}
-                                                        </ul>
+                                                        {item.children.map((child, i) => (
+                                                            <React.Fragment key={i}>
+                                                                <li key={`${i}-name`}>{child.name}</li>
+                                                                <lo className="lo_box" key={`${i}-comment`}>{child.comment}</lo>
+                                                            </React.Fragment>
+                                                        ))}
+                                                    </ul>
                                                     )}
                                                 </li>
                                             ))}
@@ -246,14 +254,14 @@ function BlockPage() {
                                     }
                                     {recomendList.length > 0 &&
                                         <ul>
-                                            <h2>Рекомендации</h2>
+                                            <h2 className='med_box'>Рекомендации</h2>
                                             {recomendList.map((item, index) => (
                                                 <li key={index}>
                                                     <strong>{item.parent}</strong>
                                                     {item.children.length > 0 && (
                                                         <ul>
                                                             {item.children.map((child, i) => (
-                                                                <li key={i}>{child}</li>
+                                                                <lo className="lo_box" key={i}>{child.name}{child.comment}</lo>    
                                                             ))}
                                                         </ul>
                                                     )}

@@ -132,7 +132,7 @@
     font-size: 13px;
     line-height: 19px;
     opacity: 0.8;
-    margin-left: 36px; /* Выравнивание комментариев под текстом и иконкой */
+    margin-left: 0px; /* Выравнивание комментариев под текстом и иконкой */
     max-width: 100%; /* Растягиваем на ширину блока */
     color: gray;
     text-align: left;
@@ -165,7 +165,7 @@
 }
 
 .radio_medical_info{
-    display: flex;
+
     font-size: 15px;
     line-height: 23px;
     color: grey;
