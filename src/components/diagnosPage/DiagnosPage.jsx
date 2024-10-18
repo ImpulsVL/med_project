@@ -23,8 +23,6 @@ function DiagnosPage() {
     const [recomendList, updateRecomend] = useState([]);
 
     const [activeCommentPlate, setActiveCommentPlate] = useState(null);
-
-    console.log(section)
     
     if (loading) {
         return <div>Loading...</div>;
@@ -96,7 +94,7 @@ function DiagnosPage() {
 
                 </div>
                 <div className='footer'>
-                    <MoveFooter inspectionList={inspectionList} medicalTreatmentList={medicalTreatmentList} recomendList={recomendList} sectionCode={recommendationData.section} />
+                    <MoveFooter inspectionList={inspectionList} medicalTreatmentList={medicalTreatmentList} recomendList={recomendList} sectionCode={section}/>
                 </div>
             </div>
         </div>

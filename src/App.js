@@ -52,6 +52,7 @@ function App() {
           <Route path="/diagnos" element={<DiagnosPage />} />
           <Route path="/diagnos/:id/:section" element={<DiagnosPage />} /> {/* Новый маршрут с параметром code */}
           <Route path="/block" element={<BlockPage />} />
+          <Route path="/block/:id/:section" element={<BlockPage />} />
 
           <Route path="/ludwig-scale" element={<BreastPage />} />
           <Route path="/tanner-scale" element={<TannerPage />} />

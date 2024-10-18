@@ -71,7 +71,7 @@ function Header() {
         <div className='header' ref={headerRef}>
             <Link className='header_href' to="/">
                 <img className="img_pavlov" src={PavlovPng}></img>
-                <h1 className="assistant_header">Павлов Медикаль</h1>
+                <h1 className="assistant_header">ПАВЛОВ медикаль</h1>
             </Link>
             <div className="menu_section">
                 <h2 className='calculators' onClick={toggleCalculators}>Калькуляторы</h2>

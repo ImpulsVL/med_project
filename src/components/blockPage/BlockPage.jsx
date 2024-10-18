@@ -142,7 +142,7 @@ function BlockPage() {
                             <IconBack id="back_icon" />
                         </div>
                         <div className='back_button_text'>
-                            Популярные диагнозы
+                            Вернуться к диагнозам
                         </div>
                     </a>
                 </Link>
@@ -240,13 +240,13 @@ function BlockPage() {
                                                     <p className='strong_box'>{item.comment}</p>
                                                     {item.children.length > 0 && (
                                                         <ul>
-                                                        {item.children.map((child, i) => (
-                                                            <React.Fragment key={i}>
-                                                                <li key={`${i}-name`}>{child.name}</li>
-                                                                <lo className="lo_box" key={`${i}-comment`}>{child.comment}</lo>
-                                                            </React.Fragment>
-                                                        ))}
-                                                    </ul>
+                                                            {item.children.map((child, i) => (
+                                                                <React.Fragment key={i}>
+                                                                    <li key={`${i}-name`}>{child.name}</li>
+                                                                    <lo className="lo_box" key={`${i}-comment`}>{child.comment}</lo>
+                                                                </React.Fragment>
+                                                            ))}
+                                                        </ul>
                                                     )}
                                                 </li>
                                             ))}
@@ -261,7 +261,7 @@ function BlockPage() {
                                                     {item.children.length > 0 && (
                                                         <ul>
                                                             {item.children.map((child, i) => (
-                                                                <lo className="lo_box" key={i}>{child.name}{child.comment}</lo>    
+                                                                <lo className="lo_box" key={i}>{child.name}{child.comment}</lo>
                                                             ))}
                                                         </ul>
                                                     )}

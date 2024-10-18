@@ -67,11 +67,7 @@ function Medical_treatmentPlate({ onToggleCommentPlate, diagnos, onSelectionChan
             // Select parent and all children, including comments
             updatedSelection = [
                 ...selectedItems,
-                {
-                    parent: treatment.name,
-                    comment: treatment.comment, // Include parent comment
-                    children: treatment.values.map(value => ({ name: value.name, comment: value.comment }))
-                }
+                { parent: treatment.name, comment: treatment.comment, children: [] }
             ];
         }
 
@@ -139,7 +135,7 @@ function Medical_treatmentPlate({ onToggleCommentPlate, diagnos, onSelectionChan
                     };
                 }
                 return item;
-            }).filter(item => item.children.length > 0);
+            }).filter(item => item.children.length > 0 || item.parent);
         } else {
             if (parentItem) {
                 // Add child to already selected parent, including comments
