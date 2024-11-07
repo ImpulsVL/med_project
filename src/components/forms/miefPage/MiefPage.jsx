@@ -36,7 +36,7 @@ function MiefPage() {
 
     useEffect(() => {
         // Fetch the PDF URLs from the API
-        fetch('http://test-asya.ru/api/getpdf?code=MiefPage')
+        fetch('http://assistant-admin.pavlov-mc.ru/api/getpdf?code=MiefPage')
             .then(response => response.json())
             .then(data => {
                 const pdfs = data.result.map(item => {

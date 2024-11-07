@@ -36,7 +36,7 @@ function AmsPage() {
 
     useEffect(() => {
         // Fetch the PDF URLs from the API
-        fetch('http://test-asya.ru/api/getpdf?code=AmsPage')
+        fetch('http://assistant-admin.pavlov-mc.ru/api/getpdf?code=AmsPage')
             .then(response => response.json())
             .then(data => {
                 const pdfs = data.result.map(item => {

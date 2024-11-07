@@ -18,7 +18,7 @@ function DiagnosisPage() {
         const fetchDiagnoses = async () => {
             try {
                 // Делаем запрос с параметром code
-                const response = await fetch(`http://test-asya.ru/api/getdiagnoses?code=${code}`);
+                const response = await fetch(`http://assistant-admin.pavlov-mc.ru/api/getdiagnoses?code=${code}`);
                 if (!response.ok) {
                     throw new Error(`Ошибка: ${response.status}`);
                 }

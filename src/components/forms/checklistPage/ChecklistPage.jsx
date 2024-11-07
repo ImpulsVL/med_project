@@ -36,7 +36,7 @@ function ChecklistPage() {
 
     useEffect(() => {
         // Fetch the PDF URLs from the API
-        fetch('http://test-asya.ru/api/getpdf?code=ChecklistPage')
+        fetch('http://assistant-admin.pavlov-mc.ru/api/getpdf?code=ChecklistPage')
             .then(response => response.json())
             .then(data => {
                 const pdfs = data.result.map(item => {

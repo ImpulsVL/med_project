@@ -36,7 +36,7 @@ function MetalPage() {
 
     useEffect(() => {
         // Fetch the PDF URLs from the API
-        fetch('http://test-asya.ru/api/getpdf?code=MetalPage')
+        fetch('http://assistant-admin.pavlov-mc.ru/api/getpdf?code=MetalPage')
             .then(response => response.json())
             .then(data => {
                 const pdfs = data.result.map(item => {

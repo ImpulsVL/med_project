@@ -19,7 +19,7 @@ export const SearchBar = () => {
       const fetchData = async () => {
         setLoading(true); // Set loading state before fetching data
         try {
-          const response = await fetch(`http://test-asya.ru/api/find?search=${searchText}`);
+          const response = await fetch(`http://assistant-admin.pavlov-mc.ru/api/find?search=${searchText}`);
           const data = await response.json();
           const parsedData = (data.result); // Parse nested JSON string
           setDiagnoses(parsedData.items); // Assuming the API returns one diagnosis at a time

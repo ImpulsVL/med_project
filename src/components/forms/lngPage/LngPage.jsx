@@ -36,7 +36,7 @@ function LngPage() {
 
     useEffect(() => {
         // Fetch the PDF URLs from the API
-        fetch('http://test-asya.ru/api/getpdf?code=LngPage')
+        fetch('http://assistant-admin.pavlov-mc.ru/api/getpdf?code=LngPage')
             .then(response => response.json())
             .then(data => {
                 const pdfs = data.result.map(item => {

@@ -10,7 +10,7 @@ export const Plates = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch('http://test-asya.ru/api/?getsections');
+                const response = await fetch('http://assistant-admin.pavlov-mc.ru/api/?getsections');
                 if (!response.ok) {
                     throw new Error(`Ошибка: ${response.status}`);
                 }

@@ -36,7 +36,7 @@ function EdinburgPage() {
 
     useEffect(() => {
         // Fetch the PDF URLs from the API
-        fetch('http://test-asya.ru/api/getpdf?code=EdinburgPage')
+        fetch('http://assistant-admin.pavlov-mc.ru/api/getpdf?code=EdinburgPage')
             .then(response => response.json())
             .then(data => {
                 const pdfs = data.result.map(item => {

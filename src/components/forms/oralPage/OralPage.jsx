@@ -36,7 +36,7 @@ function OralPage() {
 
     useEffect(() => {
         // Fetch the PDF URLs from the API
-        fetch('http://test-asya.ru/api/getpdf?code=OralPage')
+        fetch('http://assistant-admin.pavlov-mc.ru/api/getpdf?code=OralPage')
             .then(response => response.json())
             .then(data => {
                 const pdfs = data.result.map(item => {
