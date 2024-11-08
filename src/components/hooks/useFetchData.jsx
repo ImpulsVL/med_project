@@ -10,7 +10,7 @@ function useFetchData(id, endpoint) {
 
         const fetchData = async () => {
             try {
-                const response = await fetch(`http://assistant-admin.pavlov-mc.ru//api/getdiagnosis?id=${id}`);
+                const response = await fetch(`http://assistant-admin.pavlov-mc.ru/api/getdiagnosis?id=${id}`);
                 if (!response.ok) {
                     throw new Error(`HTTP error: ${response.status}`);
                 }
