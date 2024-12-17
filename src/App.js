@@ -40,6 +40,9 @@ import KrispPage from './components/forms/kripsPage/KrispPage';
 import PedtPage from './components/forms/pedtPage/PedtPage';
 import AmsPage from './components/forms/amsPage/AmsPage';
 import MiefPage from './components/forms/miefPage/MiefPage';
+import MainPageAdmin from './componentsAdmin/MainPageAdmin/MainPageADmin';
+import DiagnosisPageAdmin from './componentsAdmin/diagnosisPageAdmin/DiagnosisPageADmin';
+import DiagnosPageAdmin from './componentsAdmin/diagnosPageAdmin/DiagnosPageAdmin';
 
 function App() {
   return (
@@ -91,6 +94,10 @@ function App() {
           <Route path="/nmg-table" element={<NmgPage />} />
           <Route path="/holestaz-table" element={<HolestazPage />} />
           <Route path="/coloscopy-table" element={<ColoscopyPage />} />
+
+          <Route path='/admin' element={<MainPageAdmin />}/>
+          <Route path='/admindiagnosis' element={<DiagnosisPageAdmin />}/>
+          <Route path='/admindiagnos' element={<DiagnosPageAdmin />}/>
         </Routes>
       </div>
     </Router >

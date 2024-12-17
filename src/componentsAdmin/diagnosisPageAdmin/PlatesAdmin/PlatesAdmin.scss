@@ -1,0 +1,171 @@
+.plates_wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 0 45px; /* Отступы от краев экрана */
+}
+
+.diagnosis_plate {
+    position: relative;
+    display: flex;
+    flex-shrink: 0;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 60px;
+    margin-top: 10px;
+    padding: 0px 8px 0px 32px;
+    border-radius: 10px;
+    background-color: #88886C;
+    font-size: 17px;
+    line-height: 23px;
+    text-decoration: none;
+    box-sizing: border-box;
+    transition: background-color 300ms;
+}
+
+.head_diagnosis_plate_second {
+    position: relative;
+    display: flex;
+    flex-shrink: 0;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 60px;
+    margin-top: 10px;
+    padding: 0px 8px 0px 32px;
+    border-radius: 10px;
+    background-color: #BDBDBD;
+    font-size: 17px;
+    line-height: 23px;
+    text-decoration: none;
+    box-sizing: border-box;
+    transition: background-color 300ms;
+    gap: 20px;
+}
+
+.a {
+    color: inherit;
+}
+
+.force_diagnosis_plate {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 6px;
+    height: 100%;
+    border-radius: 4px 0px 0px 4px;
+    background: #B9D1A7;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 300ms, opacity 300ms;
+}
+
+.text_diagnosis_plate {
+    color: #FAFBFA;
+    transition: color 300ms;
+    font-size: 20px;
+}
+
+.name_diagnosis_plate{
+    color: #FAFBFA;
+    transition: color 300ms;
+    font-size: 20px;
+}
+
+.count_diagnosis_plate {
+    color: #2F4719;
+    padding: 13px;
+    background-color: #F0F0E1;
+    border-radius: 10px;
+    font-size: 20px;
+}
+
+.head_code_diagnosis_plate {
+    color: #FAFBFA;
+    transition: color 300ms;
+    font-size: 20px;
+}
+
+.head_name_diagnosis_plate {
+    color: #FAFBFA;
+    transition: color 300ms;
+    font-size: 20px;
+}
+
+.head_count_diagnosis_plate {
+    color: #FAFBFA;
+    font-size: 20px;
+}
+
+.diagnosis_plate:hover {
+    background-color: #6b6b54;
+}
+
+.diagnosis_plate:hover .force_diagnosis_plate {
+    visibility: visible;
+    opacity: 1;
+}
+
+.diagnosis_plate:hover .text_diagnosis_plate {
+    color: #F0F0E1;
+}
+
+.diagnosis_plate:link, 
+.diagnosis_plate:visited {
+    color: inherit;
+    text-decoration: none;
+}
+
+.buttons-plate{
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+}
+
+.button-change{
+    color: #FAFBFA;
+    padding: 13px;
+    background-color: #E5DB8E;
+    border-radius: 10px;
+    font-size: 20px;
+}
+
+.button-delete{
+    color: #FAFBFA;
+    padding: 13px;
+    background-color: #F89696;
+    border-radius: 10px;
+    font-size: 20px;
+}
+
+.text-sort{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 15px;
+}
+
+.special-text-sort{
+    display: flex;
+    gap: 20px;
+}
+
+.special-text-sort-plate{
+    display: flex;
+    gap: 43px;
+}
+
+.check-icons{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.bottom-icon{
+    transform: rotate(180deg);
+}
+
+.for-head{
+    width: 280px;
+}

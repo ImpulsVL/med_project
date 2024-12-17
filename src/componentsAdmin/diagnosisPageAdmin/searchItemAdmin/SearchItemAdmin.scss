@@ -1,0 +1,8 @@
+.search_bar_container {
+    display: flex;
+    justify-content: center; /* Центрируем input по горизонтали */
+    align-items: center;
+    width: 100%;
+    margin-bottom: 10px;
+    box-sizing: border-box; /* Добавляем отступ снизу, чтобы не сливался с заголовком */
+}

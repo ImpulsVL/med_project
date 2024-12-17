@@ -1,0 +1,116 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* Это убирает лишние отступы и корректно считает ширину */
+}
+
+.wrapper-diagnosis {
+    width: 100%;
+    min-height: 100%; // Высота на весь экран
+    background-color: #f0f0e1; // Бежевый цвет
+    display: flex;
+    flex-direction: row;
+    position: relative;
+}
+
+.main-content {
+    flex: 1; // Занимает оставшееся пространство
+    display: flex;
+    flex-direction: column;
+}
+
+.text_main{
+    width: 600px;
+    padding-top: 60px;
+    padding-bottom: 40px;
+    padding-left: 40px;
+    font-size: 38px;
+    line-height: 50px;
+    color: #333;
+    text-align: left
+}
+
+.assistant_header {
+    font-size: 1.5rem;
+    color: #333;
+}
+
+.admin-panel {
+    color: #5f5b5b;
+    padding-top: 0.45em;
+}
+
+.scales {
+    color: #5f5b5b;
+    padding-left: 3em;
+    padding-top: 0.45em;
+}
+
+.tables{
+    color: #5f5b5b;
+    padding-left: 3em;
+    padding-top: 0.45em;
+}
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    padding-top: 56px;
+    //align-items: center;
+    //justify-content: center;
+    font-family: "Graphik LCG", Helvetica, Arial, sans-serif;
+    text-align: center;
+}
+
+.filter-block{
+    display: flex;
+    padding: 0px 45px 0px 45px;
+    justify-content: flex-end;
+}
+
+.filter{
+    max-width: 200px;
+    background-color: #E0E0C9;
+    padding: 20px 25px 20px 25px;
+    border-radius: 10px;
+    font-size: 20px;
+    color: #2F4719;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.filter:hover{
+    background-color: #d8d89d;
+}
+
+.add-spec-block{
+    display: flex;
+    padding: 0px 45px 0px 45px;
+    justify-content: flex-start;
+}
+
+.add-spec{
+    display: flex;
+    align-items: center;
+    gap:  25px;
+    max-width: 450px;
+    background-color: #B9D1A7;
+    padding: 20px 25px 20px 25px;
+    border-radius: 10px;
+    font-size: 20px;
+    color: #FAFBFA;
+    font-weight: bold;
+    cursor: pointer;
+
+    &:hover{
+        background-color: #a0cf7c;
+    }
+}
+
+.header-block{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}

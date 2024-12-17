@@ -1,0 +1,36 @@
+.sidebar {
+    min-height: 100%;
+    min-width: 300px;
+    background-color: #E0E0C9;
+    padding: 20px 30px 30px 30px;
+}
+
+.header-sidebar{
+    font-size: 20px;
+    font-weight: bold;
+    color: #2F4719;
+    margin-bottom: 70px;
+    text-align: center;
+}
+
+.diagnosis-components{
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.diagnosis-item{
+    padding: 12px 100px 12px 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #88886C;
+    border-radius: 10px;
+    color:  #FAFBFA;
+    cursor: pointer;
+}
+
+.diagnosis-item:hover{
+    background-color: #F0F0E1;
+    color:  #88886C;
+}
