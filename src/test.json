@@ -1,0 +1,236 @@
+{
+    "start": {
+        "specializations": [
+            {
+                "name": "Кардиология",
+                "visites": 0,
+                "diagnoses": [
+                    {
+                        "name": "Гипертония",
+                        "code": "I10",
+                        "visites": 0,
+                        "examinations": [
+                            {
+                                "main": "Обследования сердца",
+                                "main_comment": "Рекомендуется проводить обследования каждые 6 месяцев.",
+                                "items": [
+                                    {
+                                        "name": "ЭКГ",
+                                        "name_comment": "Применяется очень часто"
+                                    },
+                                    {
+                                        "name": "УЗИ сердца",
+                                        "name_comment": ""
+                                    }
+                                ]
+                            }
+                        ],
+                        "medication": [
+                            {
+                                "main": "Лекарственные препараты",
+                                "main_comment": "Рекомендуется для контроля давления.",
+                                "items": [
+                                    {
+                                        "name": "Лизиноприл",
+                                        "name_comment": "Для редких случаев"
+                                    }
+                                ]
+                            }
+                        ],
+                        "recommendations": [
+                            {
+                                "main": "Общие рекомендации",
+                                "main_comment": "Соблюдать диету и заниматься физической активностью.",
+                                "items": [
+                                    {
+                                        "name": "Не пить чай",
+                                        "name_comment": ""
+                                    }
+                                ]
+                            }
+                        ],
+                        "examinations_comments": {
+                            "recommended": "Соблюдать диету и заниматься физической активностью.",
+                            "not_recommended": "Избегать стрессов и переедания."
+                        },
+                        "medication_comments": {
+                            "recommended": "Соблюдать диету и заниматься физической активностью.",
+                            "not_recommended": "Избегать стрессов и переедания."
+                        },
+                        "recommendations_comments": {
+                            "recommended": "Соблюдать диету и заниматься физической активностью.",
+                            "not_recommended": "Избегать стрессов и переедания."
+                        }
+                    }
+                ]
+            },
+            {
+                "name": "Неврология",
+                "visites": 0,
+                "diagnoses": [
+                    {
+                        "name": "Мигрень",
+                        "code": "G43",
+                        "visites": 0,
+                        "examinations": [
+                            {
+                                "main": "Обследования при мигрени",
+                                "main_comment": "Рекомендуется для исключения других заболеваний.",
+                                "items": [
+                                    {
+                                        "name": "МРТ головы",
+                                        "name_comment": ""
+                                    }
+                                ]
+                            }
+                        ],
+                        "medication": [
+                            {
+                                "main": "Лекарственные препараты",
+                                "main_comment": "Рекомендуется при приступах.",
+                                "items": [
+                                    {
+                                        "name": "Ибупрофен",
+                                        "name_comment": ""
+                                    }
+                                ]
+                            }
+                        ],
+                        "recommendations": [
+                            {
+                                "main": "Общие рекомендации",
+                                "main_comment": "Избегать триггеров мигрени.",
+                                "items": [
+                                    {
+                                        "name": "Ибупрофен",
+                                        "name_comment": ""
+                                    }
+                                ]
+                            }
+                        ],
+                        "examinations_comments": {
+                            "recommended": "",
+                            "not_recommended": ""
+                        },
+                        "medication_comments": {
+                            "recommended": "",
+                            "not_recommended": ""
+                        },
+                        "recommendations_comments": {
+                            "recommended": "Избегать триггеров мигрени.",
+                            "not_recommended": "Не переутомляться."
+                        }
+                    }
+                ]
+            },
+            {
+                "name": "Педиатрия",
+                "visites": 0,
+                "diagnoses": [
+                    {
+                        "name": "Острый бронхит",
+                        "code": "J20",
+                        "visites": 0,
+                        "examinations": [
+                            {
+                                "main": "Обследования при бронхите",
+                                "main_comment": "Рекомендуется для оценки состояния легких.",
+                                "items": [
+                                    {
+                                        "name": "Рентген грудной клетки",
+                                        "name_comment": ""
+                                    }
+                                ]
+                            }
+                        ],
+                        "medication": [
+                            {
+                                "main": "Лекарственные препараты",
+                                "main_comment": "Рекомендуется при бактериальной инфекции.",
+                                "items": [
+                                    {
+                                        "name": "Амоксициллин",
+                                        "name_comment": ""
+                                    }
+                                ]
+                            }
+                        ],
+                        "recommendations": [
+                            {
+                                "main": "Общие рекомендации",
+                                "main_comment": "Обеспечить обильное питье.",
+                                "items": []
+                            }
+                        ],
+                        "examinations_comments": {
+                            "recommended": "",
+                            "not_recommended": ""
+                        },
+                        "medication_comments": {
+                            "recommended": "",
+                            "not_recommended": ""
+                        },
+                        "recommendations_comments": {
+                            "recommended": "Обеспечить обильное питье.",
+                            "not_recommended": "Не допускать переохлаждения."
+                        }
+                    }
+                ]
+            },
+            {
+                "name": "Эндокринология",
+                "visites": 0,
+                "diagnoses": [
+                    {
+                        "name": "Сахарный диабет",
+                        "code": "E11",
+                        "visites": 0,
+                        "examinations": [
+                            {
+                                "main": "Обследования при диабете",
+                                "main_comment": "Рекомендуется для диагностики.",
+                                "items": [
+                                    {
+                                        "name": "Глюкозотолерантный тест",
+                                        "name_comment": ""
+                                    }
+                                ]
+                            }
+                        ],
+                        "medication": [
+                            {
+                                "main": "Лекарственные препараты",
+                                "main_comment": "Рекомендуется для контроля уровня сахара.",
+                                "items": [
+                                    {
+                                        "name": "Метформин",
+                                        "name_comment": ""
+                                    }
+                                ]
+                            }
+                        ],
+                        "recommendations": [
+                            {
+                                "main": "Общие рекомендации",
+                                "main_comment": "Соблюдать режим питания.",
+                                "items": []
+                            }
+                        ],
+                        "examinations_comments": {
+                            "recommended": "",
+                            "not_recommended": ""
+                        },
+                        "medication_comments": {
+                            "recommended": "",
+                            "not_recommended": ""
+                        },
+                        "recommendations_comments": {
+                            "recommended": "Соблюдать режим питания.",
+                            "not_recommended": "Не допускать переедания."
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+}

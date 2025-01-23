@@ -16,11 +16,12 @@
 .diagnosis-components{
     display: flex;
     flex-direction: column;
-    gap: 25px;
+    gap: 15px;
 }
 
 .diagnosis-item{
-    padding: 12px 100px 12px 100px;
+    min-width: 260px;
+    padding: 12px 15px 12px 15px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -30,6 +31,11 @@
     cursor: pointer;
 
     &:hover{
+        background-color: #F0F0E1;
+        color:  #88886C;
+    }
+
+    &.active{
         background-color: #F0F0E1;
         color:  #88886C;
     }

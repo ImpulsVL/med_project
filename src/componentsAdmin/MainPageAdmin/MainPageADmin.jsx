@@ -1,51 +1,79 @@
 import React, { useState, useRef, useEffect } from 'react';
 import './MainPageAdmin.scss';
 import './PlatesAdmin.scss';
-import SearchItem from "./searchItemAdmin/SearchItemAdmin";
-// import Plates from "./plates/Plates";
-import { useNavigate } from 'react-router-dom';
+
+import { useNavigate, Link } from 'react-router-dom';
+
 import { ReactComponent as PlusIcon } from './icons/plus.svg';
 import { ReactComponent as CheckTopIcon } from './icons/check-top.svg';
 import { ReactComponent as CheckBottomIcon } from './icons/check-top.svg';
 import { ReactComponent as SearchLogo } from './icons/Search.svg';
 import { ReactComponent as ClearIcon } from './icons/Clear.svg';
-import PlatesAdmin from './PlatesAdmin/PlatesAdmin';
+
+import HeaderAdmin from '../headerAdmin/HeaderAdmin';
 
 function MainPageAdmin() {
-
-
     const [searchText, setSearchText] = useState('');
     const [showResults, setShowResults] = useState(false);
-    const [diagnoses, setDiagnoses] = useState([]); // State to hold fetched data
-    const [loading, setLoading] = useState(false); // Loading state
+    const [specializations, setSpecializations] = useState([]);
+    const [loading, setLoading] = useState(false);
+
+    const [showPopup, setShowPopup] = useState(false);
+    const [newSpecialization, setNewSpecialization] = useState({ name: '', visites: 0, diagnoses: [] });
+
+    const [showEditPopup, setShowEditPopup] = useState(false);
+    const [editSpecialization, setEditSpecialization] = useState(null);
+
+    const [showDeletePopup, setShowDeletePopup] = useState(false);
+    const [deleteSpecialization, setDeleteSpecialization] = useState(null);
+
+    const [sortField, setSortField] = useState(null); // 'name' или 'visites'
+    const [sortOrder, setSortOrder] = useState('asc'); // 'asc' или 'desc'
+
+    const [filterCondition, setFilterCondition] = useState('greater'); // 'greater', 'less', 'equal'
+    const [filterValue, setFilterValue] = useState('');
+    const [showFilterPopup, setShowFilterPopup] = useState(false);
+    const [originalSpecializations, setOriginalSpecializations] = useState([]);
+
+    const [visibleCount, setVisibleCount] = useState(10);
+
     const inputRef = useRef(null);
     const wrapperRef = useRef(null);
-    const navigate = useNavigate(); // For programmatic navigation
+    useEffect(() => {
+        const fetchData = async () => {
+            setLoading(true);
+            try {
+                const response = await fetch('http://test-asya.ru/api/');
+                const data = await response.json();
+                setSpecializations(data.result.map(item => ({
+                    name: item.name,
+                    visites: item.visitsCount,
+                    code: item.code,
+                    diagnoses: []
+                })));
+                setOriginalSpecializations(data.result.map(item => ({
+                    name: item.name,
+                    visites: item.visitsCount,
+                    code: item.code,
+                    diagnoses: []
+                })));
+            } catch (error) {
+                console.error("Ошибка при загрузке данных:", error);
+            } finally {
+                setLoading(false);
+            }
+        };
 
-    // Fetch data from API when searchText changes
+        fetchData();
+    }, []);
+
     useEffect(() => {
         if (searchText) {
-            const fetchData = async () => {
-                setLoading(true); // Set loading state before fetching data
-                try {
-                    const response = await fetch(`http://assistant-admin.pavlov-mc.ru/api/find?search=${searchText}`);
-                    const data = await response.json();
-                    const parsedData = (data.result); // Parse nested JSON string
-                    setDiagnoses(parsedData.items); // Assuming the API returns one diagnosis at a time
-                    setShowResults(true); // Show the results when data is fetched
-                } catch (error) {
-                    setDiagnoses([]); // Clear diagnoses if there's an error
-                } finally {
-                    setLoading(false); // Remove loading state after fetching ends
-                }
-            };
-
-            fetchData();
+            setShowResults(true);
         } else {
-            setShowResults(false); // Hide results when the search text is cleared
-            setDiagnoses([]); // Clear results if search text is empty
+            setShowResults(false);
         }
-    }, [searchText]); // Dependency on searchText, triggers fetch when it changes
+    }, [searchText]);
 
     const handleInputChange = (e) => {
         setSearchText(e.target.value);
@@ -62,14 +90,12 @@ function MainPageAdmin() {
         }
     };
 
-    // Handle click outside the search component
     const handleClickOutside = (event) => {
         if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
             setShowResults(false);
         }
     };
 
-    // Attach event listener to detect clicks outside
     useEffect(() => {
         document.addEventListener('mousedown', handleClickOutside);
         return () => {
@@ -77,25 +103,161 @@ function MainPageAdmin() {
         };
     }, []);
 
-    // Navigate to the diagnosis page
-    const handleDiagnosisClick = (diagnosis) => {
-        navigate(`/diagnos/${diagnosis.id}/${diagnosis.section}`); // Navigate to the diagnosis page
+    useEffect(() => {
+    }, [specializations]);
+
+    const filteredSpecializations = specializations.filter(specialization =>
+        specialization.name.toLowerCase().includes(searchText.toLowerCase())
+    );
+
+    const handleAddSpecialization = async () => {
+        if (newSpecialization.name) {
+            setLoading(true);
+            try {
+                const response = await fetch(`http://test-asya.ru/api/addSpecialization?name=${newSpecialization.name}`, {
+                    method: 'GET'
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    // Обновляем состояние с новыми данными
+                    setSpecializations([...specializations, {
+                        name: newSpecialization.name,
+                        visites: 0,
+                        code: data.code,
+                        diagnoses: [],
+                    }]);
+                    setNewSpecialization({ name: '', visites: 0, diagnoses: [] });
+                    setShowPopup(false);
+                } else {
+                    console.error("Ошибка при добавлении специализации:", response.statusText);
+                }
+            } catch (error) {
+                console.error("Ошибка при загрузке данных:", error);
+            } finally {
+                setLoading(false);
+            }
+        }
     };
+
+    const handleEditClick = (specialization) => {
+        setEditSpecialization(specialization);
+        setShowEditPopup(true);
+    };
+
+    const handleEditSpecialization = async () => {
+        if (editSpecialization) {
+            setLoading(true);
+            try {
+                const response = await fetch(`http://test-asya.ru/api/editSpecialization?name=${encodeURIComponent(editSpecialization.name)}&code=${encodeURIComponent(editSpecialization.code)}`, {
+                    method: 'GET',
+                });
+
+                if (response.ok) {
+                    const updatedSpecialization = await response.json();
+                    setSpecializations(specializations.map(specialization =>
+                        specialization.code === updatedSpecialization.code ? updatedSpecialization : specialization
+                    ));
+                    setEditSpecialization(null);
+                    setShowEditPopup(false);
+                    window.location.reload();
+                } else {
+                    console.error("Ошибка при редактировании специализации:", response.statusText);
+                }
+            } catch (error) {
+                console.error("Ошибка при загрузке данных:", error);
+            } finally {
+                setLoading(false);
+            }
+        }
+    };
+
+    const handleDeleteClick = (specialization) => {
+        setDeleteSpecialization(specialization);
+        setShowDeletePopup(true);
+    };
+
+    const handleDeleteSpecialization = async () => {
+        if (deleteSpecialization) {
+            setLoading(true);
+            try {
+                const response = await fetch(`http://test-asya.ru/api/deleteSpecialization?code=${deleteSpecialization.code}`, {
+                    method: 'GET',
+                });
+
+                if (response.ok) {
+                    setSpecializations(specializations.filter(specialization => specialization.code !== deleteSpecialization.code));
+                    setDeleteSpecialization(null);
+                    setShowDeletePopup(false);
+                } else {
+                    console.error("Ошибка при удалении специализации:", response.statusText);
+                }
+            } catch (error) {
+                console.error("Ошибка при загрузке данных:", error);
+            } finally {
+                setLoading(false);
+            }
+        }
+    };
+
+    const handleSortByName = () => {
+        if (sortField === 'name') {
+            setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
+        } else {
+            setSortField('name');
+            setSortOrder('asc');
+        }
+    };
+
+    const handleSortByVisits = () => {
+        if (sortField === 'visites') {
+            setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
+        } else {
+            setSortField('visites');
+            setSortOrder('asc');
+        }
+    };
+
+    const sortedSpecializations = [...specializations].sort((a, b) => {
+        if (sortField === 'name') {
+            return sortOrder === 'asc'
+                ? a.name.localeCompare(b.name)
+                : b.name.localeCompare(a.name);
+        } else if (sortField === 'visites') {
+            return sortOrder === 'asc'
+                ? a.visites - b.visites
+                : b.visites - a.visites;
+        }
+        return 0; // Если сортировка не выбрана
+    });
+
+    const handleApplyFilter = () => {
+        const value = parseInt(filterValue, 10);
+        if (!isNaN(value)) {
+            setSpecializations(originalSpecializations.filter(specialization => {
+                if (filterCondition === 'greater') {
+                    return specialization.visites > value;
+                } else if (filterCondition === 'less') {
+                    return specialization.visites < value;
+                } else if (filterCondition === 'equal') {
+                    return specialization.visites === value;
+                }
+                return true;
+            }));
+        }
+    };
+
+    const handleClearFilter = () => {
+        setFilterValue('');
+        setFilterCondition('greater');
+        setSpecializations(originalSpecializations); // Возвращаем все специализации
+    };
+
 
     return (
         <div className='wrapper'>
             <div className='header-1'>
-                <div className='header-admin'>
-                    <div className="menu_section">
-                        <h2 className='admin-panel'>Админ панель</h2>
-                    </div>
-                    <div className="menu_section">
-                        <h2 className='scales'>Парсер</h2>
-                    </div>
-                    <div className="menu_section">
-                        <h2 className='scales'>Модерация</h2>
-                    </div>
-                </div>
+                <HeaderAdmin />
             </div>
             <div className="main-container">
                 <div className='SearchItem'>
@@ -127,24 +289,23 @@ function MainPageAdmin() {
                                 </button>
                             </div>
 
-                            {/* Search results */}
                             {showResults && searchText && (
                                 <div className="search_results">
                                     {loading ? (
                                         <div className="loading">Загрузка...</div>
-                                    ) : diagnoses !== undefined ? (
-                                        diagnoses.map((diagnosis, index) => (
-                                            <div
+                                    ) : filteredSpecializations.length > 0 ? (
+                                        filteredSpecializations.map((specialization, index) => (
+                                            <Link
                                                 key={index}
+                                                to={`/specialization/${specialization.name}`}
                                                 className="search_result_item"
-                                                onClick={() => handleDiagnosisClick(diagnosis)} // Handle click
+                                                state={{ specialization, allSpecializations: specializations }}
                                             >
-                                                <span className="diagnosis_code">{diagnosis.code}</span>
-                                                <span className="diagnosis_name">{diagnosis.name}</span>
-                                            </div>
+                                                <div className="specialization_name">{specialization.name}</div>
+                                            </Link>
                                         ))
                                     ) : (
-                                        <div className="no_results">В соответствии с запросом не найдены диагнозы</div>
+                                        <div className="no_results">В соответствии с запросом не найдены специализации</div>
                                     )}
                                 </div>
                             )}
@@ -152,12 +313,32 @@ function MainPageAdmin() {
                     </div>
                 </div>
                 <div className='filter-block'>
-                    <div className='filter'>
+                    <div className='filter' onClick={() => setShowFilterPopup(!showFilterPopup)}>
                         Фильтрация
                     </div>
                 </div>
+                {showFilterPopup && (
+                    <div className="filter-popup">
+                        <div className='filter-data'>
+                            <select className='select-filter' value={filterCondition} onChange={(e) => setFilterCondition(e.target.value)}>
+                                <option value="greater">Больше чем</option>
+                                <option value="less">Меньше чем</option>
+                                <option value="equal">Равно</option>
+                            </select>
+                            <input
+                                className='input-filter'
+                                type="number"
+                                value={filterValue}
+                                onChange={(e) => setFilterValue(e.target.value)}
+                                placeholder="Введите значение"
+                            />
+                        </div>
+                        <button className='filter-result' onClick={handleApplyFilter}>Отфильтровать</button>
+                        <button className='filter-out' onClick={handleClearFilter}>Убрать фильтрацию</button>
+                    </div>
+                )}
                 <div className='add-spec-block'>
-                    <div className='add-spec'>
+                    <div className='add-spec' onClick={() => setShowPopup(true)}>
                         <PlusIcon />
                         Добавление специализации
                     </div>
@@ -167,10 +348,10 @@ function MainPageAdmin() {
                         <div className='head_diagnosis_plate'>
                             <div className='text-sort'>
                                 <div className='head_text_diagnosis_plate'>
-                                    Урология
+                                    Специализация
                                 </div>
-                                <div className='check-icons'>
-                                    <CheckTopIcon />
+                                <div className='check-icons' onClick={handleSortByName}>
+                                    <CheckTopIcon className="top-icon" />
                                     <CheckBottomIcon className="bottom-icon" />
                                 </div>
                             </div>
@@ -178,160 +359,86 @@ function MainPageAdmin() {
                                 <div className='head_count_diagnosis_plate'>
                                     Количество посещений
                                 </div>
-                                <div className='check-icons'>
-                                    <CheckTopIcon />
+                                <div className='check-icons' onClick={handleSortByVisits}>
+                                    <CheckTopIcon className="top-icon" />
                                     <CheckBottomIcon className="bottom-icon" />
                                 </div>
                             </div>
                             <div className='for-head'></div>
                         </div>
-                        <a
-                            className='diagnosis_plate'
-                            to={`/admin`}
-                        >
-                            <div className='force_diagnosis_plate'></div>
-                            <div className='text_diagnosis_plate'>Урология</div>
-                            <div className='count_diagnosis_plate'>Количество посещений: 123</div>
-                            <div className='buttons-plate'>
-                                <div className='button-change'>
-                                    Изменить
+                        {!loading && sortedSpecializations.length > 0 && (
+                            sortedSpecializations.slice(0, visibleCount).map((specialization, index) => (
+                                <div className='diagnosis_plate'>
+                                    <Link
+                                        key={index}
+                                        to={`/specialization/${specialization.name}`}
+                                        state={{ specialization, allSpecializations: specializations }}
+                                        className='link-plate for-styles'
+                                    >
+                                        <div className='force_diagnosis_plate'></div>
+                                        <div className='text_diagnosis_plate'>{specialization.name}</div>
+                                        <div className='count_diagnosis_plate'>Количество посещений: {specialization.visites}</div>
+                                    </Link>
+                                    <div className='buttons-plate'>
+                                        <div className='button-change' onClick={(e) => handleEditClick(specialization)}>Изменить</div>
+                                        <div className='button-delete' onClick={() => handleDeleteClick(specialization)}>Удалить</div>
+                                    </div>
                                 </div>
-                                <div className='button-delete'>
-                                    Удалить
-                                </div>
-                            </div>
-                        </a>
-                        <a
-                            className='diagnosis_plate'
-                            to={`/admin`}
-                        >
-                            <div className='force_diagnosis_plate'></div>
-                            <div className='text_diagnosis_plate'>Урология</div>
-                            <div className='count_diagnosis_plate'>Количество посещений: 123</div>
-                            <div className='buttons-plate'>
-                                <div className='button-change'>
-                                    Изменить
-                                </div>
-                                <div className='button-delete'>
-                                    Удалить
-                                </div>
-                            </div>
-                        </a>
-                        <a
-                            className='diagnosis_plate'
-                            to={`/admin`}
-                        >
-                            <div className='force_diagnosis_plate'></div>
-                            <div className='text_diagnosis_plate'>Урология</div>
-                            <div className='count_diagnosis_plate'>Количество посещений: 123</div>
-                            <div className='buttons-plate'>
-                                <div className='button-change'>
-                                    Изменить
-                                </div>
-                                <div className='button-delete'>
-                                    Удалить
-                                </div>
-                            </div>
-                        </a>
-                        <a
-                            className='diagnosis_plate'
-                            to={`/admin`}
-                        >
-                            <div className='force_diagnosis_plate'></div>
-                            <div className='text_diagnosis_plate'>Урология</div>
-                            <div className='count_diagnosis_plate'>Количество посещений: 123</div>
-                            <div className='buttons-plate'>
-                                <div className='button-change'>
-                                    Изменить
-                                </div>
-                                <div className='button-delete'>
-                                    Удалить
-                                </div>
-                            </div>
-                        </a>
-                        <a
-                            className='diagnosis_plate'
-                            to={`/admin`}
-                        >
-                            <div className='force_diagnosis_plate'></div>
-                            <div className='text_diagnosis_plate'>Урология</div>
-                            <div className='count_diagnosis_plate'>Количество посещений: 123</div>
-                            <div className='buttons-plate'>
-                                <div className='button-change'>
-                                    Изменить
-                                </div>
-                                <div className='button-delete'>
-                                    Удалить
-                                </div>
-                            </div>
-                        </a>
-                        <a
-                            className='diagnosis_plate'
-                            to={`/admin`}
-                        >
-                            <div className='force_diagnosis_plate'></div>
-                            <div className='text_diagnosis_plate'>Урология</div>
-                            <div className='count_diagnosis_plate'>Количество посещений: 123</div>
-                            <div className='buttons-plate'>
-                                <div className='button-change'>
-                                    Изменить
-                                </div>
-                                <div className='button-delete'>
-                                    Удалить
-                                </div>
-                            </div>
-                        </a>
-                        <a
-                            className='diagnosis_plate'
-                            to={`/admin`}
-                        >
-                            <div className='force_diagnosis_plate'></div>
-                            <div className='text_diagnosis_plate'>Урология</div>
-                            <div className='count_diagnosis_plate'>Количество посещений: 123</div>
-                            <div className='buttons-plate'>
-                                <div className='button-change'>
-                                    Изменить
-                                </div>
-                                <div className='button-delete'>
-                                    Удалить
-                                </div>
-                            </div>
-                        </a>
-                        <a
-                            className='diagnosis_plate'
-                            to={`/admin`}
-                        >
-                            <div className='force_diagnosis_plate'></div>
-                            <div className='text_diagnosis_plate'>Урология</div>
-                            <div className='count_diagnosis_plate'>Количество посещений: 123</div>
-                            <div className='buttons-plate'>
-                                <div className='button-change'>
-                                    Изменить
-                                </div>
-                                <div className='button-delete'>
-                                    Удалить
-                                </div>
-                            </div>
-                        </a>
-                        <a
-                            className='diagnosis_plate'
-                            to={`/admin`}
-                        >
-                            <div className='force_diagnosis_plate'></div>
-                            <div className='text_diagnosis_plate'>Урология</div>
-                            <div className='count_diagnosis_plate'>Количество посещений: 123</div>
-                            <div className='buttons-plate'>
-                                <div className='button-change'>
-                                    Изменить
-                                </div>
-                                <div className='button-delete'>
-                                    Удалить
-                                </div>
-                            </div>
-                        </a>
+                            ))
+                        )}
                     </div>
+                    {sortedSpecializations.length > visibleCount && (
+                        <button className='show-more-button' onClick={() => setVisibleCount(visibleCount + 10)}>
+                            Показать еще
+                        </button>
+                    )}
                 </div>
             </div>
+            {showPopup && (
+                <div className="popup-overlay">
+                    <div className="popup">
+                        <h2>Добавить специализацию</h2>
+                        <input
+                            type="text"
+                            value={newSpecialization.name}
+                            onChange={(e) => setNewSpecialization({ ...newSpecialization, name: e.target.value })}
+                            placeholder="Название специализации"
+                        />
+                        <div className="popup-buttons">
+                            <button className='popup-button-add' onClick={handleAddSpecialization}>Добавить</button>
+                            <button className='popup-button-close' onClick={() => setShowPopup(false)}>Закрыть</button>
+                        </div>
+                    </div>
+                </div>
+            )}
+            {showEditPopup && (
+                <div className="popup-overlay">
+                    <div className="popup">
+                        <h2>Изменить специализацию</h2>
+                        <input
+                            type="text"
+                            value={editSpecialization.name}
+                            onChange={(e) => setEditSpecialization({ ...editSpecialization, name: e.target.value })}
+                            placeholder="Название специализации"
+                        />
+                        <div className="popup-buttons">
+                            <button className='popup-button-add' onClick={handleEditSpecialization}>Сохранить</button>
+                            <button className='popup-button-close' onClick={() => setShowEditPopup(false)}>Закрыть</button>
+                        </div>
+                    </div>
+                </div>
+            )}
+            {showDeletePopup && (
+                <div className="popup-overlay">
+                    <div className="popup">
+                        <h2>Вы уверены, что хотите удалить специализацию?</h2>
+                        <div className="popup-buttons">
+                            <button className='popup-button-delete' onClick={handleDeleteSpecialization}>Удалить</button>
+                            <button className='popup-button-close' onClick={() => setShowDeletePopup(false)}>Отмена</button>
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 }

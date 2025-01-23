@@ -16,7 +16,7 @@
 .diagnosis-components{
     display: flex;
     flex-direction: column;
-    gap: 25px;
+    gap: 10px;
 }
 
 .diagnosis-item{

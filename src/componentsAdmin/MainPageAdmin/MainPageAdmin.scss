@@ -104,3 +104,176 @@
 .add-spec:hover{
     background-color: #a0cf7c;
 }
+
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; // Убедитесь, что оно поверх других элементов
+}
+
+.popup {
+    background: #F0F0E1;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 300px; // Ширина всплывающего окна
+}
+
+.spec{
+    width: 400px;
+}
+
+.popup h2 {
+    margin: 0 0 10px;
+}
+
+.popup input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.popup-buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.popup-buttons button {
+    padding: 15px 30px;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.popup-button-delete{
+    background-color: #F89696;
+
+    &:hover{
+        background-color: #eb6262;
+    }
+}
+
+.popup-button-add{
+    background-color: #B9D1A7;
+
+    &:hover{
+        background-color: #a0cf7c;
+    }
+}
+
+.popup-button-close{
+    background-color: #b2b2b2;
+
+    &:hover{
+        background-color: #c5c4c4;
+    }
+}
+
+.filter-popup {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    position: absolute;
+    top: 275px;
+    right: 45px;
+    background-color: #E0E0C9;
+    border: 1px solid #2F4719;
+    padding: 20px;
+    border-radius: 10px;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.filter-data{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.select-filter{
+    padding: 10px 15px 10px 10px;
+    border-radius: 10px;
+    background-color: #88886C;
+    border: none;
+    color: #FAFBFA;
+
+    &:focus{
+        outline: none;
+    }
+}
+
+.input-filter{
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #88886C;
+    min-width: 250px;
+    border: none;
+    color: #FAFBFA;
+
+    &:focus{
+        outline: none;
+    }
+
+    &::placeholder{
+        color: #FAFBFA;
+    }
+}
+
+.filter-result{
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    color: #FAFBFA;
+    cursor: pointer;
+
+    background-color: #B9D1A7;
+
+    &:hover{
+        background-color: #a0cf7c;
+    }
+}
+
+.filter-out{
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    color: #FAFBFA;
+    cursor: pointer;
+
+    background-color: #F89696;
+
+    &:hover{
+        background-color: #eb6262;
+    }
+}
+
+.show-more-button{
+    font-size: 16px;
+    padding: 10px 40px 10px 40px;
+    border-radius: 10px;
+    border: none;
+    color: #FAFBFA;
+    cursor: pointer;
+
+    background-color: #88886C;
+
+    &:hover{
+        background-color: #6b6b54;
+    }
+}
+
+.Plates{
+    margin-bottom: 30px;
+}
+

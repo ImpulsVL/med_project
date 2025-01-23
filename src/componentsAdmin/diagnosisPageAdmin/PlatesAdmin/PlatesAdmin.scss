@@ -2,7 +2,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    padding: 0 45px; /* Отступы от краев экрана */
+    padding: 0 45px 20px 45px; /* Отступы от краев экрана */
 }
 
 .diagnosis_plate {
@@ -14,7 +14,7 @@
     width: 100%;
     height: 60px;
     margin-top: 10px;
-    padding: 0px 8px 0px 32px;
+    padding: 0px 8px 0px 24px;
     border-radius: 10px;
     background-color: #88886C;
     font-size: 17px;
@@ -22,6 +22,16 @@
     text-decoration: none;
     box-sizing: border-box;
     transition: background-color 300ms;
+}
+
+.link-plate{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.for-styles{
+    gap: 90px;
 }
 
 .head_diagnosis_plate_second {
@@ -41,7 +51,7 @@
     text-decoration: none;
     box-sizing: border-box;
     transition: background-color 300ms;
-    gap: 20px;
+    gap: 125px;
 }
 
 .a {
@@ -65,20 +75,32 @@
     color: #FAFBFA;
     transition: color 300ms;
     font-size: 20px;
+    min-width: 200px;
+    text-align: left;
+}
+
+.code_diagnosis_plate {
+    color: #FAFBFA;
+    transition: color 300ms;
+    font-size: 20px;
+    text-align: left;
+    width: 75px;
 }
 
 .name_diagnosis_plate{
     color: #FAFBFA;
     transition: color 300ms;
-    font-size: 20px;
+    font-size: 14px;
+    width: 380px;
 }
 
 .count_diagnosis_plate {
     color: #2F4719;
-    padding: 13px;
+    padding: 10px;
     background-color: #F0F0E1;
     border-radius: 10px;
-    font-size: 20px;
+    font-size: 14px;
+    width: 250px;
 }
 
 .head_code_diagnosis_plate {
@@ -125,18 +147,28 @@
 
 .button-change{
     color: #FAFBFA;
-    padding: 13px;
+    padding: 10px;
     background-color: #E5DB8E;
     border-radius: 10px;
-    font-size: 20px;
+    font-size: 14px;
+    cursor: pointer;
+
+    &:hover{
+        background-color: #dacd5f;
+    }
 }
 
 .button-delete{
     color: #FAFBFA;
-    padding: 13px;
+    padding: 10px;
     background-color: #F89696;
     border-radius: 10px;
-    font-size: 20px;
+    font-size: 14px;
+    cursor: pointer;
+
+    &:hover{
+        background-color: #eb6262;
+    }
 }
 
 .text-sort{
@@ -148,7 +180,7 @@
 
 .special-text-sort{
     display: flex;
-    gap: 20px;
+    gap: 125px;
 }
 
 .special-text-sort-plate{
@@ -164,6 +196,11 @@
 
 .bottom-icon{
     transform: rotate(180deg);
+    cursor: pointer;
+}
+
+.top-icon{
+    cursor: pointer;
 }
 
 .for-head{

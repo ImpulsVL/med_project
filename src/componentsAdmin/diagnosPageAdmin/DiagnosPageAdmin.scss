@@ -101,12 +101,12 @@
 }
 
 .change-button{
-    font-size: 20px;
+    font-size: 15px;
     color: #FAFBFA;
     padding: 5px 15px 5px 15px;
     background-color: #E5DB8E;
     border-radius: 10px;
-    margin-left: 20px;
+    margin-left: 10px;
     cursor: pointer;
 
     &:hover{
@@ -119,12 +119,17 @@
     flex-direction: row;
     padding: 45px;
     justify-content: space-between;
+    gap: 10px;
 }
 
 .description-block{
     display: flex;
     flex-direction: column;
     gap: 10px;
+
+    border: 5px solid #88886C;
+    border-radius: 10px;
+    padding: 10px;
 }
 
 .description-spec{
@@ -141,7 +146,7 @@
 }
 
 .spec-item{
-    font-size: 20px;
+    font-size: 15px;
     color: #FAFBFA;
     padding: 5px 15px 5px 15px;
     background-color: #878F80;
@@ -167,8 +172,8 @@
 }
 
 .description-text{
-    font-size: 22px;
-    padding-right: 20px;
+    font-size: 18px;
+    padding-right: 15px;
 }
 
 .save-button-block{
@@ -200,11 +205,12 @@
     gap:  10px;
     max-width: 380px;
     background-color: #DEE5D8;
-    padding: 10px 20px 10px 20px;
+    padding: 7px 15px 7px 15px;
     border-radius: 10px;
     font-size: 20px;
     color: #204301;
     cursor: pointer;
+    width: 290px;
 
     &:hover{
         background-color: #bdc0ba;
@@ -285,6 +291,7 @@
     flex-direction: row;
     justify-content: space-between;
     padding: 20px;
+    gap: 10px;
 }
 
 .crud-admin-buttons{
@@ -304,21 +311,53 @@
 
 .inspection-comment-text-admin, .medical_treatment-comment-text-admin, .recomend-comment-text-admin{
     margin-left: 5px;
-    font-size: 18px;
+    font-size: 16px;
     color: #60645D;
+    margin-top: 5px;
 }
 
 .inspection-components-text-admin, .medical_treatment-components-text-admin, .recomend-components-text-admin{
     margin: 5px 0px 5px 20px;
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: 10px;
     align-items: flex-start;
 }
 
 .inspection-component-text-admin, .medical_treatment-component-text-admin, .recomend-component-text-admin{
     color: #60645D;
     font-size: 18px;
+    text-align: left;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+.micro-delete{
+    background-color: #F89696;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+
+    &:hover{
+        background-color: #eb6262;
+    } 
+}
+
+.micro-change{
+    color: white;
+    background-color: #E5DB8E;
+    padding: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+
+    &:hover{
+        background-color: #dacd5f;
+    }
 }
 
 .inspection-components-comment-text-admin, .medical_treatment-components-comment-text-admin, .recomend-components-comment-text-admin{
@@ -351,11 +390,13 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    gap: 20px;
 }
 
 .list-pdf{
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     gap: 20px;
 }
 
@@ -365,6 +406,30 @@
     padding: 15px 10px 15px 10px;
     color: #FAFBFA;
     font-weight: bold;
+    cursor: pointer;
+
+    &:hover{
+        background-color: #d46098;
+    }
+}
+
+.item-item-pdf{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 2px;
+}
+
+.delete-pdf{
+    background-color: rgb(255, 0, 0);
+    color: white;
+    border-radius: 10px;
+    padding: 5px 7px 5px 7px;
+    cursor: pointer;
+
+    &:hover{
+        background-color: rgb(221, 100, 100);
+    }
 }
 
 .buttons-under-box{
@@ -379,6 +444,12 @@
     padding: 15px 10px 15px 10px;
     color: #FAFBFA;
     font-weight: bold;
+    cursor: pointer;
+    height: 50px;
+
+    &:hover{
+        background-color: #d46098;
+    }
 }
 
 .button-save-pdf{
@@ -387,4 +458,79 @@
     padding: 15px 10px 15px 10px;
     color: #FAFBFA;
     font-weight: bold;
+    cursor: pointer;
+    height: 50px;
+
+    &:hover{
+        background-color: #a0cf7c;
+    }
+}
+
+.name-item{
+    font-size: 14px;
+}
+
+.inspection-admin-block{
+    border: 2px solid #eaeae5;
+    padding: 5px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.medical_treatment-admin-block{
+    border: 2px solid #eaeae5;
+    padding: 5px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.recomend-admin-block{
+    border: 2px solid #eaeae5;
+    padding: 5px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.loader-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Прозрачный черный фон */
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999; /* Поверх всего интерфейса */
+}
+
+/* Анимация лоадера */
+.loader {
+    border: 8px solid #f3f3f3;
+    border-top: 8px solid #B9D1A7;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+}
+
+.loader-text{
+    font-weight: bold;
+    color: white;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }

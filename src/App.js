@@ -96,8 +96,10 @@ function App() {
           <Route path="/coloscopy-table" element={<ColoscopyPage />} />
 
           <Route path='/admin' element={<MainPageAdmin />}/>
-          <Route path='/admindiagnosis' element={<DiagnosisPageAdmin />}/>
+          <Route path="/specialization/:name" element={<DiagnosisPageAdmin />} />
+          {/* <Route path='/admindiagnosis' element={<DiagnosisPageAdmin />}/> */}
           <Route path='/admindiagnos' element={<DiagnosPageAdmin />}/>
+          <Route path="/diagnos/specialization/:name" element={<DiagnosPageAdmin />} />
         </Routes>
       </div>
     </Router >
