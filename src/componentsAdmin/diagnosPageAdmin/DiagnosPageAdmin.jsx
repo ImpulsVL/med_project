@@ -924,6 +924,7 @@ function DiagnosPageAdmin() {
     const [uploadType, setUploadType] = useState('');
     const [selectedFile, setSelectedFile] = useState(null);
     const [isTypeRecommend, setIsTypeRecommend] = useState(true);
+    const fileInputRef = useRef(null);
 
     const handleFileChange = (event) => {
         const file = event.target.files[0];
@@ -990,13 +991,14 @@ function DiagnosPageAdmin() {
             alert(error.message);
         } finally {
             setIsLoading(false);
+            fileInputRef.current.value = '';
         }
     };
 
     const handleButtonClick = (type, recommend) => {
         setUploadType(type);
         setIsTypeRecommend(recommend);
-        document.getElementById('fileInput').click(); // Открываем диалог выбора файла
+        fileInputRef.current.click(); // Открываем диалог выбора файла
     };
 
     const handleOpenPdf = (url) => {
@@ -2032,6 +2034,7 @@ function DiagnosPageAdmin() {
                 <input
                     type="file"
                     id="fileInput"
+                    ref={fileInputRef}
                     name="file"
                     style={{ display: 'none' }}
                     accept="application/pdf"
