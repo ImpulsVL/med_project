@@ -40,6 +40,8 @@ import KrispPage from './components/forms/kripsPage/KrispPage';
 import PedtPage from './components/forms/pedtPage/PedtPage';
 import AmsPage from './components/forms/amsPage/AmsPage';
 import MiefPage from './components/forms/miefPage/MiefPage';
+
+
 import MainPageAdmin from './componentsAdmin/MainPageAdmin/MainPageADmin';
 import DiagnosisPageAdmin from './componentsAdmin/diagnosisPageAdmin/DiagnosisPageADmin';
 import DiagnosPageAdmin from './componentsAdmin/diagnosPageAdmin/DiagnosPageAdmin';
@@ -51,9 +53,9 @@ function App() {
         <Routes>
           <Route path="/" element={<MainPage />} />
           <Route path="/diagnosis" element={<DiagnosisPage />} />
-          <Route path="/diagnosis/:code" element={<DiagnosisPage />} /> {/* Новый маршрут с параметром code */}
+          <Route path="/diagnosis/:code" element={<DiagnosisPage />} />
           <Route path="/diagnos" element={<DiagnosPage />} />
-          <Route path="/diagnos/:id/:section" element={<DiagnosPage />} /> {/* Новый маршрут с параметром code */}
+          <Route path="/diagnos/:id/:section" element={<DiagnosPage />} />
           <Route path="/block" element={<BlockPage />} />
           <Route path="/block/:id/:section" element={<BlockPage />} />
 
@@ -97,7 +99,6 @@ function App() {
 
           <Route path='/admin' element={<MainPageAdmin />}/>
           <Route path="/specialization/:name" element={<DiagnosisPageAdmin />} />
-          {/* <Route path='/admindiagnosis' element={<DiagnosisPageAdmin />}/> */}
           <Route path='/admindiagnos' element={<DiagnosPageAdmin />}/>
           <Route path="/diagnos/specialization/:name" element={<DiagnosPageAdmin />} />
         </Routes>
