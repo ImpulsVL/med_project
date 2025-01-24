@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/med_project/static/css/main.5080ac2f.css",
-    "main.js": "/med_project/static/js/main.c4878c7b.js",
+    "main.js": "/med_project/static/js/main.4faef6e3.js",
     "static/media/figo.png": "/med_project/static/media/figo.7535eb53be5a5ea10349.png",
     "static/media/pto1.svg": "/med_project/static/media/pto1.af594321414102e562a3c24f5ddb0f40.svg",
     "static/media/Printer.svg": "/med_project/static/media/Printer.4cf7dddb546127d8cea1ebe52ffa8b70.svg",
@@ -85,10 +85,10 @@
     "static/media/Back.svg": "/med_project/static/media/Back.f377e5946fd5519d98cecceaa2652a10.svg",
     "static/media/check-top.svg": "/med_project/static/media/check-top.c2df41d3c1de6612e76da7430f845c9d.svg",
     "main.5080ac2f.css.map": "/med_project/static/css/main.5080ac2f.css.map",
-    "main.c4878c7b.js.map": "/med_project/static/js/main.c4878c7b.js.map"
+    "main.4faef6e3.js.map": "/med_project/static/js/main.4faef6e3.js.map"
   },
   "entrypoints": [
     "static/css/main.5080ac2f.css",
-    "static/js/main.c4878c7b.js"
+    "static/js/main.4faef6e3.js"
   ]
 }
