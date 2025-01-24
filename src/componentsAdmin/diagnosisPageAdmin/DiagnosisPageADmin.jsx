@@ -42,6 +42,7 @@ function DiagnosisPageAdmin() {
 
     const [sortField, setSortField] = useState(null);
     const [sortOrder, setSortOrder] = useState('asc');
+    const [sortCode, setSortCode] = useState(null);
 
     const [filterCondition, setFilterCondition] = useState('greater'); // 'greater', 'less', 'equal'
     const [filterValue, setFilterValue] = useState('');
@@ -78,6 +79,12 @@ function DiagnosisPageAdmin() {
         };
 
         fetchDiagnoses();
+    }, [currentSpecializationCode]);
+
+    useEffect(() => {
+        // Сброс состояния диагнозов при изменении специализации
+        setDiagnoses([]);
+        setFilteredDiagnoses([]);
     }, [currentSpecializationCode]);
 
     useEffect(() => {
@@ -195,6 +202,8 @@ function DiagnosisPageAdmin() {
     };
 
     const handleSortByName = () => {
+        console.log(sortField, 'byname');
+
         if (sortField === 'name') {
             setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
         } else {
@@ -202,8 +211,9 @@ function DiagnosisPageAdmin() {
             setSortOrder('asc');
         }
     };
-
+    
     const handleSortByCode = () => {
+        console.log(sortField, 'bycode');
         if (sortField === 'code') {
             setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
         } else {
@@ -211,8 +221,10 @@ function DiagnosisPageAdmin() {
             setSortOrder('asc');
         }
     };
-
+    
     const handleSortByVisits = () => {
+        console.log(sortField, 'byvisites');
+
         if (sortField === 'visites') {
             setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
         } else {
@@ -432,26 +444,26 @@ function DiagnosisPageAdmin() {
                                         <div className='head_code_diagnosis_plate'>
                                             Код
                                         </div>
-                                        <div className='check-icons' onClick={handleSortByCode}>
+                                        <div className='check-icons' onClick={() => handleSortByCode()}>
                                             <img src={CheckTopIconImg} alt="" className="top-icon" />
                                             <img src={CheckTopIconImg} alt="" className="bottom-icon" />
                                         </div>
                                     </div>
                                     <div className='text-sort'>
-                                        <div className='head_name_diagnosis_plate' onClick={handleSortByName}>
+                                        <div className='head_name_diagnosis_plate'>
                                             Название
                                         </div>
-                                        <div className='check-icons'>
+                                        <div className='check-icons' onClick={() => handleSortByName()}>
                                             <img src={CheckTopIconImg} alt="" className="top-icon" />
                                             <img src={CheckTopIconImg} alt="" className="bottom-icon" />
                                         </div>
                                     </div>
                                 </div>
                                 <div className='text-sort'>
-                                    <div className='head_count_diagnosis_plate' onClick={handleSortByVisits}>
+                                    <div className='head_count_diagnosis_plate'>
                                         Количество посещений
                                     </div>
-                                    <div className='check-icons'>
+                                    <div className='check-icons' onClick={() => handleSortByVisits()}>
                                         <img src={CheckTopIconImg} alt="" className="top-icon" />
                                         <img src={CheckTopIconImg} alt="" className="bottom-icon" />
                                     </div>

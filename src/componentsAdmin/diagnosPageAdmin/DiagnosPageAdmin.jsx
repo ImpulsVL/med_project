@@ -21,8 +21,6 @@ function DiagnosPageAdmin() {
 
     console.log(allSpecializations);
 
-    const [activeTab, setActiveTab] = useState('inspection'); // 'inspection' или 'comments'
-
     const [showAddExaminationPopup, setShowAddExaminationPopup] = useState(false);
     const [newExamination, setNewExamination] = useState({ name: '', comment: '' });
 
@@ -85,6 +83,8 @@ function DiagnosPageAdmin() {
     const [newDrugTreatmentItem, setNewDrugTreatmentItem] = useState({ name: '', comment: '' });
     const [showAddDrugTreatmentPopup, setShowAddDrugTreatmentPopup] = useState(false);
 
+    const [activeTab, setActiveTab] = useState('inspection'); // 'inspection' или 'comments'
+
     const handleTabChange = (tab) => {
         setActiveTab(tab);
     };
@@ -101,22 +101,133 @@ function DiagnosPageAdmin() {
         setActiveTab3(tab);
     };
 
-    const textRefSurvayRec = useRef(null);
-    const textRefSurvayNonRec = useRef(null);
-    const textRefDrugRec = useRef(null);
-    const textRefDrugNonRec = useRef(null);
-    const textRefRecRec = useRef(null);
-    const textRefRecNonRec = useRef(null);
-
     const [isBold, setIsBold] = useState(false);
+    const [isBold2, setIsBold2] = useState(false);
+    const [isBold3, setIsBold3] = useState(false);
+    const [isBold4, setIsBold4] = useState(false);
+    const [isBold5, setIsBold5] = useState(false);
+    const [isBold6, setIsBold6] = useState(false);
+
     const [isItalic, setIsItalic] = useState(false);
+    const [isItalic2, setIsItalic2] = useState(false);
+    const [isItalic3, setIsItalic3] = useState(false);
+    const [isItalic4, setIsItalic4] = useState(false);
+    const [isItalic5, setIsItalic5] = useState(false);
+    const [isItalic6, setIsItalic6] = useState(false);
+
     const [isDot, setIsDot] = useState(false);
     const [isNumber, setIsNumber] = useState(false);
 
+    const [isDot2, setIsDot2] = useState(false);
+    const [isNumber2, setIsNumber2] = useState(false);
+
+    const [isDot3, setIsDot3] = useState(false);
+    const [isNumber3, setIsNumber3] = useState(false);
+
+    const [isDot4, setIsDot4] = useState(false);
+    const [isNumber4, setIsNumber4] = useState(false);
+
+    const [isDot5, setIsDot5] = useState(false);
+    const [isNumber5, setIsNumber5] = useState(false);
+
+    const [isDot6, setIsDot6] = useState(false);
+    const [isNumber6, setIsNumber6] = useState(false);
+
     const [selectedFormat, setSelectedFormat] = useState('Choose heading');
+    const [selectedFormat2, setSelectedFormat2] = useState('Choose heading');
+    const [selectedFormat3, setSelectedFormat3] = useState('Choose heading');
+    const [selectedFormat4, setSelectedFormat4] = useState('Choose heading');
+    const [selectedFormat5, setSelectedFormat5] = useState('Choose heading');
+    const [selectedFormat6, setSelectedFormat6] = useState('Choose heading');
+
 
     const applyFormat = (format) => {
         setSelectedFormat(format);
+        if (format === 'Heading') {
+            document.execCommand('formatBlock', false, 'h1');
+        } else if (format === 'Subheading') {
+            document.execCommand('formatBlock', false, 'h2');
+        } else if (format === 'Comment') {
+            document.execCommand('fontSize', false, 'small');
+            document.execCommand('foreColor', false, 'gray');
+        } else if (format === 'Text') {
+            ;
+            document.execCommand('foreColor', false, 'black');
+        } else {
+            document.execCommand('formatBlock', false, 'span');
+        }
+    };
+
+    const applyFormat2 = (format) => {
+        setSelectedFormat2(format);
+        if (format === 'Heading') {
+            document.execCommand('formatBlock', false, 'h1');
+        } else if (format === 'Subheading') {
+            document.execCommand('formatBlock', false, 'h2');
+        } else if (format === 'Comment') {
+            document.execCommand('fontSize', false, 'small');
+            document.execCommand('foreColor', false, 'gray');
+        } else if (format === 'Text') {
+            ;
+            document.execCommand('foreColor', false, 'black');
+        } else {
+            document.execCommand('formatBlock', false, 'span');
+        }
+    };
+
+    const applyFormat3 = (format) => {
+        setSelectedFormat3(format);
+        if (format === 'Heading') {
+            document.execCommand('formatBlock', false, 'h1');
+        } else if (format === 'Subheading') {
+            document.execCommand('formatBlock', false, 'h2');
+        } else if (format === 'Comment') {
+            document.execCommand('fontSize', false, 'small');
+            document.execCommand('foreColor', false, 'gray');
+        } else if (format === 'Text') {
+            ;
+            document.execCommand('foreColor', false, 'black');
+        } else {
+            document.execCommand('formatBlock', false, 'span');
+        }
+    };
+
+    const applyFormat4 = (format) => {
+        setSelectedFormat4(format);
+        if (format === 'Heading') {
+            document.execCommand('formatBlock', false, 'h1');
+        } else if (format === 'Subheading') {
+            document.execCommand('formatBlock', false, 'h2');
+        } else if (format === 'Comment') {
+            document.execCommand('fontSize', false, 'small');
+            document.execCommand('foreColor', false, 'gray');
+        } else if (format === 'Text') {
+            ;
+            document.execCommand('foreColor', false, 'black');
+        } else {
+            document.execCommand('formatBlock', false, 'span');
+        }
+    };
+
+    const applyFormat5 = (format) => {
+        setSelectedFormat5(format);
+        if (format === 'Heading') {
+            document.execCommand('formatBlock', false, 'h1');
+        } else if (format === 'Subheading') {
+            document.execCommand('formatBlock', false, 'h2');
+        } else if (format === 'Comment') {
+            document.execCommand('fontSize', false, 'small');
+            document.execCommand('foreColor', false, 'gray');
+        } else if (format === 'Text') {
+            ;
+            document.execCommand('foreColor', false, 'black');
+        } else {
+            document.execCommand('formatBlock', false, 'span');
+        }
+    };
+
+    const applyFormat6 = (format) => {
+        setSelectedFormat6(format);
         if (format === 'Heading') {
             document.execCommand('formatBlock', false, 'h1');
         } else if (format === 'Subheading') {
@@ -144,6 +255,66 @@ function DiagnosPageAdmin() {
         }
     };
 
+    const handleKeyDown2 = (e) => {
+        if (e.key === 'Enter') {
+            const selection = window.getSelection();
+            const parentElement = selection.anchorNode.parentElement;
+            if (parentElement.tagName === 'H1' || parentElement.tagName === 'H2') {
+                e.preventDefault();
+                document.execCommand('formatBlock', false, 'p');
+                setSelectedFormat2('Text');
+            }
+        }
+    };
+
+    const handleKeyDown3 = (e) => {
+        if (e.key === 'Enter') {
+            const selection = window.getSelection();
+            const parentElement = selection.anchorNode.parentElement;
+            if (parentElement.tagName === 'H1' || parentElement.tagName === 'H2') {
+                e.preventDefault();
+                document.execCommand('formatBlock', false, 'p');
+                setSelectedFormat3('Text');
+            }
+        }
+    };
+
+    const handleKeyDown4 = (e) => {
+        if (e.key === 'Enter') {
+            const selection = window.getSelection();
+            const parentElement = selection.anchorNode.parentElement;
+            if (parentElement.tagName === 'H1' || parentElement.tagName === 'H2') {
+                e.preventDefault();
+                document.execCommand('formatBlock', false, 'p');
+                setSelectedFormat4('Text');
+            }
+        }
+    };
+
+    const handleKeyDown5 = (e) => {
+        if (e.key === 'Enter') {
+            const selection = window.getSelection();
+            const parentElement = selection.anchorNode.parentElement;
+            if (parentElement.tagName === 'H1' || parentElement.tagName === 'H2') {
+                e.preventDefault();
+                document.execCommand('formatBlock', false, 'p');
+                setSelectedFormat5('Text');
+            }
+        }
+    };
+
+    const handleKeyDown6 = (e) => {
+        if (e.key === 'Enter') {
+            const selection = window.getSelection();
+            const parentElement = selection.anchorNode.parentElement;
+            if (parentElement.tagName === 'H1' || parentElement.tagName === 'H2') {
+                e.preventDefault();
+                document.execCommand('formatBlock', false, 'p');
+                setSelectedFormat6('Text');
+            }
+        }
+    };
+
     const toggleBold = () => {
         document.execCommand('bold');
         setIsBold(!isBold);
@@ -152,6 +323,56 @@ function DiagnosPageAdmin() {
     const toggleItalic = () => {
         document.execCommand('italic');
         setIsItalic(!isItalic);
+    };
+
+    const toggleBold2 = () => {
+        document.execCommand('bold');
+        setIsBold2(!isBold2);
+    };
+
+    const toggleItalic2 = () => {
+        document.execCommand('italic');
+        setIsItalic2(!isItalic2);
+    };
+
+    const toggleBold3 = () => {
+        document.execCommand('bold');
+        setIsBold3(!isBold3);
+    };
+
+    const toggleItalic3 = () => {
+        document.execCommand('italic');
+        setIsItalic3(!isItalic3);
+    };
+
+    const toggleBold4 = () => {
+        document.execCommand('bold');
+        setIsBold4(!isBold4);
+    };
+
+    const toggleItalic4 = () => {
+        document.execCommand('italic');
+        setIsItalic4(!isItalic4);
+    };
+
+    const toggleBold5 = () => {
+        document.execCommand('bold');
+        setIsBold5(!isBold5);
+    };
+
+    const toggleItalic5 = () => {
+        document.execCommand('italic');
+        setIsItalic5(!isItalic5);
+    };
+
+    const toggleBold6 = () => {
+        document.execCommand('bold');
+        setIsBold6(!isBold6);
+    };
+
+    const toggleItalic6 = () => {
+        document.execCommand('italic');
+        setIsItalic6(!isItalic6);
     };
 
     // Логика для отмены действия (Ctrl + Z)
@@ -164,6 +385,51 @@ function DiagnosPageAdmin() {
         document.execCommand('redo');
     };
 
+    const handleUndo2 = () => {
+        document.execCommand('undo');
+    };
+
+    // Логика для повторения действия (Ctrl + Y)
+    const handleRedo2 = () => {
+        document.execCommand('redo');
+    };
+
+    const handleUndo3 = () => {
+        document.execCommand('undo');
+    };
+
+    // Логика для повторения действия (Ctrl + Y)
+    const handleRedo3 = () => {
+        document.execCommand('redo');
+    };
+
+    const handleUndo4 = () => {
+        document.execCommand('undo');
+    };
+
+    // Логика для повторения действия (Ctrl + Y)
+    const handleRedo4 = () => {
+        document.execCommand('redo');
+    };
+
+    const handleUndo5 = () => {
+        document.execCommand('undo');
+    };
+
+    // Логика для повторения действия (Ctrl + Y)
+    const handleRedo5 = () => {
+        document.execCommand('redo');
+    };
+
+    const handleUndo6 = () => {
+        document.execCommand('undo');
+    };
+
+    // Логика для повторения действия (Ctrl + Y)
+    const handleRedo6 = () => {
+        document.execCommand('redo');
+    };
+
     const insertUnorderedList = () => {
         document.execCommand('insertUnorderedList');
         setIsDot(!isDot);
@@ -172,6 +438,56 @@ function DiagnosPageAdmin() {
     const insertOrderedList = () => {
         document.execCommand('insertOrderedList');
         setIsNumber(!isNumber);
+    };
+
+    const insertUnorderedList2 = () => {
+        document.execCommand('insertUnorderedList');
+        setIsDot2(!isDot2);
+    };
+
+    const insertOrderedList2 = () => {
+        document.execCommand('insertOrderedList');
+        setIsNumber2(!isNumber2);
+    };
+
+    const insertUnorderedList3 = () => {
+        document.execCommand('insertUnorderedList');
+        setIsDot3(!isDot3);
+    };
+
+    const insertOrderedList3 = () => {
+        document.execCommand('insertOrderedList');
+        setIsNumber3(!isNumber3);
+    };
+
+    const insertUnorderedList4 = () => {
+        document.execCommand('insertUnorderedList');
+        setIsDot4(!isDot4);
+    };
+
+    const insertOrderedList4 = () => {
+        document.execCommand('insertOrderedList');
+        setIsNumber4(!isNumber4);
+    };
+
+    const insertUnorderedList5 = () => {
+        document.execCommand('insertUnorderedList');
+        setIsDot5(!isDot5);
+    };
+
+    const insertOrderedList5 = () => {
+        document.execCommand('insertOrderedList');
+        setIsNumber5(!isNumber5);
+    };
+
+    const insertUnorderedList6 = () => {
+        document.execCommand('insertUnorderedList');
+        setIsDot6(!isDot6);
+    };
+
+    const insertOrderedList6 = () => {
+        document.execCommand('insertOrderedList');
+        setIsNumber6(!isNumber6);
     };
 
     const handleAddExamination = async () => {
@@ -295,6 +611,8 @@ function DiagnosPageAdmin() {
         }
     };
 
+    const [editSource, setEditSource] = useState(null);
+
     const handleEditComponent = async () => {
         if (currentComponentId) {
             try {
@@ -306,7 +624,48 @@ function DiagnosPageAdmin() {
                     throw new Error('Ошибка при обновлении компонента');
                 }
 
-                window.location.reload();
+                // Обновляем состояние диагноза, изменяя компонент
+                setDiagnosis(prev => {
+                    const updatedSurveyItems = [...prev.survey.items];
+                    const updatedDrugTreatmentItems = [...prev.drug_treatment.items]; // Предполагается, что у вас есть drug_treatment в состоянии
+
+                    // Находим и обновляем компонент в зависимости от источника
+                    if (editSource === 'survey') {
+                        updatedSurveyItems.forEach(item => {
+                            if (item.ID === currentElementId) {
+                                item.values = item.values.map(comp => {
+                                    if (comp.id === currentComponentId) {
+                                        return { ...comp, name: editComponent.name, comment: editComponent.comment };
+                                    }
+                                    return comp;
+                                });
+                            }
+                        });
+                    } else if (editSource === 'drug_treatment') {
+                        updatedDrugTreatmentItems.forEach(item => {
+                            if (item.ID === currentElementId) {
+                                item.values = item.values.map(comp => {
+                                    if (comp.id === currentComponentId) {
+                                        return { ...comp, name: editComponent.name, comment: editComponent.comment };
+                                    }
+                                    return comp;
+                                });
+                            }
+                        });
+                    }
+
+                    return {
+                        ...prev,
+                        survey: {
+                            ...prev.survey,
+                            items: updatedSurveyItems
+                        },
+                        drug_treatment: {
+                            ...prev.drug_treatment,
+                            items: updatedDrugTreatmentItems
+                        }
+                    };
+                });
 
                 setEditComponent({ name: '', comment: '' });
                 setShowEditComponentPopup(false);
@@ -319,8 +678,9 @@ function DiagnosPageAdmin() {
 
     const handleDeleteComponent = async () => {
         if (deleteComponentInfo) {
-            const { elementId, componentId } = deleteComponentInfo;
+            const { elementId, componentId, type } = deleteComponentInfo;
 
+            console.log(type); // Логируем тип для отладки
             try {
                 const response = await fetch(`http://test-asya.ru/api/deleteSubcomponent?element_id=${elementId}&subcomponent_id=${componentId}`, {
                     method: 'GET',
@@ -329,7 +689,42 @@ function DiagnosPageAdmin() {
                 if (!response.ok) {
                     throw new Error('Ошибка при удалении компонента');
                 }
-                window.location.reload();
+
+                // Обновляем состояние диагноза, удаляя компонент
+                setDiagnosis(prev => {
+                    const updatedSurveyItems = [...prev.survey.items];
+                    const updatedDrugItems = [...prev.drug_treatment.items]; // Проверка на массив
+
+                    if (type === 'survey') {
+                        // Удаляем компонент из соответствующего элемента в survey
+                        updatedSurveyItems.forEach(item => {
+                            if (item.ID === elementId) {
+                                item.values = item.values.filter(comp => comp.id !== componentId);
+                            }
+                        });
+                        return {
+                            ...prev,
+                            survey: {
+                                ...prev.survey,
+                                items: updatedSurveyItems
+                            }
+                        }
+                    } else if (type === 'drug_treatment') {
+                        // Удаляем компонент из drug_treatment
+                        updatedDrugItems.forEach(item => {
+                            if (item.ID === elementId) {
+                                item.values = item.values.filter(comp => comp.id !== componentId);
+                            }
+                        });
+                        return {
+                            ...prev,
+                            drug_treatment: {
+                                ...prev.drug_treatment,
+                                items: updatedDrugItems
+                            }
+                        }
+                    }
+                });
 
                 setShowDeletePopupComponent(false);
                 setDeleteComponentInfo(null);
@@ -420,26 +815,39 @@ function DiagnosPageAdmin() {
                     method: 'GET',
                 });
 
-                if (response.ok) {
-                    window.location.reload();
-                } else {
-                    console.error('Ошибка при удалении элемента');
+                if (!response.ok) {
+                    throw new Error('Ошибка при удалении элемента');
                 }
-            } catch (error) {
-                console.error('Ошибка сети:', error);
-            } finally {
+
+
+                console.log(type, 'lol');
+
+                // Обновляем состояние диагноза, удаляя элемент
+                setDiagnosis(prev => {
+                    const adjustedType = type === 'recommendation' ? 'recommendations' : type;
+
+                    const updatedItems = prev[adjustedType].items.filter(item => item.ID !== itemId); // Удаляем элемент по ID
+
+                    return {
+                        ...prev,
+                        [adjustedType]: {
+                            ...prev[adjustedType],
+                            items: updatedItems
+                        }
+                    };
+                });
+
                 setShowDeletePopup(false);
                 setDeleteItemInfo(null);
+            } catch (error) {
+                console.error('Ошибка сети:', error);
+                alert(error.message);
             }
         }
     };
 
     const handleEditDiagnosisItem = async () => {
         if (editDiagnosisItemInfo) {
-            console.log(editDiagnosisItemInfo, 'hoohoh');
-            console.log(editDiagnosisItem.name, 'ho2');
-            console.log(editDiagnosisItem.comment, 'ho3');
-
             const { type, itemId } = editDiagnosisItemInfo;
             const diagnosisId = iddig; // ID диагноза
 
@@ -450,9 +858,27 @@ function DiagnosPageAdmin() {
 
                 if (!response.ok) {
                     throw new Error('Ошибка при обновлении элемента');
-                } else if (response.ok) {
-                    window.location.reload();
                 }
+
+                // Обновляем состояние диагноза, изменяя элемент
+                setDiagnosis(prev => {
+                    const adjustedType = type === 'recommendation' ? 'recommendations' : type;
+
+                    const updatedItems = prev[adjustedType].items.map(item => {
+                        if (item.ID === itemId) {
+                            return { ...item, name: editDiagnosisItem.name, comment: editDiagnosisItem.comment };
+                        }
+                        return item;
+                    });
+
+                    return {
+                        ...prev,
+                        [adjustedType]: {
+                            ...prev[adjustedType],
+                            items: updatedItems
+                        }
+                    };
+                });
 
                 setEditDiagnosisItem({ name: '', comment: '' });
                 setEditDiagnosisItemInfo(null);
@@ -473,8 +899,13 @@ function DiagnosPageAdmin() {
                 throw new Error('Ошибка при обновлении диагноза');
             }
 
-            // Обновите состояние диагноза, чтобы отобразить изменения
-            window.location.reload(); // Или обновите состояние диагноза
+            // Обновляем состояние диагноза, чтобы отобразить изменения
+            setDiagnosis(prev => ({
+                ...prev,
+                name: editField === 'name' ? newValue : prev.name,
+                code: editField === 'code' ? newValue : prev.code,
+                sort: editField === 'sort' ? newValue : prev.sort,
+            }));
 
             setShowEditPopup(false);
         } catch (error) {
@@ -511,7 +942,6 @@ function DiagnosPageAdmin() {
         const formData = new FormData();
         formData.append('file', file);
 
-        // Создаем URL с параметрами
         const url = `http://test-asya.ru/api/addPdf?type=${uploadType}&diagnosis_id=${diagnosisId}&fileName=${encodeURIComponent(file.name)}&isTypeRecommend=${isTypeRecommend}`;
         setIsLoading(true);
         try {
@@ -526,6 +956,34 @@ function DiagnosPageAdmin() {
 
             const result = await response.json();
             console.log(result);
+
+            // Обновляем состояние в зависимости от uploadType и isTypeRecommend
+            setDiagnosis(prev => {
+                const updatedDiagnosis = { ...prev };
+
+                if (uploadType === 'survey') {
+                    if (isTypeRecommend) {
+                        updatedDiagnosis.survey.files.recommended.push({ id: result.data.file_id, name: file.name, url: result.data.url });
+                    } else {
+                        updatedDiagnosis.survey.files.not_recommended.push({ id: result.data.file_id, name: file.name, url: result.data.url });
+                    }
+                } else if (uploadType === 'medical_treatment') {
+                    if (isTypeRecommend) {
+                        updatedDiagnosis.drug_treatment.files.recommended.push({ id: result.data.file_id, name: file.name, url: result.data.url });
+                    } else {
+                        updatedDiagnosis.drug_treatment.files.not_recommended.push({ id: result.data.file_id, name: file.name, url: result.data.url });
+                    }
+                } else if (uploadType === 'recommendation') {
+                    if (isTypeRecommend) {
+                        updatedDiagnosis.recommendations.files.recommended.push({ id: result.data.file_id, name: file.name, url: result.data.url });
+                    } else {
+                        updatedDiagnosis.recommendations.files.not_recommended.push({ id: result.data.file_id, name: file.name, url: result.data.url });
+                    }
+                }
+
+                return updatedDiagnosis;
+            });
+
             alert('Файл успешно загружен!');
         } catch (error) {
             console.error(error);
@@ -542,11 +1000,10 @@ function DiagnosPageAdmin() {
     };
 
     const handleOpenPdf = (url) => {
-        const baseUrl = 'http://'; // Замените на ваш базовый URL
-        window.open(`${baseUrl}${url}`, '_blank'); // Открываем PDF в новой вкладке
+        window.open(`${url}`, '_blank'); // Открываем PDF в новой вкладке
     };
 
-    const handleDeletePdf = async (fileId) => {
+    const handleDeletePdf = async (fileId, upType, isTypeRecommend) => {
         const url = `http://test-asya.ru/api/deletePdf?file_id=${fileId}`;
 
         if (window.confirm('Вы уверены, что хотите удалить этот файл?')) {
@@ -561,9 +1018,39 @@ function DiagnosPageAdmin() {
                 }
 
                 const result = await response.json();
-                console.log(result);
+
+                console.log(upType, 'Вопросы есть');
+                console.log(fileId, 'вопросы есть?');
+                console.log(isTypeRecommend, 'вопросы есть?');
+
+                // Обновляем состояние, удаляя файл из списка
+                setDiagnosis(prev => {
+                    const updatedDiagnosis = { ...prev };
+
+                    if (upType === 'survey') {
+                        if (isTypeRecommend) {
+                            updatedDiagnosis.survey.files.recommended = updatedDiagnosis.survey.files.recommended.filter(file => file.id !== fileId);
+                        } else {
+                            updatedDiagnosis.survey.files.not_recommended = updatedDiagnosis.survey.files.not_recommended.filter(file => file.id !== fileId);
+                        }
+                    } else if (upType === 'medical_treatment') {
+                        if (isTypeRecommend) {
+                            updatedDiagnosis.drug_treatment.files.recommended = updatedDiagnosis.drug_treatment.files.recommended.filter(file => file.id !== fileId);
+                        } else {
+                            updatedDiagnosis.drug_treatment.files.not_recommended = updatedDiagnosis.drug_treatment.files.not_recommended.filter(file => file.id !== fileId);
+                        }
+                    } else if (upType === 'recommendation') {
+                        if (isTypeRecommend) {
+                            updatedDiagnosis.recommendations.files.recommended = updatedDiagnosis.recommendations.files.recommended.filter(file => file.id !== fileId);
+                        } else {
+                            updatedDiagnosis.recommendations.files.not_recommended = updatedDiagnosis.recommendations.files.not_recommended.filter(file => file.id !== fileId);
+                        }
+                    }
+
+                    return updatedDiagnosis;
+                });
+
                 alert('Файл успешно удален!');
-                // Здесь вы можете обновить состояние, чтобы удалить файл из списка
             } catch (error) {
                 console.error(error);
                 alert(error.message);
@@ -578,8 +1065,8 @@ function DiagnosPageAdmin() {
         surveyNonRec: useRef(null),
         drug_treatmentRec: useRef(null),
         drug_treatmentNonRec: useRef(null),
-        recommendationsRec: useRef(null),
-        recommendationsNonRec: useRef(null),
+        recommendRec: useRef(null),
+        recommendNonRec: useRef(null),
     };
 
     const handleSaveChanges = async (type, isRecommendation) => {
@@ -587,7 +1074,7 @@ function DiagnosPageAdmin() {
         console.log(type);
 
         console.log(isRecommendation);
-        
+
         const comment = isRecommendation
             ? textRefs[`${type}Rec`].current.innerHTML
             : textRefs[`${type}NonRec`].current.innerHTML;
@@ -667,7 +1154,7 @@ function DiagnosPageAdmin() {
                 <div className="main-container-diagnos">
                     <div className='description-wrapper'>
                         <div className='description-block'>
-                            <div className='description-spec'>
+                            {/* <div className='description-spec'>
                                 <div className='description-text'>Специализации:</div>
                                 <div className='spec-items'>
                                     <div className='spec-item'>
@@ -678,7 +1165,7 @@ function DiagnosPageAdmin() {
                                     </div>
                                 </div>
                                 <div className='change-button'>Изменить</div>
-                            </div>
+                            </div> */}
                             <div className='description-code'>
                                 <div className='description-text'>Код диагноза:</div>
                                 <div className='code-item'>
@@ -757,11 +1244,12 @@ function DiagnosPageAdmin() {
                                                                         setEditComponent({ name: item.name, comment: item.comment });
                                                                         setCurrentComponentId(item.id);
                                                                         setShowEditComponentPopup(true);
+                                                                        setEditSource('survey');
                                                                     }}>
                                                                         Изменить
                                                                     </div>
                                                                     <div className='micro-delete' onClick={() => {
-                                                                        setDeleteComponentInfo({ elementId: currentElementId, componentId: item.id });
+                                                                        setDeleteComponentInfo({ elementId: currentElementId, componentId: item.id, type: 'survey' });
                                                                         setShowDeletePopupComponent(true);
                                                                     }}>
                                                                         Удалить
@@ -869,7 +1357,7 @@ function DiagnosPageAdmin() {
                                                     <div className='item-pdf'>
                                                         {file.name}
                                                     </div>
-                                                    <div className='delete-pdf' onClick={(e) => { e.stopPropagation(); handleDeletePdf(file.id); }}>
+                                                    <div className='delete-pdf' onClick={(e) => { e.stopPropagation(); handleDeletePdf(file.id, 'survey', true); }}>
                                                         X
                                                     </div>
                                                 </div>
@@ -898,7 +1386,7 @@ function DiagnosPageAdmin() {
                                                             <select
                                                                 className="custom-select"
                                                                 value={selectedFormat}
-                                                                onChange={(e) => applyFormat(e.target.value)}
+                                                                onChange={(e) => applyFormat2(e.target.value)}
                                                             >
                                                                 <option value="Choose heading">Choose heading</option>
                                                                 <option value="Heading">Заголовок</option>
@@ -910,32 +1398,32 @@ function DiagnosPageAdmin() {
                                                     </button>
                                                 </div>
                                                 <button
-                                                    className={`option_bold ${isBold ? 'active' : ''}`}
-                                                    onClick={toggleBold}
+                                                    className={`option_bold ${isBold2 ? 'active' : ''}`}
+                                                    onClick={toggleBold2}
                                                 >
                                                     <IconBold />
                                                 </button>
                                                 <button
-                                                    className={`option_stroke ${isItalic ? 'active' : ''}`}
-                                                    onClick={toggleItalic}
+                                                    className={`option_stroke ${isItalic2 ? 'active' : ''}`}
+                                                    onClick={toggleItalic2}
                                                 >
                                                     <IconStroke />
                                                 </button>
-                                                <button className={`option_dot ${isDot ? 'active' : ''}`} onClick={insertUnorderedList}>
+                                                <button className={`option_dot ${isDot2 ? 'active' : ''}`} onClick={insertUnorderedList2}>
                                                     <IconDot />
                                                 </button>
-                                                <button className={`option_number ${isNumber ? 'active' : ''}`} onClick={insertOrderedList}>
+                                                <button className={`option_number ${isNumber2 ? 'active' : ''}`} onClick={insertOrderedList2}>
                                                     <IconNumber />
                                                 </button>
                                                 <button
                                                     className='option_back'
-                                                    onClick={handleUndo} // Логика Ctrl + Z
+                                                    onClick={handleUndo2} // Логика Ctrl + Z
                                                 >
                                                     <IconBackOption />
                                                 </button>
                                                 <button
                                                     className='option_next'
-                                                    onClick={handleRedo} // Логика Ctrl + Y
+                                                    onClick={handleRedo2} // Логика Ctrl + Y
                                                 >
                                                     <IconNextOption />
                                                 </button>
@@ -949,7 +1437,7 @@ function DiagnosPageAdmin() {
                                                 className='write_wrapper_box'
                                                 contentEditable="true"
                                                 ref={textRefs.surveyNonRec}
-                                                onKeyDown={handleKeyDown}
+                                                onKeyDown={handleKeyDown2}
                                             >
                                                 <div dangerouslySetInnerHTML={{ __html: diagnosis.survey.comment.notrecomendation }} />
                                             </div>
@@ -962,7 +1450,7 @@ function DiagnosPageAdmin() {
                                                     <div className='item-pdf'>
                                                         {file.name}
                                                     </div>
-                                                    <div className='delete-pdf' onClick={(e) => { e.stopPropagation(); handleDeletePdf(file.id); }}>
+                                                    <div className='delete-pdf' onClick={(e) => { e.stopPropagation(); handleDeletePdf(file.id, 'survey', false); }}>
                                                         X
                                                     </div>
                                                 </div>
@@ -972,9 +1460,9 @@ function DiagnosPageAdmin() {
                                             <div className='add-pdf' onClick={() => handleButtonClick('survey', false)}>
                                                 Добавить PDF (Not Recommendations)
                                             </div>
-                                            <div className='button-save-pdf'>
+                                            {/* <div className='button-save-pdf'>
                                                 Сохранить
-                                            </div>
+                                            </div> */}
                                         </div>
                                     </div>
                                 </div>
@@ -1029,12 +1517,13 @@ function DiagnosPageAdmin() {
                                                                     <div className='micro-change' onClick={() => {
                                                                         setEditComponent({ name: item.name, comment: item.comment });
                                                                         setCurrentComponentId(item.id);
+                                                                        setEditSource('drug_treatment');
                                                                         setShowEditComponentPopup(true);
                                                                     }}>
                                                                         Изменить
                                                                     </div>
                                                                     <div className='micro-delete' onClick={() => {
-                                                                        setDeleteComponentInfo({ elementId: currentElementId, componentId: item.id });
+                                                                        setDeleteComponentInfo({ elementId: currentElementId, componentId: item.id, type: 'drug_treatment' });
                                                                         setShowDeletePopupComponent(true);
                                                                     }}>
                                                                         Удалить
@@ -1078,7 +1567,7 @@ function DiagnosPageAdmin() {
                                                             <select
                                                                 className="custom-select"
                                                                 value={selectedFormat}
-                                                                onChange={(e) => applyFormat(e.target.value)}
+                                                                onChange={(e) => applyFormat3(e.target.value)}
                                                             >
                                                                 <option value="Choose heading">Choose heading</option>
                                                                 <option value="Heading">Заголовок</option>
@@ -1090,35 +1579,35 @@ function DiagnosPageAdmin() {
                                                     </button>
                                                 </div>
                                                 <button
-                                                    className={`option_bold ${isBold ? 'active' : ''}`}
-                                                    onClick={toggleBold}
+                                                    className={`option_bold ${isBold3 ? 'active' : ''}`}
+                                                    onClick={toggleBold3}
                                                 >
                                                     <IconBold />
                                                 </button>
                                                 <button
-                                                    className={`option_stroke ${isItalic ? 'active' : ''}`}
-                                                    onClick={toggleItalic}
+                                                    className={`option_stroke ${isItalic3 ? 'active' : ''}`}
+                                                    onClick={toggleItalic3}
                                                 >
                                                     <IconStroke />
                                                 </button>
                                                 {/* <button className='option_link'>
                                                                         <IconLink />
                                                                     </button> */}
-                                                <button className={`option_dot ${isDot ? 'active' : ''}`} onClick={insertUnorderedList}>
+                                                <button className={`option_dot ${isDot ? 'active' : ''}`} onClick={insertUnorderedList3}>
                                                     <IconDot />
                                                 </button>
-                                                <button className={`option_number ${isNumber ? 'active' : ''}`} onClick={insertOrderedList}>
+                                                <button className={`option_number ${isNumber ? 'active' : ''}`} onClick={insertOrderedList3}>
                                                     <IconNumber />
                                                 </button>
                                                 <button
                                                     className='option_back'
-                                                    onClick={handleUndo} // Логика Ctrl + Z
+                                                    onClick={handleUndo3} // Логика Ctrl + Z
                                                 >
                                                     <IconBackOption />
                                                 </button>
                                                 <button
                                                     className='option_next'
-                                                    onClick={handleRedo} // Логика Ctrl + Y
+                                                    onClick={handleRedo3} // Логика Ctrl + Y
                                                 >
                                                     <IconNextOption />
                                                 </button>
@@ -1132,7 +1621,7 @@ function DiagnosPageAdmin() {
                                                 className='write_wrapper_box'
                                                 contentEditable="true"
                                                 ref={textRefs.drug_treatmentRec} // Присваиваем референс блоку с текстом
-                                                onKeyDown={handleKeyDown}
+                                                onKeyDown={handleKeyDown3}
                                             >
                                                 <div dangerouslySetInnerHTML={{ __html: diagnosis.drug_treatment.comment.recomendation }} />
                                             </div>
@@ -1145,7 +1634,7 @@ function DiagnosPageAdmin() {
                                                     <div className='item-pdf'>
                                                         {file.name}
                                                     </div>
-                                                    <div className='delete-pdf' onClick={(e) => { e.stopPropagation(); handleDeletePdf(file.id); }}>
+                                                    <div className='delete-pdf' onClick={(e) => { e.stopPropagation(); handleDeletePdf(file.id, 'medical_treatment', true); }}>
                                                         X
                                                     </div>
                                                 </div>
@@ -1155,9 +1644,9 @@ function DiagnosPageAdmin() {
                                             <div className='add-pdf' onClick={() => handleButtonClick('medical_treatment', true)}>
                                                 Добавить PDF (Recommendations)
                                             </div>
-                                            <div className='button-save-pdf'>
+                                            {/* <div className='button-save-pdf'>
                                                 Сохранить
-                                            </div>
+                                            </div> */}
                                         </div>
                                     </div>
                                 </div>
@@ -1174,7 +1663,7 @@ function DiagnosPageAdmin() {
                                                             <select
                                                                 className="custom-select"
                                                                 value={selectedFormat}
-                                                                onChange={(e) => applyFormat(e.target.value)}
+                                                                onChange={(e) => applyFormat4(e.target.value)}
                                                             >
                                                                 <option value="Choose heading">Choose heading</option>
                                                                 <option value="Heading">Заголовок</option>
@@ -1186,35 +1675,35 @@ function DiagnosPageAdmin() {
                                                     </button>
                                                 </div>
                                                 <button
-                                                    className={`option_bold ${isBold ? 'active' : ''}`}
-                                                    onClick={toggleBold}
+                                                    className={`option_bold ${isBold4 ? 'active' : ''}`}
+                                                    onClick={toggleBold4}
                                                 >
                                                     <IconBold />
                                                 </button>
                                                 <button
-                                                    className={`option_stroke ${isItalic ? 'active' : ''}`}
-                                                    onClick={toggleItalic}
+                                                    className={`option_stroke ${isItalic4 ? 'active' : ''}`}
+                                                    onClick={toggleItalic4}
                                                 >
                                                     <IconStroke />
                                                 </button>
                                                 {/* <button className='option_link'>
                                                                         <IconLink />
                                                                     </button> */}
-                                                <button className={`option_dot ${isDot ? 'active' : ''}`} onClick={insertUnorderedList}>
+                                                <button className={`option_dot ${isDot ? 'active' : ''}`} onClick={insertUnorderedList4}>
                                                     <IconDot />
                                                 </button>
-                                                <button className={`option_number ${isNumber ? 'active' : ''}`} onClick={insertOrderedList}>
+                                                <button className={`option_number ${isNumber ? 'active' : ''}`} onClick={insertOrderedList4}>
                                                     <IconNumber />
                                                 </button>
                                                 <button
                                                     className='option_back'
-                                                    onClick={handleUndo} // Логика Ctrl + Z
+                                                    onClick={handleUndo4} // Логика Ctrl + Z
                                                 >
                                                     <IconBackOption />
                                                 </button>
                                                 <button
                                                     className='option_next'
-                                                    onClick={handleRedo} // Логика Ctrl + Y
+                                                    onClick={handleRedo4} // Логика Ctrl + Y
                                                 >
                                                     <IconNextOption />
                                                 </button>
@@ -1228,7 +1717,7 @@ function DiagnosPageAdmin() {
                                                 className='write_wrapper_box'
                                                 contentEditable="true"
                                                 ref={textRefs.drug_treatmentNonRec} // Присваиваем референс блоку с текстом
-                                                onKeyDown={handleKeyDown}
+                                                onKeyDown={handleKeyDown4}
                                             >
                                                 <div dangerouslySetInnerHTML={{ __html: diagnosis.drug_treatment.comment.notrecomendation }} />                                            </div>
                                         </div>
@@ -1240,7 +1729,7 @@ function DiagnosPageAdmin() {
                                                     <div className='item-pdf'>
                                                         {file.name}
                                                     </div>
-                                                    <div className='delete-pdf' onClick={(e) => { e.stopPropagation(); handleDeletePdf(file.id); }}>
+                                                    <div className='delete-pdf' onClick={(e) => { e.stopPropagation(); handleDeletePdf(file.id, 'medical_treatment', false); }}>
                                                         X
                                                     </div>
                                                 </div>
@@ -1250,9 +1739,9 @@ function DiagnosPageAdmin() {
                                             <div className='add-pdf' onClick={() => handleButtonClick('medical_treatment', false)}>
                                                 Добавить PDF (Not Recommendations)
                                             </div>
-                                            <div className='button-save-pdf'>
+                                            {/* <div className='button-save-pdf'>
                                                 Сохранить
-                                            </div>
+                                            </div> */}
                                         </div>
                                     </div>
                                 </div>
@@ -1321,7 +1810,7 @@ function DiagnosPageAdmin() {
                                                             ))
 
                                                         ) : (
-                                                            <div className='no-items-message'>У рекомендаций нет компонентов</div>
+                                                            <div className='no-items-message'>У рекомендаций нет должно быть компонентов</div>
                                                         )}
                                                     </div>
                                                 </div>
@@ -1357,7 +1846,7 @@ function DiagnosPageAdmin() {
                                                             <select
                                                                 className="custom-select"
                                                                 value={selectedFormat}
-                                                                onChange={(e) => applyFormat(e.target.value)}
+                                                                onChange={(e) => applyFormat5(e.target.value)}
                                                             >
                                                                 <option value="Choose heading">Choose heading</option>
                                                                 <option value="Heading">Заголовок</option>
@@ -1369,40 +1858,40 @@ function DiagnosPageAdmin() {
                                                     </button>
                                                 </div>
                                                 <button
-                                                    className={`option_bold ${isBold ? 'active' : ''}`}
-                                                    onClick={toggleBold}
+                                                    className={`option_bold ${isBold5 ? 'active' : ''}`}
+                                                    onClick={toggleBold5}
                                                 >
                                                     <IconBold />
                                                 </button>
                                                 <button
-                                                    className={`option_stroke ${isItalic ? 'active' : ''}`}
-                                                    onClick={toggleItalic}
+                                                    className={`option_stroke ${isItalic5 ? 'active' : ''}`}
+                                                    onClick={toggleItalic5}
                                                 >
                                                     <IconStroke />
                                                 </button>
                                                 {/* <button className='option_link'>
                                                                         <IconLink />
                                                                     </button> */}
-                                                <button className={`option_dot ${isDot ? 'active' : ''}`} onClick={insertUnorderedList}>
+                                                <button className={`option_dot ${isDot ? 'active' : ''}`} onClick={insertUnorderedList5}>
                                                     <IconDot />
                                                 </button>
-                                                <button className={`option_number ${isNumber ? 'active' : ''}`} onClick={insertOrderedList}>
+                                                <button className={`option_number ${isNumber ? 'active' : ''}`} onClick={insertOrderedList5}>
                                                     <IconNumber />
                                                 </button>
                                                 <button
                                                     className='option_back'
-                                                    onClick={handleUndo} // Логика Ctrl + Z
+                                                    onClick={handleUndo5} // Логика Ctrl + Z
                                                 >
                                                     <IconBackOption />
                                                 </button>
                                                 <button
                                                     className='option_next'
-                                                    onClick={handleRedo} // Логика Ctrl + Y
+                                                    onClick={handleRedo5} // Логика Ctrl + Y
                                                 >
                                                     <IconNextOption />
                                                 </button>
                                             </div>
-                                            <div className='button-save' onClick={() => handleSaveChanges('recommendations', true)}>
+                                            <div className='button-save' onClick={() => handleSaveChanges('recommend', true)}>
                                                 Сохранить изменения
                                             </div>
                                         </div>
@@ -1410,8 +1899,8 @@ function DiagnosPageAdmin() {
                                             <div
                                                 className='write_wrapper_box'
                                                 contentEditable="true"
-                                                ref={textRefs.recommendationsRec} // Присваиваем референс блоку с текстом
-                                                onKeyDown={handleKeyDown}
+                                                ref={textRefs.recommendRec} // Присваиваем референс блоку с текстом
+                                                onKeyDown={handleKeyDown5}
                                             >
                                                 <div dangerouslySetInnerHTML={{ __html: diagnosis.recommendations.comment.recomendation }} />
                                             </div>
@@ -1424,19 +1913,19 @@ function DiagnosPageAdmin() {
                                                     <div className='item-pdf'>
                                                         {file.name}
                                                     </div>
-                                                    <div className='delete-pdf' onClick={(e) => { e.stopPropagation(); handleDeletePdf(file.id); }}>
+                                                    <div className='delete-pdf' onClick={(e) => { e.stopPropagation(); handleDeletePdf(file.id, 'recommendation', true); }}>
                                                         X
                                                     </div>
                                                 </div>
                                             ))}
                                         </div>
                                         <div className='buttons-under-box'>
-                                            <div className='add-pdf' onClick={() => handleButtonClick('recommendations', true)}>
+                                            <div className='add-pdf' onClick={() => handleButtonClick('recommendation', true)}>
                                                 Добавить PDF (Recommendations)
                                             </div>
-                                            <div className='button-save-pdf'>
+                                            {/* <div className='button-save-pdf'>
                                                 Сохранить
-                                            </div>
+                                            </div> */}
                                         </div>
                                     </div>
                                 </div>
@@ -1453,7 +1942,7 @@ function DiagnosPageAdmin() {
                                                             <select
                                                                 className="custom-select"
                                                                 value={selectedFormat}
-                                                                onChange={(e) => applyFormat(e.target.value)}
+                                                                onChange={(e) => applyFormat6(e.target.value)}
                                                             >
                                                                 <option value="Choose heading">Choose heading</option>
                                                                 <option value="Heading">Заголовок</option>
@@ -1465,40 +1954,40 @@ function DiagnosPageAdmin() {
                                                     </button>
                                                 </div>
                                                 <button
-                                                    className={`option_bold ${isBold ? 'active' : ''}`}
-                                                    onClick={toggleBold}
+                                                    className={`option_bold ${isBold6 ? 'active' : ''}`}
+                                                    onClick={toggleBold6}
                                                 >
                                                     <IconBold />
                                                 </button>
                                                 <button
-                                                    className={`option_stroke ${isItalic ? 'active' : ''}`}
-                                                    onClick={toggleItalic}
+                                                    className={`option_stroke ${isItalic6 ? 'active' : ''}`}
+                                                    onClick={toggleItalic6}
                                                 >
                                                     <IconStroke />
                                                 </button>
                                                 {/* <button className='option_link'>
                                                                         <IconLink />
                                                                     </button> */}
-                                                <button className={`option_dot ${isDot ? 'active' : ''}`} onClick={insertUnorderedList}>
+                                                <button className={`option_dot ${isDot ? 'active' : ''}`} onClick={insertUnorderedList6}>
                                                     <IconDot />
                                                 </button>
-                                                <button className={`option_number ${isNumber ? 'active' : ''}`} onClick={insertOrderedList}>
+                                                <button className={`option_number ${isNumber ? 'active' : ''}`} onClick={insertOrderedList6}>
                                                     <IconNumber />
                                                 </button>
                                                 <button
                                                     className='option_back'
-                                                    onClick={handleUndo} // Логика Ctrl + Z
+                                                    onClick={handleUndo6} // Логика Ctrl + Z
                                                 >
                                                     <IconBackOption />
                                                 </button>
                                                 <button
                                                     className='option_next'
-                                                    onClick={handleRedo} // Логика Ctrl + Y
+                                                    onClick={handleRedo6} // Логика Ctrl + Y
                                                 >
                                                     <IconNextOption />
                                                 </button>
                                             </div>
-                                            <div className='button-save' onClick={() => handleSaveChanges('recommendations', false)}>
+                                            <div className='button-save' onClick={() => handleSaveChanges('recommend', false)}>
                                                 Сохранить изменения
                                             </div>
                                         </div>
@@ -1506,8 +1995,8 @@ function DiagnosPageAdmin() {
                                             <div
                                                 className='write_wrapper_box'
                                                 contentEditable="true"
-                                                ref={textRefs.recommendationsNonRec} // Присваиваем референс блоку с текстом
-                                                onKeyDown={handleKeyDown}
+                                                ref={textRefs.recommendNonRec} // Присваиваем референс блоку с текстом
+                                                onKeyDown={handleKeyDown6}
                                             >
                                                 <div dangerouslySetInnerHTML={{ __html: diagnosis.recommendations.comment.notrecomendation }} />
                                             </div>
@@ -1520,19 +2009,19 @@ function DiagnosPageAdmin() {
                                                     <div className='item-pdf'>
                                                         {file.name}
                                                     </div>
-                                                    <div className='delete-pdf' onClick={(e) => { e.stopPropagation(); handleDeletePdf(file.id); }}>
+                                                    <div className='delete-pdf' onClick={(e) => { e.stopPropagation(); handleDeletePdf(file.id, 'recommendation', false); }}>
                                                         X
                                                     </div>
                                                 </div>
                                             ))}
                                         </div>
                                         <div className='buttons-under-box'>
-                                            <div className='add-pdf' onClick={() => handleButtonClick('recommendations', false)}>
+                                            <div className='add-pdf' onClick={() => handleButtonClick('recommendation', false)}>
                                                 Добавить PDF (Not Recommendations)
                                             </div>
-                                            <div className='button-save-pdf'>
+                                            {/* <div className='button-save-pdf'>
                                                 Сохранить
-                                            </div>
+                                            </div> */}
                                         </div>
                                     </div>
                                 </div>
