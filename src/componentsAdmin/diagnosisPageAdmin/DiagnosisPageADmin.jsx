@@ -159,13 +159,13 @@ function DiagnosisPageAdmin() {
                 });
 
                 if (response.ok) {
+                    // Обновляем состояние диагнозов без перезагрузки страницы
                     setDiagnoses(prevDiagnoses =>
                         prevDiagnoses.map(diagnosis =>
                             diagnosis.id === editDiagnosis.id ? { ...diagnosis, name: editDiagnosis.name, code: editDiagnosis.code } : diagnosis
                         )
                     );
                     setShowEditPopup(false);
-                    window.location.reload();
                 } else {
                     console.error("Ошибка при обновлении диагноза:", response.statusText);
                 }
@@ -186,8 +186,9 @@ function DiagnosisPageAdmin() {
                 const response = await fetch(`http://test-asya.ru/api/deleteDiagnosis?id=${deleteDiagnosis.id}`, {
                     method: 'GET',
                 });
-
+    
                 if (response.ok) {
+                    // Обновляем состояние диагнозов без перезагрузки страницы
                     setDiagnoses(prevDiagnoses =>
                         prevDiagnoses.filter(diagnosis => diagnosis.id !== deleteDiagnosis.id)
                     );
@@ -211,7 +212,7 @@ function DiagnosisPageAdmin() {
             setSortOrder('asc');
         }
     };
-    
+
     const handleSortByCode = () => {
         console.log(sortField, 'bycode');
         if (sortField === 'code') {
@@ -221,7 +222,7 @@ function DiagnosisPageAdmin() {
             setSortOrder('asc');
         }
     };
-    
+
     const handleSortByVisits = () => {
         console.log(sortField, 'byvisites');
 
@@ -321,7 +322,7 @@ function DiagnosisPageAdmin() {
                     {allSpecializations ? (
                         allSpecializations.map((spec, index) => (
                             <Link
-                                to={`/specialization/${spec.name}`}
+                                to={`/admin/specialization/${spec.name}`}
                                 state={{ specialization: spec, allSpecializations, currentSpecializationName }}
                                 className={`diagnosis-item ${currentSpecializationName === spec.name ? 'active' : ''}`}
                                 key={index}
@@ -383,7 +384,7 @@ function DiagnosisPageAdmin() {
                                                 <Link
                                                     key={index}
                                                     className="search_result_item"
-                                                    to={`/diagnos/specialization/${specialization.name}`}
+                                                    to={`/admin/diagnos/specialization/${specialization.name}`}
                                                     state={{ diagnosisId: diagnosis.id, diagnosis, iddig: diagnosis.id, allSpecializations, specialization, current: specialization.name }}
                                                 >
                                                     <span className="diagnosis_code">{diagnosis.code}</span>
@@ -474,7 +475,7 @@ function DiagnosisPageAdmin() {
                                 <div className='diagnosis_plate' key={index}>
                                     <Link
                                         className='link-plate'
-                                        to={`/diagnos/specialization/${specialization.name}`}
+                                        to={`/admin/diagnos/specialization/${specialization.name}`}
                                         // state={{ diagnosis, allSpecializations: [], specialization }}
                                         state={{ diagnosisId: diagnosis.id, diagnosis, iddig: diagnosis.id, allSpecializations, specialization, current: specialization.name }}
 

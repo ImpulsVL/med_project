@@ -614,46 +614,48 @@ function DiagnosPageAdmin() {
     const [editSource, setEditSource] = useState(null);
 
     const handleEditComponent = async () => {
-        if (currentComponentId) {
+        if (currentComponentId && currentElementId) {
             try {
                 const response = await fetch(`http://test-asya.ru/api/updateSubcomponent?element_id=${currentElementId}&new_name=${encodeURIComponent(editComponent.name)}&new_comment=${encodeURIComponent(editComponent.comment)}&subcomponent_id=${currentComponentId}`, {
                     method: 'GET',
                 });
-
+    
                 if (!response.ok) {
                     throw new Error('Ошибка при обновлении компонента');
                 }
-
-                // Обновляем состояние диагноза, изменяя компонент
+    
+                // Обновляем состояние диагноза
                 setDiagnosis(prev => {
-                    const updatedSurveyItems = [...prev.survey.items];
-                    const updatedDrugTreatmentItems = [...prev.drug_treatment.items]; // Предполагается, что у вас есть drug_treatment в состоянии
-
-                    // Находим и обновляем компонент в зависимости от источника
-                    if (editSource === 'survey') {
-                        updatedSurveyItems.forEach(item => {
-                            if (item.ID === currentElementId) {
-                                item.values = item.values.map(comp => {
+                    const updatedSurveyItems = prev.survey.items.map(item => {
+                        if (item.ID === currentElementId) {
+                            return {
+                                ...item,
+                                values: item.values.map(comp => {
                                     if (comp.id === currentComponentId) {
                                         return { ...comp, name: editComponent.name, comment: editComponent.comment };
                                     }
                                     return comp;
-                                });
-                            }
-                        });
-                    } else if (editSource === 'drug_treatment') {
-                        updatedDrugTreatmentItems.forEach(item => {
-                            if (item.ID === currentElementId) {
-                                item.values = item.values.map(comp => {
+                                })
+                            };
+                        }
+                        return item;
+                    });
+    
+                    const updatedDrugTreatmentItems = prev.drug_treatment.items.map(item => {
+                        if (item.ID === currentElementId) {
+                            return {
+                                ...item,
+                                values: item.values.map(comp => {
                                     if (comp.id === currentComponentId) {
                                         return { ...comp, name: editComponent.name, comment: editComponent.comment };
                                     }
                                     return comp;
-                                });
-                            }
-                        });
-                    }
-
+                                })
+                            };
+                        }
+                        return item;
+                    });
+    
                     return {
                         ...prev,
                         survey: {
@@ -666,7 +668,7 @@ function DiagnosPageAdmin() {
                         }
                     };
                 });
-
+    
                 setEditComponent({ name: '', comment: '' });
                 setShowEditComponentPopup(false);
             } catch (error) {
@@ -676,63 +678,72 @@ function DiagnosPageAdmin() {
         }
     };
 
-    const handleDeleteComponent = async () => {
-        if (deleteComponentInfo) {
-            const { elementId, componentId, type } = deleteComponentInfo;
+    const handleEditComponentClick = (index, type, componentId) => {
+        setCurrentExaminationIndex(index);
+        setCurrentElementId(type === 'survey' ? diagnosis.survey.items[index].ID : diagnosis.drug_treatment.items[index].ID); // Установите ID элемента
+        setCurrentComponentId(componentId); // Установите ID компонента
+        setShowEditComponentPopup(true); // Покажите попап для редактирования
+    };
 
-            console.log(type); // Логируем тип для отладки
+    const handleDeleteComponent = async () => {
+        if (currentComponentId && currentElementId) {
             try {
-                const response = await fetch(`http://test-asya.ru/api/deleteSubcomponent?element_id=${elementId}&subcomponent_id=${componentId}`, {
+                const response = await fetch(`http://test-asya.ru/api/deleteSubcomponent?element_id=${currentElementId}&subcomponent_id=${currentComponentId}`, {
                     method: 'GET',
                 });
-
+    
                 if (!response.ok) {
                     throw new Error('Ошибка при удалении компонента');
                 }
-
-                // Обновляем состояние диагноза, удаляя компонент
+    
+                // Обновляем состояние диагноза
                 setDiagnosis(prev => {
-                    const updatedSurveyItems = [...prev.survey.items];
-                    const updatedDrugItems = [...prev.drug_treatment.items]; // Проверка на массив
-
-                    if (type === 'survey') {
-                        // Удаляем компонент из соответствующего элемента в survey
-                        updatedSurveyItems.forEach(item => {
-                            if (item.ID === elementId) {
-                                item.values = item.values.filter(comp => comp.id !== componentId);
-                            }
-                        });
-                        return {
-                            ...prev,
-                            survey: {
-                                ...prev.survey,
-                                items: updatedSurveyItems
-                            }
+                    const updatedSurveyItems = prev.survey.items.map(item => {
+                        if (item.ID === currentElementId) {
+                            return {
+                                ...item,
+                                values: item.values.filter(comp => comp.id !== currentComponentId)
+                            };
                         }
-                    } else if (type === 'drug_treatment') {
-                        // Удаляем компонент из drug_treatment
-                        updatedDrugItems.forEach(item => {
-                            if (item.ID === elementId) {
-                                item.values = item.values.filter(comp => comp.id !== componentId);
-                            }
-                        });
-                        return {
-                            ...prev,
-                            drug_treatment: {
-                                ...prev.drug_treatment,
-                                items: updatedDrugItems
-                            }
+                        return item;
+                    });
+    
+                    const updatedDrugTreatmentItems = prev.drug_treatment.items.map(item => {
+                        if (item.ID === currentElementId) {
+                            return {
+                                ...item,
+                                values: item.values.filter(comp => comp.id !== currentComponentId)
+                            };
                         }
-                    }
+                        return item;
+                    });
+    
+                    return {
+                        ...prev,
+                        survey: {
+                            ...prev.survey,
+                            items: updatedSurveyItems
+                        },
+                        drug_treatment: {
+                            ...prev.drug_treatment,
+                            items: updatedDrugTreatmentItems
+                        }
+                    };
                 });
-
+    
                 setShowDeletePopupComponent(false);
-                setDeleteComponentInfo(null);
             } catch (error) {
                 console.error(error);
                 alert(error.message);
             }
         }
+    };
+
+    const handleDeleteComponentClick = (index, type, componentId) => {
+        setCurrentExaminationIndex(index);
+        setCurrentElementId(type === 'survey' ? diagnosis.survey.items[index].ID : diagnosis.drug_treatment.items[index].ID); // Установите ID элемента
+        setCurrentComponentId(componentId); // Установите ID компонента
+        setShowDeletePopupComponent(true); // Покажите попап для удаления
     };
 
     const handleAddComponentClick = (index, type) => {
@@ -1129,7 +1140,7 @@ function DiagnosPageAdmin() {
                     {allSpecializations ? (
                         allSpecializations.map((spec, index) => (
                             <Link
-                                to={`/specialization/${spec.name}`}
+                                to={`/admin/specialization/${spec.name}`}
                                 state={{ specialization: spec, allSpecializations }}
                                 className={`diagnosis-item ${current === spec.name ? 'active' : ''}`}
                                 key={index}
@@ -1247,12 +1258,14 @@ function DiagnosPageAdmin() {
                                                                         setCurrentComponentId(item.id);
                                                                         setShowEditComponentPopup(true);
                                                                         setEditSource('survey');
+                                                                        handleEditComponentClick(index, 'survey', item.id);
                                                                     }}>
                                                                         Изменить
                                                                     </div>
                                                                     <div className='micro-delete' onClick={() => {
                                                                         setDeleteComponentInfo({ elementId: currentElementId, componentId: item.id, type: 'survey' });
                                                                         setShowDeletePopupComponent(true);
+                                                                        handleDeleteComponentClick(index, 'survey', item.id);
                                                                     }}>
                                                                         Удалить
                                                                     </div>
@@ -1521,12 +1534,14 @@ function DiagnosPageAdmin() {
                                                                         setCurrentComponentId(item.id);
                                                                         setEditSource('drug_treatment');
                                                                         setShowEditComponentPopup(true);
+                                                                        handleEditComponentClick(index, 'drug_treatment', item.id);
                                                                     }}>
                                                                         Изменить
                                                                     </div>
                                                                     <div className='micro-delete' onClick={() => {
                                                                         setDeleteComponentInfo({ elementId: currentElementId, componentId: item.id, type: 'drug_treatment' });
                                                                         setShowDeletePopupComponent(true);
+                                                                        handleDeleteComponentClick(index, 'drug_treatment', item.id);
                                                                     }}>
                                                                         Удалить
                                                                     </div>

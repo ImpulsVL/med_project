@@ -98,9 +98,9 @@ function App() {
           <Route path="/coloscopy-table" element={<ColoscopyPage />} />
 
           <Route path='/admin' element={<MainPageAdmin />}/>
-          <Route path="/specialization/:name" element={<DiagnosisPageAdmin />} />
+          <Route path="/admin/specialization/:name" element={<DiagnosisPageAdmin />} />
           <Route path='/admindiagnos' element={<DiagnosPageAdmin />}/>
-          <Route path="/diagnos/specialization/:name" element={<DiagnosPageAdmin />} />
+          <Route path="/admin/diagnos/specialization/:name" element={<DiagnosPageAdmin />} />
         </Routes>
       </div>
     </Router >
