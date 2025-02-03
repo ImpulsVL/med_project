@@ -297,8 +297,7 @@ function MainPageAdmin() {
                                         filteredSpecializations.map((specialization, index) => (
                                             <Link
                                                 key={index}
-                                                to={`/admin/specialization/`}
-                                                // to={`/admin/specialization/${specialization.name}`}
+                                                to={`/admin/specialization/${specialization.name}`}
                                                 className="search_result_item"
                                                 state={{ specialization, allSpecializations: specializations }}
                                             >
@@ -372,8 +371,7 @@ function MainPageAdmin() {
                                 <div className='diagnosis_plate'>
                                     <Link
                                         key={index}
-                                        to={`/admin/specialization/`}
-                                        // to={`/admin/specialization/${specialization.name}`}
+                                        to={`/admin/specialization/${specialization.name}`}
                                         state={{ specialization, allSpecializations: specializations }}
                                         className='link-plate for-styles'
                                     >

@@ -24,12 +24,10 @@ function DiagnosisPageAdmin() {
     const location = useLocation();
     const { specialization, allSpecializations } = location.state || {};
 
-    console.log(specialization, '1');
-    console.log(allSpecializations, '2');
+    // console.log(specialization, '1');
+    // console.log(allSpecializations, '2');
 
     const currentSpecializationCode = specialization?.code;
-
-    console.log(currentSpecializationCode, '3');
 
     const [showPopup, setShowPopup] = useState(false);
     const [newDiagnosis, setNewDiagnosis] = useState({ name: '', code: '', visites: 0 });
@@ -52,7 +50,7 @@ function DiagnosisPageAdmin() {
 
     const currentSpecializationName = specialization?.name;
 
-    console.log(currentSpecializationCode)
+    // console.log(currentSpecializationCode, 'currentSpecCode');
 
     useEffect(() => {
         const fetchDiagnoses = async () => {
@@ -101,7 +99,7 @@ function DiagnosisPageAdmin() {
         }
     }, [searchText, diagnoses]);
 
-    console.log(diagnoses);
+    // console.log(diagnoses, 'diagnoses');
 
     const handleInputChange = (e) => {
         setSearchText(e.target.value);
@@ -203,8 +201,6 @@ function DiagnosisPageAdmin() {
     };
 
     const handleSortByName = () => {
-        console.log(sortField, 'byname');
-
         if (sortField === 'name') {
             setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
         } else {
@@ -214,7 +210,6 @@ function DiagnosisPageAdmin() {
     };
 
     const handleSortByCode = () => {
-        console.log(sortField, 'bycode');
         if (sortField === 'code') {
             setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
         } else {
@@ -224,8 +219,6 @@ function DiagnosisPageAdmin() {
     };
 
     const handleSortByVisits = () => {
-        console.log(sortField, 'byvisites');
-
         if (sortField === 'visites') {
             setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
         } else {
@@ -307,7 +300,7 @@ function DiagnosisPageAdmin() {
         }
     };
 
-    console.log(diagnoses, '12313')
+    // console.log(diagnoses, '12313');
 
     return (
         <div className='wrapper-diagnosis'>
@@ -322,8 +315,7 @@ function DiagnosisPageAdmin() {
                     {allSpecializations ? (
                         allSpecializations.map((spec, index) => (
                             <Link
-                                to={`/admin/specialization/`}
-                                // to={`/admin/specialization/${spec.name}`}
+                                to={`/admin/specialization/${spec.name}`}
                                 state={{ specialization: spec, allSpecializations, currentSpecializationName }}
                                 className={`diagnosis-item ${currentSpecializationName === spec.name ? 'active' : ''}`}
                                 key={index}
@@ -385,8 +377,7 @@ function DiagnosisPageAdmin() {
                                                 <Link
                                                     key={index}
                                                     className="search_result_item"
-                                                    to={`/admin/specialization/diagnos`}
-                                                    // to={`/admin/specialization/${specialization.name}/diagnos`}
+                                                    to={`/admin/specialization/${specialization.name}/diagnos/${diagnosis.name}`}
                                                     state={{ diagnosisId: diagnosis.id, diagnosis, iddig: diagnosis.id, allSpecializations, specialization, current: specialization.name }}
                                                 >
                                                     <span className="diagnosis_code">{diagnosis.code}</span>
@@ -477,8 +468,7 @@ function DiagnosisPageAdmin() {
                                 <div className='diagnosis_plate' key={index}>
                                     <Link
                                         className='link-plate'
-                                        to={`/admin/specialization/diagnos`}
-                                        // to={`/admin/specialization/${specialization.name}/diagnos`}
+                                        to={`/admin/specialization/${specialization.name}/diagnos/${diagnosis.name}`}
                                         // state={{ diagnosis, allSpecializations: [], specialization }}
                                         state={{ diagnosisId: diagnosis.id, diagnosis, iddig: diagnosis.id, allSpecializations, specialization, current: specialization.name }}
 

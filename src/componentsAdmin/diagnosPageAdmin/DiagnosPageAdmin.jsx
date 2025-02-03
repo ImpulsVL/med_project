@@ -1140,7 +1140,7 @@ function DiagnosPageAdmin() {
                     {allSpecializations ? (
                         allSpecializations.map((spec, index) => (
                             <Link
-                                to={`/admin/specialization/`}
+                                to={`/admin/specialization/${spec.name}`}
                                 state={{ specialization: spec, allSpecializations }}
                                 className={`diagnosis-item ${current === spec.name ? 'active' : ''}`}
                                 key={index}
