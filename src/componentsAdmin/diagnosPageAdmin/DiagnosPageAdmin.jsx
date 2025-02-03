@@ -1133,14 +1133,14 @@ function DiagnosPageAdmin() {
                 <div className='header-sidebar'>Специализации</div>
                 <div className='diagnosis-components'>
                     <Link
-                        to={`/admin`}
+                        to={`/admin/`}
                         className='diagnosis-item'>
                         Админ страница
                     </Link>
                     {allSpecializations ? (
                         allSpecializations.map((spec, index) => (
                             <Link
-                                to={`/admin/specialization/${spec.name}`}
+                                to={`/admin/specialization/`}
                                 state={{ specialization: spec, allSpecializations }}
                                 className={`diagnosis-item ${current === spec.name ? 'active' : ''}`}
                                 key={index}

@@ -186,7 +186,7 @@ function DiagnosisPageAdmin() {
                 const response = await fetch(`http://test-asya.ru/api/deleteDiagnosis?id=${deleteDiagnosis.id}`, {
                     method: 'GET',
                 });
-    
+
                 if (response.ok) {
                     // Обновляем состояние диагнозов без перезагрузки страницы
                     setDiagnoses(prevDiagnoses =>
@@ -315,14 +315,15 @@ function DiagnosisPageAdmin() {
                 <div className='header-sidebar'>Специализации</div>
                 <div className='diagnosis-components'>
                     <Link
-                        to={`/admin`}
+                        to={`/admin/`}
                         className='diagnosis-item'>
                         Админ страница
                     </Link>
                     {allSpecializations ? (
                         allSpecializations.map((spec, index) => (
                             <Link
-                                to={`/admin/specialization/${spec.name}`}
+                                to={`/admin/specialization/`}
+                                // to={`/admin/specialization/${spec.name}`}
                                 state={{ specialization: spec, allSpecializations, currentSpecializationName }}
                                 className={`diagnosis-item ${currentSpecializationName === spec.name ? 'active' : ''}`}
                                 key={index}
@@ -384,7 +385,8 @@ function DiagnosisPageAdmin() {
                                                 <Link
                                                     key={index}
                                                     className="search_result_item"
-                                                    to={`/admin/diagnos/specialization/${specialization.name}`}
+                                                    to={`/admin/specialization/diagnos`}
+                                                    // to={`/admin/specialization/${specialization.name}/diagnos`}
                                                     state={{ diagnosisId: diagnosis.id, diagnosis, iddig: diagnosis.id, allSpecializations, specialization, current: specialization.name }}
                                                 >
                                                     <span className="diagnosis_code">{diagnosis.code}</span>
@@ -475,7 +477,8 @@ function DiagnosisPageAdmin() {
                                 <div className='diagnosis_plate' key={index}>
                                     <Link
                                         className='link-plate'
-                                        to={`/admin/diagnos/specialization/${specialization.name}`}
+                                        to={`/admin/specialization/diagnos`}
+                                        // to={`/admin/specialization/${specialization.name}/diagnos`}
                                         // state={{ diagnosis, allSpecializations: [], specialization }}
                                         state={{ diagnosisId: diagnosis.id, diagnosis, iddig: diagnosis.id, allSpecializations, specialization, current: specialization.name }}
 
