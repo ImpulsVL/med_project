@@ -16,10 +16,11 @@ import HeaderAdmin from '../headerAdmin/HeaderAdmin';
 
 function DiagnosPageAdmin() {
 
+    const env = process.env;
     const location = useLocation();
-    const { diagnosisId, allSpecializations, specialization, currentSpecializationName, current, iddig } = location.state || {};
+    const params = useParams();
 
-    console.log(allSpecializations);
+    const { diagnosisId, allSpecializations, specialization, currentSpecializationName, current, iddig } = location.state || {};
 
     const [showAddExaminationPopup, setShowAddExaminationPopup] = useState(false);
     const [newExamination, setNewExamination] = useState({ name: '', comment: '' });
@@ -54,27 +55,74 @@ function DiagnosPageAdmin() {
     const [editField, setEditField] = useState(null);
     const [newValue, setNewValue] = useState('');
 
-    useEffect(() => {
-        const fetchDiagnosis = async () => {
-            if (!diagnosisId) return;
+    // useEffect(() => {
+    //     const fetchDiagnosis = async () => {
+    //         if (!diagnosisId) return;
 
+    //         try {
+    //             const response = await fetch(`http://test-asya.ru/api/diagnosis?id=${diagnosisId}`);
+    //             if (!response.ok) {
+    //                 throw new Error('Ошибка при загрузке данных');
+    //             }
+    //             const { result } = await response.json();
+    //             console.log(result, 'proverka');
+    //             setDiagnosis(result);
+    //         } catch (err) {
+    //             setError(err.message);
+    //         } finally {
+    //             setLoading(false);
+    //         }
+    //     };
+
+    //     fetchDiagnosis();
+    // }, [diagnosisId]);
+
+    var resultDiagnose = null;
+    var resultCurrentSpecialization = null;
+    var resultAllSpecializations = null;
+
+    useEffect(() => {
+        const TryGetDiagnosis = async () => {
             try {
-                const response = await fetch(`http://test-asya.ru/api/diagnosis?id=${diagnosisId}`);
-                if (!response.ok) {
-                    throw new Error('Ошибка при загрузке данных');
+                if (location.state == null) {
+                    setLoading(true);
                 }
-                const { result } = await response.json();
-                console.log(result, 'proverka');
-                setDiagnosis(result);
+
+                var responseDiagnose = await fetch(`${env.REACT_APP_APP_API_PROTOCOL}://${env.REACT_APP_API_DOMEN_NAME}/api/diagnosis?id=${params.diagnosisId}`);
+                var currentSpecialization = await fetch(`${env.REACT_APP_APP_API_PROTOCOL}://${env.REACT_APP_API_DOMEN_NAME}/api/diagnoses?code=${params.code}`);
+                var allSpecializations = await fetch(`${env.REACT_APP_APP_API_PROTOCOL}://${env.REACT_APP_API_DOMEN_NAME}/api/sections`);
+
+                if (!responseDiagnose.ok) {
+                    throw new Error('Ошибка при загрузке данных диагноза');
+                }
+                if (!currentSpecialization.ok) {
+                    throw new Error('Ошибка при загрузке данных текущей специализации');
+                }
+                if (!allSpecializations.ok) {
+                    throw new Error('Ошибка при загрузке данных всех специализаций');
+                }
+
+                resultDiagnose = await responseDiagnose.json();
+                resultCurrentSpecialization = await currentSpecialization.json();
+                resultAllSpecializations = await allSpecializations.json();
+
+                location.state = new Object;
+                location.state.allSpecializations = resultAllSpecializations.result;
+                location.state.specialization = resultCurrentSpecialization.result;
+                location.state.diagnosis = resultDiagnose.result;
+                location.state.current = params.code;
+                location.state.diagnosisId = params.diagnosisId;
+                location.state.iddig = params.diagnosisId;
+                setDiagnosis(resultDiagnose.result);
             } catch (err) {
                 setError(err.message);
             } finally {
                 setLoading(false);
             }
-        };
+        }
 
-        fetchDiagnosis();
-    }, [diagnosisId]);
+        TryGetDiagnosis();
+    }, []);
 
     const [currentExaminationIndex, setCurrentExaminationIndex] = useState(null);
     const [showAddItemPopup, setShowAddItemPopup] = useState(false);
@@ -493,7 +541,7 @@ function DiagnosPageAdmin() {
     const handleAddExamination = async () => {
         if (newExamination.name) {
             try {
-                const response = await fetch(`http://test-asya.ru/api/addItem?type=survey&name=${encodeURIComponent(newExamination.name)}&comment=${encodeURIComponent(newExamination.comment)}&diagnosis_id=${diagnosisId}`, {
+                const response = await fetch(`${env.REACT_APP_APP_API_PROTOCOL}://${env.REACT_APP_API_DOMEN_NAME}/api/addItem?type=survey&name=${encodeURIComponent(newExamination.name)}&comment=${encodeURIComponent(newExamination.comment)}&diagnosis_id=${diagnosisId}`, {
                     method: 'GET',
                 });
 
@@ -520,7 +568,7 @@ function DiagnosPageAdmin() {
     const handleAddItem = async () => {
         if (newItem.name && currentExaminationIndex !== null && currentElementId) {
             try {
-                const response = await fetch(`http://test-asya.ru/api/addSubcomponent?element_id=${currentElementId}&name=${encodeURIComponent(newItem.name)}&comment=${encodeURIComponent(newItem.comment)}`, {
+                const response = await fetch(`${env.REACT_APP_APP_API_PROTOCOL}://${env.REACT_APP_API_DOMEN_NAME}/api/addSubcomponent?element_id=${currentElementId}&name=${encodeURIComponent(newItem.name)}&comment=${encodeURIComponent(newItem.comment)}`, {
                     method: 'GET',
                 });
 
@@ -567,7 +615,7 @@ function DiagnosPageAdmin() {
     const handleAddDrugTreatmentItem = async () => {
         if (newDrugTreatmentItem.name && currentExaminationIndex !== null && currentElementId) {
             try {
-                const response = await fetch(`http://test-asya.ru/api/addSubcomponent?element_id=${currentElementId}&name=${encodeURIComponent(newDrugTreatmentItem.name)}&comment=${encodeURIComponent(newDrugTreatmentItem.comment)}`, {
+                const response = await fetch(`${env.REACT_APP_APP_API_PROTOCOL}://${env.REACT_APP_API_DOMEN_NAME}/api/addSubcomponent?element_id=${currentElementId}&name=${encodeURIComponent(newDrugTreatmentItem.name)}&comment=${encodeURIComponent(newDrugTreatmentItem.comment)}`, {
                     method: 'GET',
                 });
 
@@ -616,14 +664,14 @@ function DiagnosPageAdmin() {
     const handleEditComponent = async () => {
         if (currentComponentId && currentElementId) {
             try {
-                const response = await fetch(`http://test-asya.ru/api/updateSubcomponent?element_id=${currentElementId}&new_name=${encodeURIComponent(editComponent.name)}&new_comment=${encodeURIComponent(editComponent.comment)}&subcomponent_id=${currentComponentId}`, {
+                const response = await fetch(`${env.REACT_APP_APP_API_PROTOCOL}://${env.REACT_APP_API_DOMEN_NAME}/api/updateSubcomponent?element_id=${currentElementId}&new_name=${encodeURIComponent(editComponent.name)}&new_comment=${encodeURIComponent(editComponent.comment)}&subcomponent_id=${currentComponentId}`, {
                     method: 'GET',
                 });
-    
+
                 if (!response.ok) {
                     throw new Error('Ошибка при обновлении компонента');
                 }
-    
+
                 // Обновляем состояние диагноза
                 setDiagnosis(prev => {
                     const updatedSurveyItems = prev.survey.items.map(item => {
@@ -640,7 +688,7 @@ function DiagnosPageAdmin() {
                         }
                         return item;
                     });
-    
+
                     const updatedDrugTreatmentItems = prev.drug_treatment.items.map(item => {
                         if (item.ID === currentElementId) {
                             return {
@@ -655,7 +703,7 @@ function DiagnosPageAdmin() {
                         }
                         return item;
                     });
-    
+
                     return {
                         ...prev,
                         survey: {
@@ -668,7 +716,7 @@ function DiagnosPageAdmin() {
                         }
                     };
                 });
-    
+
                 setEditComponent({ name: '', comment: '' });
                 setShowEditComponentPopup(false);
             } catch (error) {
@@ -688,14 +736,14 @@ function DiagnosPageAdmin() {
     const handleDeleteComponent = async () => {
         if (currentComponentId && currentElementId) {
             try {
-                const response = await fetch(`http://test-asya.ru/api/deleteSubcomponent?element_id=${currentElementId}&subcomponent_id=${currentComponentId}`, {
+                const response = await fetch(`${env.REACT_APP_APP_API_PROTOCOL}://${env.REACT_APP_API_DOMEN_NAME}/api/deleteSubcomponent?element_id=${currentElementId}&subcomponent_id=${currentComponentId}`, {
                     method: 'GET',
                 });
-    
+
                 if (!response.ok) {
                     throw new Error('Ошибка при удалении компонента');
                 }
-    
+
                 // Обновляем состояние диагноза
                 setDiagnosis(prev => {
                     const updatedSurveyItems = prev.survey.items.map(item => {
@@ -707,7 +755,7 @@ function DiagnosPageAdmin() {
                         }
                         return item;
                     });
-    
+
                     const updatedDrugTreatmentItems = prev.drug_treatment.items.map(item => {
                         if (item.ID === currentElementId) {
                             return {
@@ -717,7 +765,7 @@ function DiagnosPageAdmin() {
                         }
                         return item;
                     });
-    
+
                     return {
                         ...prev,
                         survey: {
@@ -730,7 +778,7 @@ function DiagnosPageAdmin() {
                         }
                     };
                 });
-    
+
                 setShowDeletePopupComponent(false);
             } catch (error) {
                 console.error(error);
@@ -759,7 +807,7 @@ function DiagnosPageAdmin() {
     const handleAddTreatment = async () => {
         if (newTreatment.name) {
             try {
-                const response = await fetch(`http://test-asya.ru/api/addItem?type=drug_treatment&name=${encodeURIComponent(newTreatment.name)}&comment=${encodeURIComponent(newTreatment.comment)}&diagnosis_id=${diagnosisId}`, {
+                const response = await fetch(`${env.REACT_APP_APP_API_PROTOCOL}://${env.REACT_APP_API_DOMEN_NAME}/api/addItem?type=drug_treatment&name=${encodeURIComponent(newTreatment.name)}&comment=${encodeURIComponent(newTreatment.comment)}&diagnosis_id=${diagnosisId}`, {
                     method: 'GET',
                 });
 
@@ -786,7 +834,7 @@ function DiagnosPageAdmin() {
     const handleAddRecommendation = async () => {
         if (newRecommendation.name) {
             try {
-                const response = await fetch(`http://test-asya.ru/api/addItem?type=recommendation&name=${encodeURIComponent(newRecommendation.name)}&comment=${encodeURIComponent(newRecommendation.comment)}&diagnosis_id=${diagnosisId}`, {
+                const response = await fetch(`${env.REACT_APP_APP_API_PROTOCOL}://${env.REACT_APP_API_DOMEN_NAME}/api/addItem?type=recommendation&name=${encodeURIComponent(newRecommendation.name)}&comment=${encodeURIComponent(newRecommendation.comment)}&diagnosis_id=${diagnosisId}`, {
                     method: 'GET',
                 });
 
@@ -822,7 +870,7 @@ function DiagnosPageAdmin() {
             const { type, itemId } = deleteItemInfo;
             const diagnosisId = iddig;
             try {
-                const response = await fetch(`http://test-asya.ru/api/deleteItem?type=${type}&item_id=${itemId}&diagnosis_id=${diagnosisId}`, {
+                const response = await fetch(`${env.REACT_APP_APP_API_PROTOCOL}://${env.REACT_APP_API_DOMEN_NAME}/api/deleteItem?type=${type}&item_id=${itemId}&diagnosis_id=${diagnosisId}`, {
                     method: 'GET',
                 });
 
@@ -863,7 +911,7 @@ function DiagnosPageAdmin() {
             const diagnosisId = iddig; // ID диагноза
 
             try {
-                const response = await fetch(`http://test-asya.ru/api/updateItem?type=${type}&item_id=${itemId}&diagnosis_id=${diagnosisId}&name=${encodeURIComponent(editDiagnosisItem.name)}&comment=${encodeURIComponent(editDiagnosisItem.comment)}`, {
+                const response = await fetch(`${env.REACT_APP_APP_API_PROTOCOL}://${env.REACT_APP_API_DOMEN_NAME}/api/updateItem?type=${type}&item_id=${itemId}&diagnosis_id=${diagnosisId}&name=${encodeURIComponent(editDiagnosisItem.name)}&comment=${encodeURIComponent(editDiagnosisItem.comment)}`, {
                     method: 'GET',
                 });
 
@@ -902,7 +950,7 @@ function DiagnosPageAdmin() {
 
     const handleEdit = async () => {
         try {
-            const response = await fetch(`http://test-asya.ru/api/updateDiagnosis?id=${diagnosisId}&name=${encodeURIComponent(editField === 'name' ? newValue : diagnosis?.name)}&code=${encodeURIComponent(editField === 'code' ? newValue : diagnosis?.code)}&sort=${encodeURIComponent(editField === 'sort' ? newValue : diagnosis?.sort)}`, {
+            const response = await fetch(`${env.REACT_APP_APP_API_PROTOCOL}://${env.REACT_APP_API_DOMEN_NAME}/api/updateDiagnosis?id=${diagnosisId}&name=${encodeURIComponent(editField === 'name' ? newValue : diagnosis?.name)}&code=${encodeURIComponent(editField === 'code' ? newValue : diagnosis?.code)}&sort=${encodeURIComponent(editField === 'sort' ? newValue : diagnosis?.sort)}`, {
                 method: 'GET',
             });
 
@@ -954,7 +1002,7 @@ function DiagnosPageAdmin() {
         const formData = new FormData();
         formData.append('file', file);
 
-        const url = `http://test-asya.ru/api/addPdf?type=${uploadType}&diagnosis_id=${diagnosisId}&fileName=${encodeURIComponent(file.name)}&isTypeRecommend=${isTypeRecommend}`;
+        const url = `${env.REACT_APP_APP_API_PROTOCOL}://${env.REACT_APP_API_DOMEN_NAME}/api/addPdf?type=${uploadType}&diagnosis_id=${diagnosisId}&fileName=${encodeURIComponent(file.name)}&isTypeRecommend=${isTypeRecommend}`;
         setIsLoading(true);
         try {
             const response = await fetch(url, {
@@ -1017,7 +1065,7 @@ function DiagnosPageAdmin() {
     };
 
     const handleDeletePdf = async (fileId, upType, isTypeRecommend) => {
-        const url = `http://test-asya.ru/api/deletePdf?file_id=${fileId}`;
+        const url = `${env.REACT_APP_APP_API_PROTOCOL}://${env.REACT_APP_API_DOMEN_NAME}/api/deletePdf?file_id=${fileId}`;
 
         if (window.confirm('Вы уверены, что хотите удалить этот файл?')) {
             setIsLoading(true);
@@ -1099,7 +1147,7 @@ function DiagnosPageAdmin() {
         formData.append('comment', comment); // Комментарий
 
         try {
-            const response = await fetch('http://test-asya.ru/api/updateComment', {
+            const response = await fetch(`${env.REACT_APP_APP_API_PROTOCOL}://${env.REACT_APP_API_DOMEN_NAME}/api/updateComment`, {
                 method: 'POST',
                 body: formData,
             });
@@ -1118,9 +1166,45 @@ function DiagnosPageAdmin() {
     };
 
     console.log(diagnosis, 'spec');
+    console.log(params, 'spec2');
 
     if (loading) {
-        return <div>Загрузка...</div>;
+        return (
+            <div className='wrapper-diagnos'>
+                <div className='sidebar'>
+                    <div className='header-sidebar'>Специализации</div>
+                    <div className='diagnosis-components'>
+                        {allSpecializations ? (
+                            allSpecializations.map((spec, index) => (
+                                <Link
+                                    to={`admin/specialization/${spec.code}`}
+                                    state={{ specialization: spec, allSpecializations }}
+                                    className={`diagnosis-item ${params.code == spec.code ? 'active' : ''}`}
+                                    key={index}
+                                >
+                                    {spec.name}
+                                </Link>
+                            ))
+                        ) : (
+                            <div>Специализации не найдены</div>
+                        )}
+                    </div>
+                </div>
+                <div className='main-content'>
+                    <div className='header-1'>
+                        <div className='header-block'>
+                            <HeaderAdmin />
+                            <div className='count-wrapper'>
+                                <div className='count-block'>
+                                    Количество посещений: {diagnosis?.visitsCount}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>Загрузка...</div>
+                </div>
+            </div >
+        );
     }
 
     if (error) {
@@ -1132,17 +1216,12 @@ function DiagnosPageAdmin() {
             <div className='sidebar'>
                 <div className='header-sidebar'>Специализации</div>
                 <div className='diagnosis-components'>
-                    <Link
-                        to={`/admin/`}
-                        className='diagnosis-item'>
-                        Админ страница
-                    </Link>
                     {allSpecializations ? (
                         allSpecializations.map((spec, index) => (
                             <Link
-                                to={`/admin/specialization/${spec.name}`}
+                                to={`/admin/specialization/${spec.code}/`}
                                 state={{ specialization: spec, allSpecializations }}
-                                className={`diagnosis-item ${current === spec.name ? 'active' : ''}`}
+                                className={`diagnosis-item ${params.code === spec.code ? 'active' : ''}`}
                                 key={index}
                             >
                                 {spec.name}
@@ -1159,7 +1238,7 @@ function DiagnosPageAdmin() {
                         <HeaderAdmin />
                         <div className='count-wrapper'>
                             <div className='count-block'>
-                                Количество посещений: {diagnosis.visitsCount}
+                                Количество посещений: {diagnosis?.visitsCount}
                             </div>
                         </div>
                     </div>
@@ -1167,20 +1246,20 @@ function DiagnosPageAdmin() {
                 <div className="main-container-diagnos">
                     <div className='description-wrapper'>
                         <div className='description-block'>
-                            {/* <div className='description-spec'>
+                            <div className='description-spec'>
                                 <div className='description-text'>Специализации:</div>
                                 <div className='spec-items'>
                                     <div className='spec-item'>
-                                        Андрология
+                                        {diagnosis?.section}
                                     </div>
                                     <div className='spec-item'>
                                         Гинекология
                                     </div>
                                 </div>
                                 <div className='change-button'>Изменить</div>
-                            </div> */}
+                            </div>
                             <div className='description-code'>
-                                <div className='description-text'>Код диагноза:</div>
+                                <div className='description-text'>Код МКБ:</div>
                                 <div className='code-item'>
                                     {diagnosis?.code}
                                 </div>
@@ -1247,12 +1326,18 @@ function DiagnosPageAdmin() {
                                                         {survey.values?.length > 0 ? (
                                                             survey.values.map((item, itemIndex) => (
                                                                 <div className='inspection-component-text-admin' key={itemIndex}>
-                                                                    <li>
-                                                                        {item.name}
-                                                                        <div className='inspection-components-comment-text-admin'>
-                                                                            {item.comment}
-                                                                        </div>
-                                                                    </li>
+                                                                    <div className='component-ul-li'>
+                                                                        <ul>
+                                                                            <li>
+                                                                                <div className='div-ul-li'>
+                                                                                    {item.name}
+                                                                                    <div className='inspection-components-comment-text-admin'>
+                                                                                        {item.comment}
+                                                                                    </div>
+                                                                                </div>
+                                                                            </li>
+                                                                        </ul>
+                                                                    </div>
                                                                     <div className='micro-change' onClick={() => {
                                                                         setEditComponent({ name: item.name, comment: item.comment });
                                                                         setCurrentComponentId(item.id);
@@ -1523,12 +1608,18 @@ function DiagnosPageAdmin() {
                                                         {drug_treatment.values?.length > 0 ? (
                                                             drug_treatment.values.map((item, itemIndex) => (
                                                                 <div className='medical_treatment-component-text-admin' key={itemIndex}>
-                                                                    <li>
-                                                                        {item.name}
-                                                                        <div className='medical_treatment-components-comment-text-admin'>
-                                                                            {item.comment}
-                                                                        </div>
-                                                                    </li>
+                                                                    <div className='component-ul-li'>
+                                                                        <ul>
+                                                                            <li>
+                                                                                <div className='div-ul-li'>
+                                                                                    {item.name}
+                                                                                    <div className='medical_treatment-components-comment-text-admin'>
+                                                                                        {item.comment}
+                                                                                    </div>
+                                                                                </div>
+                                                                            </li>
+                                                                        </ul>
+                                                                    </div>
                                                                     <div className='micro-change' onClick={() => {
                                                                         setEditComponent({ name: item.name, comment: item.comment });
                                                                         setCurrentComponentId(item.id);
@@ -1811,12 +1902,18 @@ function DiagnosPageAdmin() {
                                                         {recommendation.values?.length > 0 ? (
                                                             recommendation.values.map((item, itemIndex) => (
                                                                 <div className='recomend-component-text-admin' key={itemIndex}>
-                                                                    <li>
-                                                                        {item.name}
-                                                                        <div className='recomend-components-comment-text-admin'>
-                                                                            {item.comment}
-                                                                        </div>
-                                                                    </li>
+                                                                    <div className='component-ul-li'>
+                                                                        <ul>
+                                                                            <li>
+                                                                                <div className='div-ul-li'>
+                                                                                    {item.name}
+                                                                                    <div className='recomend-components-comment-text-admin'>
+                                                                                        {item.comment}
+                                                                                    </div>
+                                                                                </div>
+                                                                            </li>
+                                                                        </ul>
+                                                                    </div>
                                                                     <div className='micro-change'>
                                                                         Изменить
                                                                     </div>
@@ -1827,7 +1924,7 @@ function DiagnosPageAdmin() {
                                                             ))
 
                                                         ) : (
-                                                            <div className='no-items-message'>У рекомендаций нет должно быть компонентов</div>
+                                                            <div className='no-items-message'></div>
                                                         )}
                                                     </div>
                                                 </div>

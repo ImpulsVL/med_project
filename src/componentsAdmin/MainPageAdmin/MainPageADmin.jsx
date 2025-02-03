@@ -13,13 +13,15 @@ import { ReactComponent as ClearIcon } from './icons/Clear.svg';
 import HeaderAdmin from '../headerAdmin/HeaderAdmin';
 
 function MainPageAdmin() {
+    const env = process.env;
+
     const [searchText, setSearchText] = useState('');
     const [showResults, setShowResults] = useState(false);
     const [specializations, setSpecializations] = useState([]);
     const [loading, setLoading] = useState(false);
 
     const [showPopup, setShowPopup] = useState(false);
-    const [newSpecialization, setNewSpecialization] = useState({ name: '', visites: 0, diagnoses: [] });
+    const [newSpecialization, setNewSpecialization] = useState({ name: '', visitsCount: 0, diagnoses: [] });
 
     const [showEditPopup, setShowEditPopup] = useState(false);
     const [editSpecialization, setEditSpecialization] = useState(null);
@@ -43,17 +45,18 @@ function MainPageAdmin() {
         const fetchData = async () => {
             setLoading(true);
             try {
-                const response = await fetch('http://test-asya.ru/api/');
+                // const response = await fetch('http://test-asya.ru/api/');
+                const response = await fetch(`${env.REACT_APP_APP_API_PROTOCOL}://${env.REACT_APP_API_DOMEN_NAME}/api/`);
                 const data = await response.json();
                 setSpecializations(data.result.map(item => ({
                     name: item.name,
-                    visites: item.visitsCount,
+                    visitsCount: item.visitsCount,
                     code: item.code,
                     diagnoses: []
                 })));
                 setOriginalSpecializations(data.result.map(item => ({
                     name: item.name,
-                    visites: item.visitsCount,
+                    visitsCount: item.visitsCount,
                     code: item.code,
                     diagnoses: []
                 })));
@@ -114,7 +117,7 @@ function MainPageAdmin() {
         if (newSpecialization.name) {
             setLoading(true);
             try {
-                const response = await fetch(`http://test-asya.ru/api/addSpecialization?name=${newSpecialization.name}`, {
+                const response = await fetch(`${env.REACT_APP_APP_API_PROTOCOL}://${env.REACT_APP_API_DOMEN_NAME}/api/addSpecialization?name=${newSpecialization.name}`, {
                     method: 'GET'
                 });
 
@@ -123,11 +126,11 @@ function MainPageAdmin() {
                     // Обновляем состояние с новыми данными
                     setSpecializations([...specializations, {
                         name: newSpecialization.name,
-                        visites: 0,
+                        visitsCount: 0,
                         code: data.code,
                         diagnoses: [],
                     }]);
-                    setNewSpecialization({ name: '', visites: 0, diagnoses: [] });
+                    setNewSpecialization({ name: '', visitsCount: 0, diagnoses: [] });
                     setShowPopup(false);
                 } else {
                     console.error("Ошибка при добавлении специализации:", response.statusText);
@@ -149,7 +152,7 @@ function MainPageAdmin() {
         if (editSpecialization) {
             setLoading(true);
             try {
-                const response = await fetch(`http://test-asya.ru/api/editSpecialization?name=${encodeURIComponent(editSpecialization.name)}&code=${encodeURIComponent(editSpecialization.code)}`, {
+                const response = await fetch(`${env.REACT_APP_APP_API_PROTOCOL}://${env.REACT_APP_API_DOMEN_NAME}/api/editSpecialization?name=${encodeURIComponent(editSpecialization.name)}&code=${encodeURIComponent(editSpecialization.code)}`, {
                     method: 'GET',
                 });
 
@@ -181,7 +184,7 @@ function MainPageAdmin() {
         if (deleteSpecialization) {
             setLoading(true);
             try {
-                const response = await fetch(`http://test-asya.ru/api/deleteSpecialization?code=${deleteSpecialization.code}`, {
+                const response = await fetch(`${env.REACT_APP_APP_API_PROTOCOL}://${env.REACT_APP_API_DOMEN_NAME}/api/deleteSpecialization?code=${deleteSpecialization.code}`, {
                     method: 'GET',
                 });
 
@@ -210,10 +213,10 @@ function MainPageAdmin() {
     };
 
     const handleSortByVisits = () => {
-        if (sortField === 'visites') {
+        if (sortField === 'visitsCount') {
             setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
         } else {
-            setSortField('visites');
+            setSortField('visitsCount');
             setSortOrder('asc');
         }
     };
@@ -223,10 +226,10 @@ function MainPageAdmin() {
             return sortOrder === 'asc'
                 ? a.name.localeCompare(b.name)
                 : b.name.localeCompare(a.name);
-        } else if (sortField === 'visites') {
+        } else if (sortField === 'visitsCount') {
             return sortOrder === 'asc'
-                ? a.visites - b.visites
-                : b.visites - a.visites;
+                ? a.visitsCount - b.visitsCount
+                : b.visitsCount - a.visitsCount;
         }
         return 0; // Если сортировка не выбрана
     });
@@ -236,11 +239,11 @@ function MainPageAdmin() {
         if (!isNaN(value)) {
             setSpecializations(originalSpecializations.filter(specialization => {
                 if (filterCondition === 'greater') {
-                    return specialization.visites > value;
+                    return specialization.visitsCount > value;
                 } else if (filterCondition === 'less') {
-                    return specialization.visites < value;
+                    return specialization.visitsCount < value;
                 } else if (filterCondition === 'equal') {
-                    return specialization.visites === value;
+                    return specialization.visitsCount === value;
                 }
                 return true;
             }));
@@ -252,6 +255,8 @@ function MainPageAdmin() {
         setFilterCondition('greater');
         setSpecializations(originalSpecializations); // Возвращаем все специализации
     };
+
+    console.log(specializations);
 
 
     return (
@@ -297,7 +302,7 @@ function MainPageAdmin() {
                                         filteredSpecializations.map((specialization, index) => (
                                             <Link
                                                 key={index}
-                                                to={`/admin/specialization/${specialization.name}`}
+                                                to={`/admin/specialization/${specialization.code}/`}
                                                 className="search_result_item"
                                                 state={{ specialization, allSpecializations: specializations }}
                                             >
@@ -371,13 +376,13 @@ function MainPageAdmin() {
                                 <div className='diagnosis_plate'>
                                     <Link
                                         key={index}
-                                        to={`/admin/specialization/${specialization.name}`}
+                                        to={`/admin/specialization/${specialization.code}/`}
                                         state={{ specialization, allSpecializations: specializations }}
                                         className='link-plate for-styles'
                                     >
                                         <div className='force_diagnosis_plate'></div>
                                         <div className='text_diagnosis_plate'>{specialization.name}</div>
-                                        <div className='count_diagnosis_plate'>Количество посещений: {specialization.visites}</div>
+                                        <div className='count_diagnosis_plate'>Количество посещений: {specialization.visitsCount}</div>
                                     </Link>
                                     <div className='buttons-plate'>
                                         <div className='button-change' onClick={(e) => handleEditClick(specialization)}>Изменить</div>

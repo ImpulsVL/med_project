@@ -22,12 +22,13 @@
     text-decoration: none;
     box-sizing: border-box;
     transition: background-color 300ms;
+    gap: 10px;
 }
 
 .link-plate{
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 90px;
 }
 
 .for-styles{
@@ -38,7 +39,7 @@
     position: relative;
     display: flex;
     flex-shrink: 0;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
     width: 100%;
     height: 60px;
@@ -51,7 +52,7 @@
     text-decoration: none;
     box-sizing: border-box;
     transition: background-color 300ms;
-    gap: 125px;
+    gap: 150px;
 }
 
 .a {
@@ -75,7 +76,7 @@
     color: #FAFBFA;
     transition: color 300ms;
     font-size: 20px;
-    min-width: 200px;
+    min-width: 240px;
     text-align: left;
 }
 
@@ -84,14 +85,15 @@
     transition: color 300ms;
     font-size: 20px;
     text-align: left;
-    width: 75px;
+    min-width: 80px;
 }
 
 .name_diagnosis_plate{
     color: #FAFBFA;
     transition: color 300ms;
     font-size: 14px;
-    width: 380px;
+    width: 300px;
+    text-align: left;
 }
 
 .count_diagnosis_plate {
@@ -176,11 +178,20 @@
     flex-direction: row;
     align-items: center;
     gap: 15px;
+    min-width: 240px;
+}
+
+.text-sort-second{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 15px;
+    min-width: 50px;
 }
 
 .special-text-sort{
     display: flex;
-    gap: 125px;
+    gap: 90px;
 }
 
 .special-text-sort-plate{

@@ -321,7 +321,7 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
-    align-items: flex-start;
+    align-items: stretch;
 }
 
 .inspection-component-text-admin, .medical_treatment-component-text-admin, .recomend-component-text-admin{
@@ -334,6 +334,17 @@
     align-items: center;
     justify-content: center;
     gap: 5px;
+}
+
+.component-ul-li{
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+}
+
+.div-ul-li{
+    display: block;
+    flex-grow: 1;
 }
 
 .micro-delete{
@@ -475,6 +486,7 @@
     padding: 5px;
     border-radius: 10px;
     display: flex;
+    flex-grow: 1;
     flex-direction: column;
     gap: 5px;
 }
@@ -483,6 +495,7 @@
     padding: 5px;
     border-radius: 10px;
     display: flex;
+    flex-grow: 1;
     flex-direction: column;
     gap: 5px;
 }
@@ -492,6 +505,7 @@
     padding: 5px;
     border-radius: 10px;
     display: flex;
+    flex-grow: 1;
     flex-direction: column;
     gap: 5px;
 }
