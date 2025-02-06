@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 
 function useFetchData(id, endpoint) {
+    const env = process.env;
+
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -10,7 +12,8 @@ function useFetchData(id, endpoint) {
 
         const fetchData = async () => {
             try {
-                const response = await fetch(`http://assistant-admin.pavlov-mc.ru/api/getdiagnosis?id=${id}`);
+                // const response = await fetch(`http://assistant-admin.pavlov-mc.ru/api/getdiagnosis?id=${id}`);
+                const response = await fetch(`${env.REACT_APP_APP_API_PROTOCOL}://${env.REACT_APP_DOMEN_NAME}/api/getdiagnosis?id=${id}`);
                 if (!response.ok) {
                     throw new Error(`HTTP error: ${response.status}`);
                 }

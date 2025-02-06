@@ -6,10 +6,14 @@ import { useParams } from 'react-router-dom';
 import CommentPlate from '../commentPlate/CommentPlate';
 
 function InspectionPlate({ onToggleCommentPlate, diagnos, onSelectionChange, onChange, isActive }) {
+    const { id } = useParams();
+
     const inspectionData = diagnos.items;
     const comment = diagnos.comment;
+    const files = diagnos.files;
     const [showCommentPlate, setShowCommentPlate] = useState(false);
     const [selectedItems, setSelectedItems] = useState([]);
+
 
     const handleCountChange = () => {
         onChange(selectedItems)
@@ -153,7 +157,7 @@ function InspectionPlate({ onToggleCommentPlate, diagnos, onSelectionChange, onC
                     {renderInspectionItems()}
                 </div>
             </div>
-            {isActive && <CommentPlate onClose={toggleCommentPlate} data={comment} section="survey" title="Обследования" />}
+            {isActive && <CommentPlate onClose={toggleCommentPlate} data={comment} data2={files} section="survey" title="Обследования" />}
         </div>
     );
 }

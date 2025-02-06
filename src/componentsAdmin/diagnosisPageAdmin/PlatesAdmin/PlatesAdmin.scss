@@ -52,7 +52,7 @@
     text-decoration: none;
     box-sizing: border-box;
     transition: background-color 300ms;
-    gap: 150px;
+    gap: 250px;
 }
 
 .a {
@@ -216,4 +216,32 @@
 
 .for-head{
     width: 280px;
+}
+
+@media (max-width: 1650px) {
+    .link-plate {
+        gap: 50px;
+    }
+
+    .special-text-sort{
+        gap: 50px;
+    }
+
+    .head_diagnosis_plate_second{
+       gap: 150px;
+    }
+
+    .name_diagnosis_plate{
+        font-size: 12px;
+        width: 250px;
+    }
+
+    .text-sort-second{
+        gap: 10px;
+    }
+
+    .code_diagnosis_plate{
+        font-size: 18px;
+        min-width: 70px;
+    }
 }

@@ -117,10 +117,26 @@
 }
 
 .comment_wrapper a {
-    color: blue; /* Цвет ссылки */
-    text-decoration: underline; /* Подчеркивание */
+    color: blue;
+    text-decoration: none;
 }
 
 .comment_wrapper a:hover {
     color: darkblue; /* Цвет ссылки при наведении */
+}
+
+.list-pdf{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.pdf-file{
+    background-color: #CE719E;
+    padding: 10px;
+    border-radius: 10px;
+    text-decoration: none;
+    color: white;
+    cursor: pointer;
 }

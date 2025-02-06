@@ -11,6 +11,8 @@ function Medical_treatmentPlate({ onToggleCommentPlate, diagnos, onSelectionChan
     const { id } = useParams();
     const treatmentData = diagnos.items;
     const comment = diagnos.comment;
+    const files = diagnos.files;
+
     const [showCommentPlate, setShowCommentPlate] = useState(false);
     const [expandedItems, setExpandedItems] = useState({});
     const [selectedItems, setSelectedItems] = useState([]); // For selected parent and child items
@@ -240,7 +242,7 @@ function Medical_treatmentPlate({ onToggleCommentPlate, diagnos, onSelectionChan
                     {renderTreatmentItems()}
                 </div>
             </div>
-            {isActive && <CommentPlate onClose={toggleCommentPlate} data={comment} section="drug_treatment" title="Медикаментозное лечение" />}
+            {isActive && <CommentPlate onClose={toggleCommentPlate} data={comment} data2={files} section="drug_treatment" title="Медикаментозное лечение" />}
         </div>
     );
 }

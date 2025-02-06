@@ -540,6 +540,46 @@
     color: white;
 }
 
+.specialization-list{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.specialization-item{
+    display: flex;
+    flex-direction: row;
+}
+
+.spec-name{
+    display: flex;
+    flex-grow: 1;
+}
+
+.spec-input{
+    width: none;
+}
+
+.popup2 {
+    background: #F0F0E1;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 300px; // Ширина всплывающего окна
+}
+
+.popup2 h2 {
+    margin: 0 0 10px;
+}
+
+.popup2 input {
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
 @keyframes spin {
     0% {
         transform: rotate(0deg);

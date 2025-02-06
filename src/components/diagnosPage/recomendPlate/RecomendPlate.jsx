@@ -12,6 +12,7 @@ function RecomendPlate({ onToggleCommentPlate, diagnos, onSelectionChange, onCha
 
     const recommendationData = diagnos.items;
     const comment = diagnos.comment;
+    const files = diagnos.files;
 
     const toggleCommentPlate = () => {
         setShowCommentPlate(!showCommentPlate);
@@ -84,7 +85,7 @@ function RecomendPlate({ onToggleCommentPlate, diagnos, onSelectionChange, onCha
                     {renderRecommendationItems()}
                 </div>
             </div>
-            {isActive && <CommentPlate onClose={toggleCommentPlate} data={comment} section="recommendations" title="Рекомендации"/>}
+            {isActive && <CommentPlate onClose={toggleCommentPlate} data={comment} data2={files} section="recommendations" title="Рекомендации"/>}
         </div>
     );
 }

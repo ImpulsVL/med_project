@@ -52,6 +52,11 @@ function DiagnosPageAdmin() {
     const [error, setError] = useState(null);
 
     const [showEditPopup, setShowEditPopup] = useState(false);
+
+    const [showEditPopupSpecialization, setShowEditPopupSpecialization] = useState(false);
+
+    const [selectedSpecializations, setSelectedSpecializations] = useState([]);
+
     const [editField, setEditField] = useState(null);
     const [newValue, setNewValue] = useState('');
 
@@ -863,7 +868,7 @@ function DiagnosPageAdmin() {
         setShowDeletePopup(true);
     };
 
-    console.log(iddig, '111111111');
+    // console.log(iddig, 'iddig');
 
     const handleDeleteDiagnosis = async () => {
         if (deleteItemInfo) {
@@ -878,14 +883,11 @@ function DiagnosPageAdmin() {
                     throw new Error('Ошибка при удалении элемента');
                 }
 
-
-                console.log(type, 'lol');
-
                 // Обновляем состояние диагноза, удаляя элемент
                 setDiagnosis(prev => {
                     const adjustedType = type === 'recommendation' ? 'recommendations' : type;
 
-                    const updatedItems = prev[adjustedType].items.filter(item => item.ID !== itemId); // Удаляем элемент по ID
+                    const updatedItems = prev[adjustedType].items.filter(item => item.ID !== itemId);
 
                     return {
                         ...prev,
@@ -947,6 +949,25 @@ function DiagnosPageAdmin() {
             }
         }
     };
+
+    const handleEditSpecialization = () => {
+        setSelectedSpecializations([diagnosis?.section]);
+        setShowEditPopupSpecialization(true);
+    };
+
+    const handleSpecializationChange = (code) => {
+        setSelectedSpecializations((prev) => {
+            if (prev.includes(code)) {
+                return prev.filter((item) => item !== code); // удалить код если он выбран
+            } else {
+                return [...prev, code]; // добавить код если он не выбран
+            }
+        });
+    };
+
+    const handleEditSpecializationPopUP = () => {
+        console.log(selectedSpecializations);
+    }
 
     const handleEdit = async () => {
         try {
@@ -1015,7 +1036,6 @@ function DiagnosPageAdmin() {
             }
 
             const result = await response.json();
-            console.log(result);
 
             // Обновляем состояние в зависимости от uploadType и isTypeRecommend
             setDiagnosis(prev => {
@@ -1061,7 +1081,7 @@ function DiagnosPageAdmin() {
     };
 
     const handleOpenPdf = (url) => {
-        window.open(`${url}`, '_blank'); // Открываем PDF в новой вкладке
+        window.open(`http://${url}`, '_blank'); // Открываем PDF в новой вкладке
     };
 
     const handleDeletePdf = async (fileId, upType, isTypeRecommend) => {
@@ -1079,10 +1099,6 @@ function DiagnosPageAdmin() {
                 }
 
                 const result = await response.json();
-
-                console.log(upType, 'Вопросы есть');
-                console.log(fileId, 'вопросы есть?');
-                console.log(isTypeRecommend, 'вопросы есть?');
 
                 // Обновляем состояние, удаляя файл из списка
                 setDiagnosis(prev => {
@@ -1132,10 +1148,6 @@ function DiagnosPageAdmin() {
 
     const handleSaveChanges = async (type, isRecommendation) => {
 
-        console.log(type);
-
-        console.log(isRecommendation);
-
         const comment = isRecommendation
             ? textRefs[`${type}Rec`].current.innerHTML
             : textRefs[`${type}NonRec`].current.innerHTML;
@@ -1157,7 +1169,6 @@ function DiagnosPageAdmin() {
             }
 
             const result = await response.json();
-            console.log(result);
             alert('Изменения успешно сохранены!');
         } catch (error) {
             console.error(error);
@@ -1165,8 +1176,6 @@ function DiagnosPageAdmin() {
         }
     };
 
-    console.log(diagnosis, 'spec');
-    console.log(params, 'spec2');
 
     if (loading) {
         return (
@@ -1252,11 +1261,8 @@ function DiagnosPageAdmin() {
                                     <div className='spec-item'>
                                         {diagnosis?.section}
                                     </div>
-                                    <div className='spec-item'>
-                                        Гинекология
-                                    </div>
                                 </div>
-                                <div className='change-button'>Изменить</div>
+                                <div className='change-button' onClick={handleEditSpecialization}>Изменить</div>
                             </div>
                             <div className='description-code'>
                                 <div className='description-text'>Код МКБ:</div>
@@ -2370,6 +2376,33 @@ function DiagnosPageAdmin() {
                         <div className="popup-buttons">
                             <button className='popup-button-add' onClick={handleEdit}>Сохранить изменения</button>
                             <button className='popup-button-close' onClick={() => setShowEditPopup(false)}>Закрыть</button>
+                        </div>
+                    </div>
+                </div>
+            )}
+
+            {showEditPopupSpecialization && (
+                <div className="popup-overlay">
+                    <div className="popup2">
+                        <h2>Изменить специализации</h2>
+                        <div className="specialization-list">
+                            {allSpecializations.map((spec) => (
+                                <div key={spec.code} className="specialization-item">
+                                    <div className='spec-name'>
+                                        {spec.name}
+                                    </div>
+                                    <input
+                                        className='spec-input'
+                                        type="checkbox"
+                                        checked={selectedSpecializations.includes(spec.code)}
+                                        onChange={() => handleSpecializationChange(spec.code)}
+                                    />
+                                </div>
+                            ))}
+                        </div>
+                        <div className="popup-buttons">
+                            <button className='popup-button-add' onClick={handleEditSpecializationPopUP}>Сохранить изменения</button>
+                            <button className='popup-button-close' onClick={() => setShowEditPopupSpecialization(false)}>Закрыть</button>
                         </div>
                     </div>
                 </div>

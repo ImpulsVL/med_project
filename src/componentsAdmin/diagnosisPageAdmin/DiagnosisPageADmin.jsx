@@ -27,18 +27,12 @@ function DiagnosisPageAdmin() {
 
     const { specialization, allSpecializations } = location.state || {};
 
-    console.log(specialization, '1');
-    console.log(allSpecializations, '2');
-
     // const currentSpecializationCode = specialization?.code;
     // const currentSpecializationName = specialization?.name;
 
     var currentSpecializationName = specialization?.section;
     currentSpecializationName = specialization?.code;
     const currentSpecializationCode = params?.code;
-
-    console.log(currentSpecializationCode, '3');
-    console.log(currentSpecializationName, '4');
 
     const [showPopup, setShowPopup] = useState(false);
     const [newDiagnosis, setNewDiagnosis] = useState({ name: '', code: '', visitsCount: 0 });
@@ -471,7 +465,7 @@ function DiagnosisPageAdmin() {
                                                         key={index}
                                                         className="search_result_item"
                                                         to={`/admin/specialization/${specialization.name}/diagnos/${diagnosis.id}/`}
-                                                        state={{ diagnosisId: diagnosis.id, diagnosis, iddig: diagnosis.id, allSpecializations, specialization, current: specialization.name }}
+                                                        state={{ diagnosisId: diagnosis.id, diagnosis, iddig: diagnosis.id, allSpecializations, specialization, current: specialization?.name }}
                                                     >
                                                         <span className="diagnosis_code">{diagnosis.code}</span>
                                                         <span className="diagnosis_name">{diagnosis.name}</span>
@@ -667,7 +661,7 @@ function DiagnosisPageAdmin() {
                                                     state={{ diagnosisId: diagnosis.id, diagnosis, iddig: diagnosis.id, allSpecializations, specialization, current: specialization.code }}
                                                 >
                                                     <span className="diagnosis_code">{diagnosis.code}</span>
-                                                    <span className="diagnosis_name">{diagnosis.name}</span>
+                                                    <span className="diagnosis_name">{diagnosis?.name}</span>
                                                 </Link>
                                             ))
                                         ) : (
@@ -750,26 +744,30 @@ function DiagnosisPageAdmin() {
                                 </div>
                                 <div className='for-head'></div>
                             </div>
-                            {currentDiagnoses.map((diagnosis, index) => (
-                                <div className='diagnosis_plate' key={index}>
-                                    <Link
-                                        className='link-plate'
-                                        to={`/admin/specialization/${params.code}/diagnos/${diagnosis.id}`}
-                                        // state={{ diagnosis, allSpecializations: [], specialization }}
-                                        state={{ diagnosisId: diagnosis.id, diagnosis, iddig: diagnosis.id, allSpecializations, specialization, current: specialization.name }}
+                            {currentDiagnoses?.length > 0 ? (
+                                currentDiagnoses.map((diagnosis, index) => (
+                                    <div className='diagnosis_plate' key={index}>
+                                        <Link
+                                            className='link-plate'
+                                            to={`/admin/specialization/${params.code}/diagnos/${diagnosis.id}`}
+                                            // state={{ diagnosis, allSpecializations: [], specialization }}
+                                            state={{ diagnosisId: diagnosis.id, diagnosis, iddig: diagnosis.id, allSpecializations, specialization, current: specialization?.name }}
 
-                                    >
-                                        <div className='force_diagnosis_plate'></div>
-                                        <div className='code_diagnosis_plate'>{diagnosis.code}</div>
-                                        <div className='name_diagnosis_plate'>{diagnosis.name}</div>
-                                        <div className='count_diagnosis_plate'>Количество посещений: {diagnosis?.visitsCount}</div>
-                                    </Link>
-                                    <div className='buttons-plate'>
-                                        <div className='button-change' onClick={() => handleEditClick(diagnosis)}>Изменить</div>
-                                        <div className='button-delete' onClick={() => handleDeleteClick(diagnosis)}>Удалить</div>
+                                        >
+                                            <div className='force_diagnosis_plate'></div>
+                                            <div className='code_diagnosis_plate'>{diagnosis.code}</div>
+                                            <div className='name_diagnosis_plate'>{diagnosis.name}</div>
+                                            <div className='count_diagnosis_plate'>Количество посещений: {diagnosis?.visitsCount}</div>
+                                        </Link>
+                                        <div className='buttons-plate'>
+                                            <div className='button-change' onClick={() => handleEditClick(diagnosis)}>Изменить</div>
+                                            <div className='button-delete' onClick={() => handleDeleteClick(diagnosis)}>Удалить</div>
+                                        </div>
                                     </div>
-                                </div>
-                            ))}
+                                ))
+                            ) : (
+                                <div className='nop-diag'>Нету диагнозов</div>
+                            )}
                         </div>
                         <div className="pagination">
                             {/* <div>Страница {currentPage} из {totalPages}</div> */}

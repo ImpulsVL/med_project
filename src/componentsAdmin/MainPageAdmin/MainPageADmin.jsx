@@ -256,7 +256,7 @@ function MainPageAdmin() {
         setSpecializations(originalSpecializations); // Возвращаем все специализации
     };
 
-    console.log(specializations);
+    // console.log(specializations);
 
 
     return (

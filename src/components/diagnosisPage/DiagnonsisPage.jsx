@@ -6,6 +6,7 @@ import { Link, useNavigate, useLocation, useParams } from 'react-router-dom';
 import Header from '../header/header';
 
 function DiagnosisPage() {
+    const env = process.env;
     const location = useLocation();
     const { displayName } = location.state || { displayName: 'Популярные диагнозы' };
 
@@ -18,7 +19,8 @@ function DiagnosisPage() {
         const fetchDiagnoses = async () => {
             try {
                 // Делаем запрос с параметром code
-                const response = await fetch(`http://assistant-admin.pavlov-mc.ru/api/getdiagnoses?code=${code}`);
+                // const response = await fetch(`http://assistant-admin.pavlov-mc.ru/api/getdiagnoses?code=${code}`);
+                const response = await fetch(`${env.REACT_APP_APP_API_PROTOCOL}://${env.REACT_APP_DOMEN_NAME}/api/getdiagnoses?code=${code}`);
                 if (!response.ok) {
                     throw new Error(`Ошибка: ${response.status}`);
                 }
