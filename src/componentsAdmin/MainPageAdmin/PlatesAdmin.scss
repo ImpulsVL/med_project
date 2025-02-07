@@ -42,6 +42,8 @@
     text-decoration: none;
     box-sizing: border-box;
     transition: background-color 300ms;
+
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .a {
@@ -117,6 +119,7 @@
     background-color: #E5DB8E;
     border-radius: 10px;
     font-size: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .button-delete{
@@ -125,6 +128,7 @@
     background-color: #F89696;
     border-radius: 10px;
     font-size: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .text-sort{

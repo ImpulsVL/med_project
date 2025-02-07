@@ -12,6 +12,7 @@ export const Plates = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
+                // const response = await fetch(`http://assistant-admin.pavlov-mc.ru/api/?getsections`);
                 const response = await fetch(`${env.REACT_APP_APP_API_PROTOCOL}://${env.REACT_APP_DOMEN_NAME}/api/?getsections`);
                 if (!response.ok) {
                     throw new Error(`Ошибка: ${response.status}`);
@@ -41,14 +42,14 @@ export const Plates = () => {
         <div className='plates_wrapper'>
             {data.map((item, index) => (
                 <Link
-                    className='diagnosis_plate'
+                    className='diagnosis_plate1'
                     to={`/diagnosis/${item.code}`}// передаем code в URL
                     state={{ displayName: item.name, codeName: item.code }}
                     key={index}
                 >
                     <div className='force_diagnosis_plate'></div>
-                    <div className='text_diagnosis_plate'>{item.name}</div>
-                    <div className='count_diagnosis_plate'>{item.itemsCount}</div>
+                    <div className='text_diagnosis_plate1'>{item.name}</div>
+                    <div className='count_diagnosis_plate1'>{item.itemsCount}</div>
                 </Link>
             ))}
         </div>

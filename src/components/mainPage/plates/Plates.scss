@@ -5,7 +5,7 @@
     padding: 0 45px; /* Отступы от краев экрана */
 }
 
-.diagnosis_plate {
+.diagnosis_plate1 {
     position: relative;
     display: flex;
     flex-shrink: 0;
@@ -41,31 +41,31 @@
     transition: visibility 300ms, opacity 300ms; /* Плавный переход для видимости и прозрачности */
 }
 
-.text_diagnosis_plate {
+.text_diagnosis_plate1 {
     color: rgb(47, 71, 25);
     transition: color 300ms; /* Плавный переход для цвета текста */
 }
 
-.count_diagnosis_plate {
+.count_diagnosis_plate1 {
     color: rgb(181, 163, 174);
 }
 
 /* Эффект наведения */
-.diagnosis_plate:hover {
+.diagnosis_plate1:hover {
     background-color: #ecebeb; /* Можно изменить цвет фона при наведении */
 }
 
-.diagnosis_plate:hover .force_diagnosis_plate {
+.diagnosis_plate1:hover .force_diagnosis_plate {
     visibility: visible;
     opacity: 1;
 }
 
-.diagnosis_plate:hover .text_diagnosis_plate {
+.diagnosis_plate1:hover .text_diagnosis_plate {
     color: rgb(73, 116, 33); /* Цвет текста при наведении */
 }
 
-.diagnosis_plate:link, 
-.diagnosis_plate:visited {
+.diagnosis_plate1:link, 
+.diagnosis_plate1:visited {
     color: inherit;
     text-decoration: none;
 }
