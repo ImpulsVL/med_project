@@ -5,14 +5,14 @@ import { ReactComponent as IconCheck } from './icons/Check.svg';
 import { useParams } from 'react-router-dom';
 import CommentPlate from '../commentPlate/CommentPlate';
 
-function InspectionPlate({ onToggleCommentPlate, diagnos, onSelectionChange, onChange, isActive }) {
+function InspectionPlate({ onToggleCommentPlate, diagnos, onSelectionChange, onChange, isActive, selectedItems: initialSelectedItems }) {
     const { id } = useParams();
 
     const inspectionData = diagnos.items;
     const comment = diagnos.comment;
     const files = diagnos.files;
     const [showCommentPlate, setShowCommentPlate] = useState(false);
-    const [selectedItems, setSelectedItems] = useState([]);
+    const [selectedItems, setSelectedItems] = useState(initialSelectedItems || []);
 
 
     const handleCountChange = () => {

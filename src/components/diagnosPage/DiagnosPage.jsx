@@ -14,16 +14,21 @@ import useFetchData from '../hooks/useFetchData';
 function DiagnosPage() {
     const { id, section } = useParams();
     const { data: recommendationData, loading, error } = useFetchData(id, 'testapi3.php');
+
+    const location = useLocation();
+    const { inspectionList: initialInspectionList, medicalTreatmentList: initialMedicalTreatmentList, recomendList: initialRecomendList } = location.state || {};
+    // const { diagnosisId } = location.state;
+
     const [selectedItems, setSelectedItems] = useState([]);;
 
     const [showCommentPlate, setShowCommentPlate] = useState(false);
 
-    const [inspectionList, updateInspection] = useState([]);
-    const [medicalTreatmentList, updateMedicalTreament] = useState([]);
-    const [recomendList, updateRecomend] = useState([]);
+    const [inspectionList, updateInspection] = useState(initialInspectionList || []);
+    const [medicalTreatmentList, updateMedicalTreament] = useState(initialMedicalTreatmentList || []);
+    const [recomendList, updateRecomend] = useState(initialRecomendList  || []);
 
     const [activeCommentPlate, setActiveCommentPlate] = useState(null);
-    
+
     if (loading) {
         return <div>Loading...</div>;
     }
@@ -83,18 +88,18 @@ function DiagnosPage() {
                 </div>
                 <div className='content_wrapper'>
                     <div className='inspection_plate_wrapper'>
-                        <InspectionPlate diagnos={recommendationData.survey} onChange={updatePlateInspection} onToggleCommentPlate={() => toggleCommentPlate('inspection')} isActive={activeCommentPlate === 'inspection'} onSelectionChange={handleSelectionChange} />
+                        <InspectionPlate diagnos={recommendationData.survey} onChange={updatePlateInspection} onToggleCommentPlate={() => toggleCommentPlate('inspection')} isActive={activeCommentPlate === 'inspection'} onSelectionChange={handleSelectionChange} selectedItems={inspectionList}/>
                     </div>
                     <div className='medical_treatment_plate_wrapper'>
-                        <Medical_treatmentPlate diagnos={recommendationData.drug_treatment} onChange={updateMedicalTreamentPlate} onToggleCommentPlate={() => toggleCommentPlate('treatment')} isActive={activeCommentPlate === 'treatment'} onSelectionChange={handleSelectionChange} />
+                        <Medical_treatmentPlate diagnos={recommendationData.drug_treatment} onChange={updateMedicalTreamentPlate} onToggleCommentPlate={() => toggleCommentPlate('treatment')} isActive={activeCommentPlate === 'treatment'} onSelectionChange={handleSelectionChange} selectedItems={medicalTreatmentList}/>
                     </div>
                     <div className='recomend_plate_wrapper'>
-                        <RecomendPlate diagnos={recommendationData.recommendations} onChange={updateRecomendPlate} onToggleCommentPlate={() => toggleCommentPlate('recommendation')} isActive={activeCommentPlate === 'recommendation'} onSelectionChange={handleSelectionChange} />
+                        <RecomendPlate diagnos={recommendationData.recommendations} onChange={updateRecomendPlate} onToggleCommentPlate={() => toggleCommentPlate('recommendation')} isActive={activeCommentPlate === 'recommendation'} onSelectionChange={handleSelectionChange} selectedItems={recomendList}/>
                     </div>
 
                 </div>
                 <div className='footer'>
-                    <MoveFooter inspectionList={inspectionList} medicalTreatmentList={medicalTreatmentList} recomendList={recomendList} sectionCode={section}/>
+                    <MoveFooter inspectionList={inspectionList} medicalTreatmentList={medicalTreatmentList} recomendList={recomendList} sectionCode={section} diagnosId={id}/>
                 </div>
             </div>
         </div>

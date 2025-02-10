@@ -5,10 +5,10 @@ import { ReactComponent as IconCheck } from './icons/Check.svg';
 import CommentPlate from '../commentPlate/CommentPlate';
 import { useParams } from 'react-router-dom';
 
-function RecomendPlate({ onToggleCommentPlate, diagnos, onSelectionChange, onChange, isActive }) {
+function RecomendPlate({ onToggleCommentPlate, diagnos, onSelectionChange, onChange, isActive, selectedItems: initialSelectedItems }) {
     const { id } = useParams();
     const [showCommentPlate, setShowCommentPlate] = useState(false);
-    const [selectedItems, setSelectedItems] = useState([]); // State to store selected items
+    const [selectedItems, setSelectedItems] = useState(initialSelectedItems || []); // State to store selected items
 
     const recommendationData = diagnos.items;
     const comment = diagnos.comment;

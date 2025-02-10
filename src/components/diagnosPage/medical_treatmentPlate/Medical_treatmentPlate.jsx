@@ -7,7 +7,7 @@ import CommentPlate from '../commentPlate/CommentPlate';
 import { useParams } from 'react-router-dom';
 import useFetchData from '../../hooks/useFetchData'; // Импортируем кастомный хук
 
-function Medical_treatmentPlate({ onToggleCommentPlate, diagnos, onSelectionChange, onChange, isActive }) {
+function Medical_treatmentPlate({ onToggleCommentPlate, diagnos, onSelectionChange, onChange, isActive, selectedItems: initialSelectedItems }) {
     const { id } = useParams();
     const treatmentData = diagnos.items;
     const comment = diagnos.comment;
@@ -15,7 +15,7 @@ function Medical_treatmentPlate({ onToggleCommentPlate, diagnos, onSelectionChan
 
     const [showCommentPlate, setShowCommentPlate] = useState(false);
     const [expandedItems, setExpandedItems] = useState({});
-    const [selectedItems, setSelectedItems] = useState([]); // For selected parent and child items
+    const [selectedItems, setSelectedItems] = useState(initialSelectedItems || []); // For selected parent and child items
 
     const [count, setCount] = useState(0);
     const handleCountChange = () => {

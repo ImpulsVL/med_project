@@ -3,11 +3,11 @@ import './MoveFooter.scss';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
-function MoveFooter({ recomendList, medicalTreatmentList, inspectionList, sectionCode}) {
+function MoveFooter({ recomendList, medicalTreatmentList, inspectionList, sectionCode, diagnosId}) {
     const navigate = useNavigate();
 
     const handleCreateTextVersion = () => {
-        navigate('/block', { state: { recomendList, medicalTreatmentList, inspectionList, sectionCode} });
+        navigate('/block', { state: { recomendList, medicalTreatmentList, inspectionList, sectionCode, diagnosId} });
     };
 
     const countMedicalTreatmentParents = medicalTreatmentList.length;

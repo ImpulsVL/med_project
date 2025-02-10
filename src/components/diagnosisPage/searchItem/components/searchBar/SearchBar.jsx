@@ -1,11 +1,13 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams, useLocation } from 'react-router-dom';
 import { ReactComponent as SearchLogo } from './icons/Search.svg';
 import { ReactComponent as ClearIcon } from './icons/Clear.svg';
 import './SearchBar.scss';
 
-export const SearchBar = () => {
+export const SearchBar = ({sectionCodeSearch}) => {
   const env = process.env;
+  const { code } = useParams();
+
   const [searchText, setSearchText] = useState('');
   const [showResults, setShowResults] = useState(false);
   const [diagnoses, setDiagnoses] = useState([]);
@@ -20,7 +22,7 @@ export const SearchBar = () => {
         setLoading(true);
         try {
           // const response = await fetch(`http://assistant-admin.pavlov-mc.ru/api/find?search=${searchText}`);
-          const response = await fetch(`${env.REACT_APP_APP_API_PROTOCOL}://${env.REACT_APP_API_DOMEN_NAME}/api/find?search=${searchText}`);
+          const response = await fetch(`${env.REACT_APP_APP_API_PROTOCOL}://${env.REACT_APP_API_DOMEN_NAME}/api/find?search=${searchText}&specialization=${code}`);
           const data = await response.json();
           const parsedData = (data.result);
           setDiagnoses(parsedData.items);

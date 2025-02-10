@@ -22,6 +22,7 @@ function BlockPage() {
     const recomendList = location.state?.recomendList || [];
 
     const sectionCode = location.state.sectionCode;
+    const diagnosId = location.state.diagnosId;
 
     const textRef = useRef(null); // Референс на блок с текстом
     const [isBold, setIsBold] = useState(false);
@@ -31,7 +32,6 @@ function BlockPage() {
 
     const [selectedFormat, setSelectedFormat] = useState('Choose heading');
 
-    // Handler for applying styles
     const applyFormat = (format) => {
         setSelectedFormat(format);
         if (format === 'Heading') {
@@ -49,24 +49,21 @@ function BlockPage() {
         }
     };
 
-    // Function to handle Enter or line breaks, resetting to normal text
     const handleKeyDown = (e) => {
         if (e.key === 'Enter') {
             const selection = window.getSelection();
             const parentElement = selection.anchorNode.parentElement;
 
-            // Если текущий блок — это заголовок, то добавляем новый абзац
             if (parentElement.tagName === 'H1' || parentElement.tagName === 'H2') {
-                e.preventDefault(); // Останавливаем стандартное поведение Enter
-                document.execCommand('formatBlock', false, 'p'); // Создаем новый абзац
-                setSelectedFormat('Text'); // Сбрасываем формат на текст
+                e.preventDefault();
+                document.execCommand('formatBlock', false, 'p');
+                setSelectedFormat('Text');
             }
         }
     };
 
-    // Функция для копирования текста
     const handleCopyText = () => {
-        const text = textRef.current.innerText; // Получаем текст из блока
+        const text = textRef.current.innerText;
         if (navigator.clipboard) {
             navigator.clipboard.writeText(text).then(() => {
                 alert('Текст скопирован!');
@@ -86,21 +83,19 @@ function BlockPage() {
     };
 
     const toggleBold = () => {
-        document.execCommand('bold'); // Применяем жирный текст к выделенному
-        setIsBold(!isBold); // Переключаем состояние кнопки
+        document.execCommand('bold');
+        setIsBold(!isBold);
     };
 
     const toggleItalic = () => {
-        document.execCommand('italic'); // Применяем курсив к выделенному
-        setIsItalic(!isItalic); // Переключаем состояние кнопки
+        document.execCommand('italic');
+        setIsItalic(!isItalic);
     };
 
-    // Логика для отмены действия (Ctrl + Z)
     const handleUndo = () => {
         document.execCommand('undo');
     };
 
-    // Логика для повторения действия (Ctrl + Y)
     const handleRedo = () => {
         document.execCommand('redo');
     };
@@ -110,7 +105,6 @@ function BlockPage() {
         setIsDot(!isDot);
     };
 
-    // Логика для создания нумерованного списка
     const insertOrderedList = () => {
         document.execCommand('insertOrderedList');
         setIsNumber(!isNumber);
@@ -118,16 +112,16 @@ function BlockPage() {
 
     // Функция для печати текста
     const handlePrintText = () => {
-        const printContent = textRef.current.innerHTML; // Получаем HTML из блока
+        const printContent = textRef.current.innerHTML;
         const newWindow = window.open('', '', 'height=500, width=800');
         newWindow.document.write('<html><head><title></title>');
         newWindow.document.write('</head><body>');
-        newWindow.document.write(printContent); // Вставляем контент
+        newWindow.document.write(printContent);
         newWindow.document.write('</body></html>');
-        newWindow.document.close(); // Закрываем документ для завершения загрузки
-        newWindow.focus(); // Фокусируем окно
-        newWindow.print(); // Запускаем печать
-        newWindow.close(); // Закрываем окно после печати
+        newWindow.document.close();
+        newWindow.focus();
+        newWindow.print();
+        newWindow.close();
     };
 
     return (
@@ -136,7 +130,15 @@ function BlockPage() {
                 <Header />
             </div>
             <div className="main_block_page">
-                <Link to={`/diagnosis/${sectionCode}`}>
+                <Link
+                    to={`/diagnos/${diagnosId}/${sectionCode}`}
+                    state={{
+                        inspectionList,
+                        medicalTreatmentList,
+                        recomendList,
+                        sectionCode
+                    }}
+                >
                     <a className='back_wrapper' href='/diagnosis'>
                         <div className='icon_back'>
                             <IconBack id="back_icon" />
@@ -191,13 +193,13 @@ function BlockPage() {
                                     </button>
                                     <button
                                         className='option_back'
-                                        onClick={handleUndo} // Логика Ctrl + Z
+                                        onClick={handleUndo}
                                     >
                                         <IconBackOption />
                                     </button>
                                     <button
                                         className='option_next'
-                                        onClick={handleRedo} // Логика Ctrl + Y
+                                        onClick={handleRedo}
                                     >
                                         <IconNextOption />
                                     </button>
@@ -207,7 +209,7 @@ function BlockPage() {
                                 <div
                                     className='write_wrapper_box'
                                     contentEditable="true"
-                                    ref={textRef} // Присваиваем референс блоку с текстом
+                                    ref={textRef}
                                     onKeyDown={handleKeyDown}
                                 >
                                     {inspectionList.length > 0 &&

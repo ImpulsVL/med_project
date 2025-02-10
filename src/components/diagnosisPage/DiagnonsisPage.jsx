@@ -4,6 +4,7 @@ import DiagnosisPlates from "./diagnosisPlates/DiagnosisPlates";
 import { ReactComponent as IconBack } from './diagnosisPlates/icons/Back.svg'
 import { Link, useNavigate, useLocation, useParams } from 'react-router-dom';
 import Header from '../header/header';
+import SearchItemSecond from './searchItem/SearchItem';
 
 function DiagnosisPage() {
     const env = process.env;
@@ -20,7 +21,7 @@ function DiagnosisPage() {
             try {
                 // Делаем запрос с параметром code
                 // const response = await fetch(`http://assistant-admin.pavlov-mc.ru/api/getdiagnoses?code=${code}`);
-                const response = await fetch(`${env.REACT_APP_APP_API_PROTOCOL}://${env.REACT_APP_DOMEN_NAME}/api/getdiagnoses?code=${code}`);
+                const response = await fetch(`${env.REACT_APP_APP_API_PROTOCOL}://${env.REACT_APP_API_DOMEN_NAME}/api/getdiagnoses?code=${code}`);
                 if (!response.ok) {
                     throw new Error(`Ошибка: ${response.status}`);
                 }
@@ -70,6 +71,9 @@ function DiagnosisPage() {
                 </Link>
                 <div className='text_main_second_page'>
                     {diagnoses.section}
+                </div>
+                <div className='SearchItem'>
+                    <SearchItemSecond sectionCode = {code}/>
                 </div>
                 <div className='Plates'>
                     <DiagnosisPlates diagnoses = {diagnoses.items} sectionCode = {code}/>
