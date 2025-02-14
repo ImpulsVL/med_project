@@ -54,7 +54,6 @@ function DiagnosPageAdmin() {
     const [showEditPopup, setShowEditPopup] = useState(false);
 
     const [showEditPopupSpecialization, setShowEditPopupSpecialization] = useState(false);
-
     const [selectedSpecializations, setSelectedSpecializations] = useState([]);
 
     const [editField, setEditField] = useState(null);
@@ -70,7 +69,6 @@ function DiagnosPageAdmin() {
     //                 throw new Error('Ошибка при загрузке данных');
     //             }
     //             const { result } = await response.json();
-    //             console.log(result, 'proverka');
     //             setDiagnosis(result);
     //         } catch (err) {
     //             setError(err.message);
@@ -93,9 +91,9 @@ function DiagnosPageAdmin() {
                     setLoading(true);
                 }
 
-                var responseDiagnose = await fetch(`${env.REACT_APP_APP_API_PROTOCOL}://${env.REACT_APP_API_DOMEN_NAME}/api/diagnosis?id=${params.diagnosisId}`);
-                var currentSpecialization = await fetch(`${env.REACT_APP_APP_API_PROTOCOL}://${env.REACT_APP_API_DOMEN_NAME}/api/diagnoses?code=${params.code}`);
-                var allSpecializations = await fetch(`${env.REACT_APP_APP_API_PROTOCOL}://${env.REACT_APP_API_DOMEN_NAME}/api/sections`);
+                var responseDiagnose = await fetch(`${env.REACT_APP_APP_API_PROTOCOL}://${env.REACT_APP_DOMEN_NAME}/api/diagnosis?id=${params.diagnosisId}`);
+                var currentSpecialization = await fetch(`${env.REACT_APP_APP_API_PROTOCOL}://${env.REACT_APP_DOMEN_NAME}/api/diagnoses?code=${params.code}`);
+                var allSpecializations = await fetch(`${env.REACT_APP_APP_API_PROTOCOL}://${env.REACT_APP_DOMEN_NAME}/api/sections`);
 
                 if (!responseDiagnose.ok) {
                     throw new Error('Ошибка при загрузке данных диагноза');
@@ -546,7 +544,7 @@ function DiagnosPageAdmin() {
     const handleAddExamination = async () => {
         if (newExamination.name) {
             try {
-                const response = await fetch(`${env.REACT_APP_APP_API_PROTOCOL}://${env.REACT_APP_API_DOMEN_NAME}/api/addItem?type=survey&name=${encodeURIComponent(newExamination.name)}&comment=${encodeURIComponent(newExamination.comment)}&diagnosis_id=${diagnosisId}`, {
+                const response = await fetch(`${env.REACT_APP_APP_API_PROTOCOL}://${env.REACT_APP_DOMEN_NAME}/api/addItem?type=survey&name=${encodeURIComponent(newExamination.name)}&comment=${encodeURIComponent(newExamination.comment)}&diagnosis_id=${diagnosisId}`, {
                     method: 'GET',
                 });
 
@@ -573,7 +571,7 @@ function DiagnosPageAdmin() {
     const handleAddItem = async () => {
         if (newItem.name && currentExaminationIndex !== null && currentElementId) {
             try {
-                const response = await fetch(`${env.REACT_APP_APP_API_PROTOCOL}://${env.REACT_APP_API_DOMEN_NAME}/api/addSubcomponent?element_id=${currentElementId}&name=${encodeURIComponent(newItem.name)}&comment=${encodeURIComponent(newItem.comment)}`, {
+                const response = await fetch(`${env.REACT_APP_APP_API_PROTOCOL}://${env.REACT_APP_DOMEN_NAME}/api/addSubcomponent?element_id=${currentElementId}&name=${encodeURIComponent(newItem.name)}&comment=${encodeURIComponent(newItem.comment)}`, {
                     method: 'GET',
                 });
 
@@ -620,7 +618,7 @@ function DiagnosPageAdmin() {
     const handleAddDrugTreatmentItem = async () => {
         if (newDrugTreatmentItem.name && currentExaminationIndex !== null && currentElementId) {
             try {
-                const response = await fetch(`${env.REACT_APP_APP_API_PROTOCOL}://${env.REACT_APP_API_DOMEN_NAME}/api/addSubcomponent?element_id=${currentElementId}&name=${encodeURIComponent(newDrugTreatmentItem.name)}&comment=${encodeURIComponent(newDrugTreatmentItem.comment)}`, {
+                const response = await fetch(`${env.REACT_APP_APP_API_PROTOCOL}://${env.REACT_APP_DOMEN_NAME}/api/addSubcomponent?element_id=${currentElementId}&name=${encodeURIComponent(newDrugTreatmentItem.name)}&comment=${encodeURIComponent(newDrugTreatmentItem.comment)}`, {
                     method: 'GET',
                 });
 
@@ -669,7 +667,7 @@ function DiagnosPageAdmin() {
     const handleEditComponent = async () => {
         if (currentComponentId && currentElementId) {
             try {
-                const response = await fetch(`${env.REACT_APP_APP_API_PROTOCOL}://${env.REACT_APP_API_DOMEN_NAME}/api/updateSubcomponent?element_id=${currentElementId}&new_name=${encodeURIComponent(editComponent.name)}&new_comment=${encodeURIComponent(editComponent.comment)}&subcomponent_id=${currentComponentId}`, {
+                const response = await fetch(`${env.REACT_APP_APP_API_PROTOCOL}://${env.REACT_APP_DOMEN_NAME}/api/updateSubcomponent?element_id=${currentElementId}&new_name=${encodeURIComponent(editComponent.name)}&new_comment=${encodeURIComponent(editComponent.comment)}&subcomponent_id=${currentComponentId}`, {
                     method: 'GET',
                 });
 
@@ -741,7 +739,7 @@ function DiagnosPageAdmin() {
     const handleDeleteComponent = async () => {
         if (currentComponentId && currentElementId) {
             try {
-                const response = await fetch(`${env.REACT_APP_APP_API_PROTOCOL}://${env.REACT_APP_API_DOMEN_NAME}/api/deleteSubcomponent?element_id=${currentElementId}&subcomponent_id=${currentComponentId}`, {
+                const response = await fetch(`${env.REACT_APP_APP_API_PROTOCOL}://${env.REACT_APP_DOMEN_NAME}/api/deleteSubcomponent?element_id=${currentElementId}&subcomponent_id=${currentComponentId}`, {
                     method: 'GET',
                 });
 
@@ -812,7 +810,7 @@ function DiagnosPageAdmin() {
     const handleAddTreatment = async () => {
         if (newTreatment.name) {
             try {
-                const response = await fetch(`${env.REACT_APP_APP_API_PROTOCOL}://${env.REACT_APP_API_DOMEN_NAME}/api/addItem?type=drug_treatment&name=${encodeURIComponent(newTreatment.name)}&comment=${encodeURIComponent(newTreatment.comment)}&diagnosis_id=${diagnosisId}`, {
+                const response = await fetch(`${env.REACT_APP_APP_API_PROTOCOL}://${env.REACT_APP_DOMEN_NAME}/api/addItem?type=drug_treatment&name=${encodeURIComponent(newTreatment.name)}&comment=${encodeURIComponent(newTreatment.comment)}&diagnosis_id=${diagnosisId}`, {
                     method: 'GET',
                 });
 
@@ -839,7 +837,7 @@ function DiagnosPageAdmin() {
     const handleAddRecommendation = async () => {
         if (newRecommendation.name) {
             try {
-                const response = await fetch(`${env.REACT_APP_APP_API_PROTOCOL}://${env.REACT_APP_API_DOMEN_NAME}/api/addItem?type=recommendation&name=${encodeURIComponent(newRecommendation.name)}&comment=${encodeURIComponent(newRecommendation.comment)}&diagnosis_id=${diagnosisId}`, {
+                const response = await fetch(`${env.REACT_APP_APP_API_PROTOCOL}://${env.REACT_APP_DOMEN_NAME}/api/addItem?type=recommendation&name=${encodeURIComponent(newRecommendation.name)}&comment=${encodeURIComponent(newRecommendation.comment)}&diagnosis_id=${diagnosisId}`, {
                     method: 'GET',
                 });
 
@@ -868,14 +866,12 @@ function DiagnosPageAdmin() {
         setShowDeletePopup(true);
     };
 
-    // console.log(iddig, 'iddig');
-
     const handleDeleteDiagnosis = async () => {
         if (deleteItemInfo) {
             const { type, itemId } = deleteItemInfo;
             const diagnosisId = iddig;
             try {
-                const response = await fetch(`${env.REACT_APP_APP_API_PROTOCOL}://${env.REACT_APP_API_DOMEN_NAME}/api/deleteItem?type=${type}&item_id=${itemId}&diagnosis_id=${diagnosisId}`, {
+                const response = await fetch(`${env.REACT_APP_APP_API_PROTOCOL}://${env.REACT_APP_DOMEN_NAME}/api/deleteItem?type=${type}&item_id=${itemId}&diagnosis_id=${diagnosisId}`, {
                     method: 'GET',
                 });
 
@@ -913,7 +909,7 @@ function DiagnosPageAdmin() {
             const diagnosisId = iddig; // ID диагноза
 
             try {
-                const response = await fetch(`${env.REACT_APP_APP_API_PROTOCOL}://${env.REACT_APP_API_DOMEN_NAME}/api/updateItem?type=${type}&item_id=${itemId}&diagnosis_id=${diagnosisId}&name=${encodeURIComponent(editDiagnosisItem.name)}&comment=${encodeURIComponent(editDiagnosisItem.comment)}`, {
+                const response = await fetch(`${env.REACT_APP_APP_API_PROTOCOL}://${env.REACT_APP_DOMEN_NAME}/api/updateItem?type=${type}&item_id=${itemId}&diagnosis_id=${diagnosisId}&name=${encodeURIComponent(editDiagnosisItem.name)}&comment=${encodeURIComponent(editDiagnosisItem.comment)}`, {
                     method: 'GET',
                 });
 
@@ -951,27 +947,61 @@ function DiagnosPageAdmin() {
     };
 
     const handleEditSpecialization = () => {
-        setSelectedSpecializations([diagnosis?.section]);
+        const initSpec = diagnosis?.sectionsList.map(section => section.CODE) || [];
+        setSelectedSpecializations(initSpec);
         setShowEditPopupSpecialization(true);
     };
 
     const handleSpecializationChange = (code) => {
         setSelectedSpecializations((prev) => {
             if (prev.includes(code)) {
-                return prev.filter((item) => item !== code); // удалить код если он выбран
+                return prev.filter((item) => item !== code);
             } else {
-                return [...prev, code]; // добавить код если он не выбран
+                return [...prev, code];
             }
         });
     };
 
-    const handleEditSpecializationPopUP = () => {
-        console.log(selectedSpecializations);
-    }
+    const handleEditSpecializationPopUP = async () => {
+        const diagnosisId = iddig;
+
+        if (selectedSpecializations.length === 0) {
+            alert("Пожалуйста, выберите хотя бы одну специализацию.");
+            return;
+        }
+        try {
+            const response = await fetch(`${env.REACT_APP_APP_API_PROTOCOL}://${env.REACT_APP_DOMEN_NAME}/api/updateSections?diagnosis_id=${diagnosisId}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: JSON.stringify({ sections: selectedSpecializations }),
+            });
+
+            if (!response.ok) {
+                throw new Error('Ошибка при обновлении специализаций');
+            }
+
+            const data = await response.json();
+
+            setDiagnosis(prevDiagnosis => ({
+                ...prevDiagnosis,
+                sectionsList: allSpecializations.filter(spec => selectedSpecializations.includes(spec.code)).map(spec => ({
+                    NAME: spec.name,
+                    CODE: spec.code
+                }))
+            }));
+
+            setShowEditPopupSpecialization(false);
+        } catch (error) {
+            console.error('Ошибка:', error);
+            alert('Произошла ошибка при сохранении изменений. Пожалуйста, попробуйте еще раз.');
+        }
+    };
 
     const handleEdit = async () => {
         try {
-            const response = await fetch(`${env.REACT_APP_APP_API_PROTOCOL}://${env.REACT_APP_API_DOMEN_NAME}/api/updateDiagnosis?id=${diagnosisId}&name=${encodeURIComponent(editField === 'name' ? newValue : diagnosis?.name)}&code=${encodeURIComponent(editField === 'code' ? newValue : diagnosis?.code)}&sort=${encodeURIComponent(editField === 'sort' ? newValue : diagnosis?.sort)}`, {
+            const response = await fetch(`${env.REACT_APP_APP_API_PROTOCOL}://${env.REACT_APP_DOMEN_NAME}/api/updateDiagnosis?id=${diagnosisId}&name=${encodeURIComponent(editField === 'name' ? newValue : diagnosis?.name)}&code=${encodeURIComponent(editField === 'code' ? newValue : diagnosis?.code)}&sort=${encodeURIComponent(editField === 'sort' ? newValue : diagnosis?.sort)}`, {
                 method: 'GET',
             });
 
@@ -1023,7 +1053,7 @@ function DiagnosPageAdmin() {
         const formData = new FormData();
         formData.append('file', file);
 
-        const url = `${env.REACT_APP_APP_API_PROTOCOL}://${env.REACT_APP_API_DOMEN_NAME}/api/addPdf?type=${uploadType}&diagnosis_id=${diagnosisId}&fileName=${encodeURIComponent(file.name)}&isTypeRecommend=${isTypeRecommend}`;
+        const url = `${env.REACT_APP_APP_API_PROTOCOL}://${env.REACT_APP_DOMEN_NAME}/api/addPdf?type=${uploadType}&diagnosis_id=${diagnosisId}&fileName=${encodeURIComponent(file.name)}&isTypeRecommend=${isTypeRecommend}`;
         setIsLoading(true);
         try {
             const response = await fetch(url, {
@@ -1077,15 +1107,15 @@ function DiagnosPageAdmin() {
     const handleButtonClick = (type, recommend) => {
         setUploadType(type);
         setIsTypeRecommend(recommend);
-        fileInputRef.current.click(); // Открываем диалог выбора файла
+        fileInputRef.current.click();
     };
 
     const handleOpenPdf = (url) => {
-        window.open(`http://${url}`, '_blank'); // Открываем PDF в новой вкладке
+        window.open(`http://${url}`, '_blank');
     };
 
     const handleDeletePdf = async (fileId, upType, isTypeRecommend) => {
-        const url = `${env.REACT_APP_APP_API_PROTOCOL}://${env.REACT_APP_API_DOMEN_NAME}/api/deletePdf?file_id=${fileId}`;
+        const url = `${env.REACT_APP_APP_API_PROTOCOL}://${env.REACT_APP_DOMEN_NAME}/api/deletePdf?file_id=${fileId}`;
 
         if (window.confirm('Вы уверены, что хотите удалить этот файл?')) {
             setIsLoading(true);
@@ -1159,7 +1189,7 @@ function DiagnosPageAdmin() {
         formData.append('comment', comment); // Комментарий
 
         try {
-            const response = await fetch(`${env.REACT_APP_APP_API_PROTOCOL}://${env.REACT_APP_API_DOMEN_NAME}/api/updateComment`, {
+            const response = await fetch(`${env.REACT_APP_APP_API_PROTOCOL}://${env.REACT_APP_DOMEN_NAME}/api/updateComment`, {
                 method: 'POST',
                 body: formData,
             });
@@ -1258,9 +1288,17 @@ function DiagnosPageAdmin() {
                             <div className='description-spec'>
                                 <div className='description-text'>Специализации:</div>
                                 <div className='spec-items'>
-                                    <div className='spec-item'>
-                                        {diagnosis?.section}
-                                    </div>
+                                    {diagnosis?.sectionsList && diagnosis.sectionsList.length > 0 ? (
+                                        diagnosis.sectionsList.map((section, index) => (
+                                            <div key={index} className='spec-item'>
+                                                {section.NAME}
+                                            </div>
+                                        ))
+                                    ) : (
+                                        <div className='spec-item'>
+                                            Нет специализаций
+                                        </div>
+                                    )}
                                 </div>
                                 <div className='change-button' onClick={handleEditSpecialization}>Изменить</div>
                             </div>
@@ -2388,7 +2426,7 @@ function DiagnosPageAdmin() {
                         <div className="specialization-list">
                             {allSpecializations.map((spec) => (
                                 <div key={spec.code} className="specialization-item">
-                                    <div className='spec-name'>
+                                    <div className={`spec-name ${selectedSpecializations.includes(spec.code) ? 'highlight' : ''}`}>
                                         {spec.name}
                                     </div>
                                     <input

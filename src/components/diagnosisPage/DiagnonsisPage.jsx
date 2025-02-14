@@ -21,7 +21,7 @@ function DiagnosisPage() {
             try {
                 // Делаем запрос с параметром code
                 // const response = await fetch(`http://assistant-admin.pavlov-mc.ru/api/getdiagnoses?code=${code}`);
-                const response = await fetch(`${env.REACT_APP_APP_API_PROTOCOL}://${env.REACT_APP_API_DOMEN_NAME}/api/getdiagnoses?code=${code}`);
+                const response = await fetch(`${env.REACT_APP_APP_API_PROTOCOL}://${env.REACT_APP_DOMEN_NAME}/api/getdiagnoses?code=${code}`);
                 if (!response.ok) {
                     throw new Error(`Ошибка: ${response.status}`);
                 }

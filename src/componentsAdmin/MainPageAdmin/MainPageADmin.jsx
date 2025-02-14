@@ -46,7 +46,7 @@ function MainPageAdmin() {
             setLoading(true);
             try {
                 // const response = await fetch('http://test-asya.ru/api/');
-                const response = await fetch(`${env.REACT_APP_APP_API_PROTOCOL}://${env.REACT_APP_API_DOMEN_NAME}/api/`);
+                const response = await fetch(`${env.REACT_APP_APP_API_PROTOCOL}://${env.REACT_APP_DOMEN_NAME}/api/`);
                 const data = await response.json();
                 setSpecializations(data.result.map(item => ({
                     name: item.name,
@@ -117,7 +117,7 @@ function MainPageAdmin() {
         if (newSpecialization.name) {
             setLoading(true);
             try {
-                const response = await fetch(`${env.REACT_APP_APP_API_PROTOCOL}://${env.REACT_APP_API_DOMEN_NAME}/api/addSpecialization?name=${newSpecialization.name}`, {
+                const response = await fetch(`${env.REACT_APP_APP_API_PROTOCOL}://${env.REACT_APP_DOMEN_NAME}/api/addSpecialization?name=${newSpecialization.name}`, {
                     method: 'GET'
                 });
 
@@ -152,7 +152,7 @@ function MainPageAdmin() {
         if (editSpecialization) {
             setLoading(true);
             try {
-                const response = await fetch(`${env.REACT_APP_APP_API_PROTOCOL}://${env.REACT_APP_API_DOMEN_NAME}/api/editSpecialization?name=${encodeURIComponent(editSpecialization.name)}&code=${encodeURIComponent(editSpecialization.code)}`, {
+                const response = await fetch(`${env.REACT_APP_APP_API_PROTOCOL}://${env.REACT_APP_DOMEN_NAME}/api/editSpecialization?name=${encodeURIComponent(editSpecialization.name)}&code=${encodeURIComponent(editSpecialization.code)}`, {
                     method: 'GET',
                 });
 
@@ -184,7 +184,7 @@ function MainPageAdmin() {
         if (deleteSpecialization) {
             setLoading(true);
             try {
-                const response = await fetch(`${env.REACT_APP_APP_API_PROTOCOL}://${env.REACT_APP_API_DOMEN_NAME}/api/deleteSpecialization?code=${deleteSpecialization.code}`, {
+                const response = await fetch(`${env.REACT_APP_APP_API_PROTOCOL}://${env.REACT_APP_DOMEN_NAME}/api/deleteSpecialization?code=${deleteSpecialization.code}`, {
                     method: 'GET',
                 });
 
@@ -255,9 +255,6 @@ function MainPageAdmin() {
         setFilterCondition('greater');
         setSpecializations(originalSpecializations); // Возвращаем все специализации
     };
-
-    // console.log(specializations);
-
 
     return (
         <div className='wrapper'>

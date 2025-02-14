@@ -57,14 +57,11 @@ function DiagnosisPageAdmin() {
     const [empty, setEmpty] = useState(true);
     const [error, setError] = useState(true);
 
-
-    // console.log(currentSpecializationCode, 'currentSpecCode');
-
     useEffect(() => {
         const fetchDiagnoses = async () => {
             if (currentSpecializationCode) {
                 try {
-                    const response = await fetch(`${env.REACT_APP_APP_API_PROTOCOL}://${env.REACT_APP_API_DOMEN_NAME}/api/diagnoses?code=${currentSpecializationCode}`);
+                    const response = await fetch(`${env.REACT_APP_APP_API_PROTOCOL}://${env.REACT_APP_DOMEN_NAME}/api/diagnoses?code=${currentSpecializationCode}`);
                     const data = await response.json();
                     setDiagnoses(data.result.items.map(item => ({
                         id: item.id,
@@ -99,8 +96,8 @@ function DiagnosisPageAdmin() {
                 if (location.state == null) {
                     setLoading(true);
                 }
-                var currentSpecialization = await fetch(`${env.REACT_APP_APP_API_PROTOCOL}://${env.REACT_APP_API_DOMEN_NAME}/api/diagnoses?code=${params.code}`);
-                var allSpecializations = await fetch(`${env.REACT_APP_APP_API_PROTOCOL}://${env.REACT_APP_API_DOMEN_NAME}/api/sections`);
+                var currentSpecialization = await fetch(`${env.REACT_APP_APP_API_PROTOCOL}://${env.REACT_APP_DOMEN_NAME}/api/diagnoses?code=${params.code}`);
+                var allSpecializations = await fetch(`${env.REACT_APP_APP_API_PROTOCOL}://${env.REACT_APP_DOMEN_NAME}/api/sections`);
 
                 if (!currentSpecialization.ok) {
                     throw new Error('Ошибка при загрузке данных текущей специализации');
@@ -142,8 +139,8 @@ function DiagnosisPageAdmin() {
             try {
                 setLoading(true);
 
-                var currentSpecialization = await fetch(`${env.REACT_APP_APP_API_PROTOCOL}://${env.REACT_APP_API_DOMEN_NAME}/api/diagnoses?code=${params.code}`);
-                var allSpecializations = await fetch(`${env.REACT_APP_APP_API_PROTOCOL}://${env.REACT_APP_API_DOMEN_NAME}/api/sections`);
+                var currentSpecialization = await fetch(`${env.REACT_APP_APP_API_PROTOCOL}://${env.REACT_APP_DOMEN_NAME}/api/diagnoses?code=${params.code}`);
+                var allSpecializations = await fetch(`${env.REACT_APP_APP_API_PROTOCOL}://${env.REACT_APP_DOMEN_NAME}/api/sections`);
 
                 if (!currentSpecialization.ok) {
                     throw new Error('Ошибка при загрузке данных текущей специализации');
@@ -192,8 +189,6 @@ function DiagnosisPageAdmin() {
         }
     }, [searchText, diagnoses]);
 
-    // console.log(diagnoses, 'diagnoses');
-
     const handleInputChange = (e) => {
         setSearchText(e.target.value);
     };
@@ -211,7 +206,7 @@ function DiagnosisPageAdmin() {
     const handleAddDiagnosis = async () => {
         if (newDiagnosis.name && newDiagnosis.code && currentSpecializationCode) {
             try {
-                const response = await fetch(`${env.REACT_APP_APP_API_PROTOCOL}://${env.REACT_APP_API_DOMEN_NAME}/api/addDiagnosis?name=${newDiagnosis.name}&sectionCode=${currentSpecializationCode}&code=${newDiagnosis.code}`, {
+                const response = await fetch(`${env.REACT_APP_APP_API_PROTOCOL}://${env.REACT_APP_DOMEN_NAME}/api/addDiagnosis?name=${newDiagnosis.name}&sectionCode=${currentSpecializationCode}&code=${newDiagnosis.code}`, {
                     method: 'GET'
                 });
 
@@ -245,7 +240,7 @@ function DiagnosisPageAdmin() {
     const handleUpdateDiagnosis = async () => {
         if (editDiagnosis) {
             try {
-                const response = await fetch(`${env.REACT_APP_APP_API_PROTOCOL}://${env.REACT_APP_API_DOMEN_NAME}/api/updateDiagnosis?id=${editDiagnosis.id}&name=${encodeURIComponent(editDiagnosis.name)}&code=${encodeURIComponent(editDiagnosis.code)}`, {
+                const response = await fetch(`${env.REACT_APP_APP_API_PROTOCOL}://${env.REACT_APP_DOMEN_NAME}/api/updateDiagnosis?id=${editDiagnosis.id}&name=${encodeURIComponent(editDiagnosis.name)}&code=${encodeURIComponent(editDiagnosis.code)}`, {
                     method: 'GET',
                 });
 
@@ -274,7 +269,7 @@ function DiagnosisPageAdmin() {
     const handleDeleteDiagnosis = async () => {
         if (deleteDiagnosis) {
             try {
-                const response = await fetch(`${env.REACT_APP_APP_API_PROTOCOL}://${env.REACT_APP_API_DOMEN_NAME}/api/deleteDiagnosis?id=${deleteDiagnosis.id}`, {
+                const response = await fetch(`${env.REACT_APP_APP_API_PROTOCOL}://${env.REACT_APP_DOMEN_NAME}/api/deleteDiagnosis?id=${deleteDiagnosis.id}`, {
                     method: 'GET',
                 });
 
@@ -584,8 +579,6 @@ function DiagnosisPageAdmin() {
             </div >
         );
     }
-
-    // console.log(diagnoses, '12313');
 
     return (
         <div className='wrapper-diagnosis'>

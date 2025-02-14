@@ -557,6 +557,13 @@
     flex-grow: 1;
 }
 
+.spec-name.highlight {
+    font-weight: bold;
+    color: #ff0000;
+    background-color: #ffe7e7;
+    border-radius: 4px;
+}
+
 .spec-input{
     width: none;
 }
@@ -574,8 +581,8 @@
 }
 
 .popup2 input {
+    margin-right: 0px;
     padding: 8px;
-    margin-bottom: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
 }

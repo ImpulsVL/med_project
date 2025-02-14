@@ -68,7 +68,6 @@ function EdinburgPage() {
         const { name } = e.target;
         // setKnownRisksCriteria(prev => ({ ...prev, [name]: checked }));
         setKnownRisksFactorValue(val => ({ ...val, [name]: Number(e.target.value) }))
-        console.log(e.target.value);
     };
 
     return (

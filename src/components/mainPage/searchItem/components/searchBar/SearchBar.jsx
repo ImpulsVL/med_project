@@ -20,7 +20,7 @@ export const SearchBar = () => {
         setLoading(true);
         try {
           // const response = await fetch(`http://assistant-admin.pavlov-mc.ru/api/find?search=${searchText}`);
-          const response = await fetch(`${env.REACT_APP_APP_API_PROTOCOL}://${env.REACT_APP_API_DOMEN_NAME}/api/find?search=${searchText}`);
+          const response = await fetch(`${env.REACT_APP_APP_API_PROTOCOL}://${env.REACT_APP_DOMEN_NAME}/api/find?search=${searchText}`);
           const data = await response.json();
           const parsedData = (data.result);
           setDiagnoses(parsedData.items);
