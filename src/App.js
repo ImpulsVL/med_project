@@ -1,58 +1,66 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 
-// import MainPage from './components/mainPage/MainPage';
-// import DiagnosisPage from './components/diagnosisPage/DiagnonsisPage';
-// import DiagnosPage from './components/diagnosPage/DiagnosPage';
-// import BlockPage from './components/blockPage/BlockPage';
-// import BreastPage from './components/scales/breastPage/BreastPage';
-// import TannerPage from './components/scales/tannerPage/TannerPage';
-// import FigoPage from './components/scales/figoPage/FigoPage';
-// import MusaPage from './components/scales/musaPage/MusaPage';
-// import BadenPage from './components/scales/badenPage/BadenPage';
-// import HurtPage from './components/scales/hurtPage/HurtPage';
-// import GallayPage from './components/scales/gallayPage/GallayPage';
-// import ImtPage from './components/calculators/imtPage/ImtPage';
-// import IsaPage from './components/calculators/isaPage/IsaPage';
-// import RomaPage from './components/calculators/romaPage/RomaPage';
-// import RmiPage from './components/calculators/rmiPage/RmiPage';
-// import IntensivePage from './components/calculators/intensivePage/IntensivePage';
+import MainPage from './components/mainPage/MainPage';
+import DiagnosisPage from './components/diagnosisPage/DiagnonsisPage';
+import DiagnosPage from './components/diagnosPage/DiagnosPage';
+import BlockPage from './components/blockPage/BlockPage';
 
-// import VteoPage1 from './components/forms/vteoPage/VteoPage';
-// import PreeclampsiaPage from "./components/forms/preeclampsiaPage/PreeclampsiaPage";
-// import EdinburgPage from "./components/forms/edinburgPage/EdinburgPage";
-// import ChecklistPage from "./components/forms/checklistPage/ChecklistPage";
-// import OralPage from "./components/forms/oralPage/OralPage";
-// import MetalPage from "./components/forms/metalPage/MetalPage";
-// import LngPage from "./components/forms/lngPage/LngPage";
-// import ImplantPage from "./components/forms/implantPage/ImplantPage";
-// import InjectionPage from "./components/forms/injectionPage/InjectionPage";
-// import ProlapsPage from "./components/forms/prolapsPage/ProlapsPage";
-// import DiagnosticsPage from "./components/forms/diagnosticsPage/DiagnosticsPage";
-// import PmdrPage from "./components/forms/pmdrPage/PmdrPage";
+import BreastPage from './components/scales/breastPage/BreastPage';
+import TannerPage from './components/scales/tannerPage/TannerPage';
+import FigoPage from './components/scales/figoPage/FigoPage';
+import MusaPage from './components/scales/musaPage/MusaPage';
+import BadenPage from './components/scales/badenPage/BadenPage';
+import HurtPage from './components/scales/hurtPage/HurtPage';
+import GallayPage from './components/scales/gallayPage/GallayPage';
 
-// import ContraceptsPage from './components/tables/contraceptsPage/ContraceptsPage';
-// import VteoPage from "./components/tables/vteoPage/VteoPage";
-// import NmgPage from './components/tables/nmgPage/NmgPage';
-// import HolestazPage from './components/tables/holestazPage/HolestazPage';
-// import ColoscopyPage from './components/tables/coloscopyPage/ColoscopyPage';
-// import MigrainPage from './components/forms/migrainPage/MigrainPage';
-// import KrispPage from './components/forms/kripsPage/KrispPage';
-// import PedtPage from './components/forms/pedtPage/PedtPage';
-// import AmsPage from './components/forms/amsPage/AmsPage';
-// import MiefPage from './components/forms/miefPage/MiefPage';
+import ImtPage from './components/calculators/imtPage/ImtPage';
+import IsaPage from './components/calculators/isaPage/IsaPage';
+import RomaPage from './components/calculators/romaPage/RomaPage';
+import RmiPage from './components/calculators/rmiPage/RmiPage';
+import IntensivePage from './components/calculators/intensivePage/IntensivePage';
+import Fib4Page from './components/calculators/fib4Page/Fib4Page';
+import MeldPage from './components/calculators/meldPage/MeldPage';
+import FliPage from './components/calculators/FliPage/FliPage';
+import CdaiPage from './components/calculators/cdaiPage/CdaiPage';
+import ChildPiu from './components/calculators/childPiu/ChildPiu';
 
+import VteoPage1 from './components/forms/vteoPage/VteoPage';
+import PreeclampsiaPage from "./components/forms/preeclampsiaPage/PreeclampsiaPage";
+import EdinburgPage from "./components/forms/edinburgPage/EdinburgPage";
+import ChecklistPage from "./components/forms/checklistPage/ChecklistPage";
+import OralPage from "./components/forms/oralPage/OralPage";
+import MetalPage from "./components/forms/metalPage/MetalPage";
+import LngPage from "./components/forms/lngPage/LngPage";
+import ImplantPage from "./components/forms/implantPage/ImplantPage";
+import InjectionPage from "./components/forms/injectionPage/InjectionPage";
+import ProlapsPage from "./components/forms/prolapsPage/ProlapsPage";
+import DiagnosticsPage from "./components/forms/diagnosticsPage/DiagnosticsPage";
+import PmdrPage from "./components/forms/pmdrPage/PmdrPage";
 
-import MainPageAdmin from './componentsAdmin/MainPageAdmin/MainPageADmin';
-import DiagnosisPageAdmin from './componentsAdmin/diagnosisPageAdmin/DiagnosisPageADmin';
-import DiagnosPageAdmin from './componentsAdmin/diagnosPageAdmin/DiagnosPageAdmin';
+import ContraceptsPage from './components/tables/contraceptsPage/ContraceptsPage';
+import VteoPage from "./components/tables/vteoPage/VteoPage";
+import NmgPage from './components/tables/nmgPage/NmgPage';
+import HolestazPage from './components/tables/holestazPage/HolestazPage';
+import ColoscopyPage from './components/tables/coloscopyPage/ColoscopyPage';
+import MigrainPage from './components/forms/migrainPage/MigrainPage';
+import KrispPage from './components/forms/kripsPage/KrispPage';
+import PedtPage from './components/forms/pedtPage/PedtPage';
+import AmsPage from './components/forms/amsPage/AmsPage';
+import MiefPage from './components/forms/miefPage/MiefPage';
+import HadsPage from './components/forms/hadsPage/HadsPage';
+import AuditPage from './components/forms/auditPage/AuditPage';
+
+// import MainPageAdmin from './componentsAdmin/MainPageAdmin/MainPageADmin';
+// import DiagnosisPageAdmin from './componentsAdmin/diagnosisPageAdmin/DiagnosisPageADmin';
+// import DiagnosPageAdmin from './componentsAdmin/diagnosPageAdmin/DiagnosPageAdmin';
 
 function App() {
   return (
     <Router >
       <div className="App">
         <Routes>
-          {/* <Route path="/" element={<MainPage />} />
+          <Route path="/" element={<MainPage />} />
           <Route path="/diagnosis" element={<DiagnosisPage />} />
           <Route path="/diagnosis/:code" element={<DiagnosisPage />} />
           <Route path="/diagnos" element={<DiagnosPage />} />
@@ -67,12 +75,19 @@ function App() {
           <Route path="/baden-scale" element={<BadenPage />} />
           <Route path="/hurt-scale" element={<HurtPage />} />
           <Route path="/gallay-scale" element={<GallayPage />} />
+          <Route path="/hads-scale" element={<HadsPage />} />
+          <Route path="/audit-scale" element={<AuditPage />} />
+          <Route path="/meld-scale" element={<MeldPage />} />
 
           <Route path="/imt-calc" element={<ImtPage />} />
           <Route path="/isa-calc" element={<IsaPage />} />
           <Route path="/roma-calc" element={<RomaPage />} />
           <Route path="/rmi-calc" element={<RmiPage />} />
           <Route path="/intensive-calc" element={<IntensivePage />} />
+          <Route path="/fib4-calc" element={<Fib4Page />} />
+          <Route path="/fli-calc" element={<FliPage />} />
+          <Route path="/cdai-calc" element={<CdaiPage />} />
+          <Route path="/childpiu-calc" element={<ChildPiu />} />
 
           <Route path="/vteo-form" element={<VteoPage1 />} />
           <Route path="/preeclampsia-form" element={<PreeclampsiaPage />} />
@@ -96,11 +111,11 @@ function App() {
           <Route path="/vteo-table" element={<VteoPage />} />
           <Route path="/nmg-table" element={<NmgPage />} />
           <Route path="/holestaz-table" element={<HolestazPage />} />
-          <Route path="/coloscopy-table" element={<ColoscopyPage />} /> */}
+          <Route path="/coloscopy-table" element={<ColoscopyPage />} />
 
-          <Route path='/admin/' element={<MainPageAdmin />}/>
+          {/* <Route path='/admin/' element={<MainPageAdmin />}/>
           <Route path="/admin/specialization/:code/" element={<DiagnosisPageAdmin />} />
-          <Route path="/admin/specialization/:code/diagnos/:diagnosisId" element={<DiagnosPageAdmin />} />
+          <Route path="/admin/specialization/:code/diagnos/:diagnosisId" element={<DiagnosPageAdmin />} /> */}
         </Routes>
       </div>
     </Router >

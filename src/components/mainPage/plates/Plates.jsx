@@ -23,7 +23,7 @@ export const Plates = () => {
             } catch (error) {
                 setError(error.message);
             } finally {
-                setLoading(false); // Убираем индикацию загрузки после завершения запроса
+                setLoading(false);
             }
         };
 
@@ -31,11 +31,11 @@ export const Plates = () => {
     }, []);
 
     if (loading) {
-        return <div>Загрузка...</div>; // Отображаем индикатор загрузки
+        return <div>Загрузка...</div>;
     }
 
     if (error) {
-        return <div>Ошибка: {error}</div>; // Отображаем сообщение об ошибке
+        return <div>Ошибка: {error}</div>;
     }
 
     return (
@@ -43,7 +43,7 @@ export const Plates = () => {
             {data.map((item, index) => (
                 <Link
                     className='diagnosis_plate1'
-                    to={`/diagnosis/${item.code}`}// передаем code в URL
+                    to={`/diagnosis/${item.code}`}
                     state={{ displayName: item.name, codeName: item.code }}
                     key={index}
                 >

@@ -2,6 +2,8 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom'; // Импортируем Link
 import PavlovPng from '../header/icon/pavlov3.png'
 import './header.scss';
+import PopUp from '../mainPage/searchItem/components/popUp/PopUp';
+import PopupChanges from '../mainPage/searchItem/components/popUpChanges/PopupChanges';
 
 function Header() {
     const [showCalculators, setShowCalculators] = useState(false);
@@ -9,9 +11,8 @@ function Header() {
     const [showForms, setShowForms] = useState(false);
     const [showTables, setShowTables] = useState(false);
 
-    const headerRef = useRef(null); // Реф для всего хедера
+    const headerRef = useRef(null);
 
-    // Функция для скрытия выпадающих списков
     const hideDropdowns = () => {
         setShowCalculators(false);
         setShowScales(false);
@@ -19,47 +20,41 @@ function Header() {
         setShowTables(false);
     };
 
-    // Функция для переключения видимости меню калькуляторов
     const toggleCalculators = () => {
         setShowCalculators((prev) => !prev);
-        setShowScales(false); // Скрываем шкалы при нажатии на калькуляторы
-        setShowForms(false); // Скрываем анкеты при нажатии на калькуляторы
-        setShowTables(false); // Скрываем таблицы при нажатии на калькуляторы
+        setShowScales(false);
+        setShowForms(false);
+        setShowTables(false);
 
     };
 
-    // Функция для переключения видимости меню шкал
     const toggleScales = () => {
         setShowScales((prev) => !prev);
-        setShowCalculators(false); // Скрываем калькуляторы при нажатии на шкалы
-        setShowForms(false); // Скрываем анкеты при нажатии на калькуляторы
-        setShowTables(false); // Скрываем таблицы при нажатии на калькуляторы
+        setShowCalculators(false);
+        setShowForms(false);
+        setShowTables(false);
     };
 
-    // Функция для переключения видимости меню анкет
     const toggleForms = () => {
         setShowForms((prev) => !prev);
-        setShowCalculators(false); // Скрываем калькуляторы при нажатии на шкалы
-        setShowScales(false); // Скрываем шкалы при нажатии на калькуляторы
-        setShowTables(false); // Скрываем таблицы при нажатии на калькуляторы
+        setShowCalculators(false);
+        setShowScales(false);
+        setShowTables(false);
     };
 
-    // Функция для переключения видимости меню таблиц
     const toggleTables = () => {
         setShowTables((prev) => !prev);
-        setShowCalculators(false); // Скрываем калькуляторы при нажатии на шкалы
-        setShowForms(false); // Скрываем анкеты при нажатии на калькуляторы
-        setShowScales(false); // Скрываем шкалы при нажатии на калькуляторы
+        setShowCalculators(false);
+        setShowForms(false);
+        setShowScales(false);
     };
 
-    // Обработчик кликов вне элемента
     const handleClickOutside = (event) => {
         if (headerRef.current && !headerRef.current.contains(event.target)) {
             hideDropdowns(); // Скрываем оба меню
         }
     };
 
-    // Добавляем обработчик кликов при монтировании и удаляем при размонтировании
     useEffect(() => {
         document.addEventListener('mousedown', handleClickOutside);
         return () => {
@@ -82,6 +77,10 @@ function Header() {
                         <li><Link target="_blank" to="/roma-calc">Калькулятор индекса ROMA</Link></li>
                         <li><Link target="_blank" to="/rmi-calc">Калькулятор индекса RMI I</Link></li>
                         <li><Link target="_blank" to="/intensive-calc">Оценка ИМК</Link></li>
+                        <li><Link target="_blank" to="/fib4-calc">Индекс фиброза FIB-4</Link></li>
+                        <li><Link target="_blank" to="/cdai-calc">Индекс CDAI</Link></li>
+                        <li><Link target="_blank" to="/fli-calc">Индекс стеатоза печени FLI</Link></li>
+                        <li><Link target="_blank" to="/childpiu-calc">Классификация по Чайлд-Пью</Link></li>
                     </ul>
                 )}
             </div>
@@ -96,6 +95,9 @@ function Header() {
                         <li><Link target="_blank" to="/musa-scale">Ультразвуковые признаки аденомиоза, MUSA 2022</Link></li>
                         <li><Link target="_blank" to="/figo-scale">Миома матки: классификация FIGO</Link></li>
                         <li><Link target="_blank" to="/tanner-scale">Оценка развития молочных желез</Link></li>
+                        <li><Link target="_blank" to="/hads-scale">Госпитальная шкала тревоги и депрессии, HADS</Link></li>
+                        <li><Link target="_blank" to="/audit-scale">Тест употребления алкоголя AUDIT</Link></li>
+                        <li><Link target="_blank" to="/meld-scale">Шкала MELD</Link></li>
                     </ul>
                 )}
             </div>
@@ -136,6 +138,8 @@ function Header() {
                     </ul>
                 )}
             </div>
+
+            <PopUp/> 
         </div>
     );
 }

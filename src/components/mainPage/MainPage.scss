@@ -16,10 +16,12 @@
 }
 
 .text_main{
-    width: 600px;
-    padding-top: 60px;
-    padding-bottom: 40px;
-    padding-left: 40px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 60px 40px;
     font-size: 38px;
     line-height: 50px;
     color: #333;

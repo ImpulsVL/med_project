@@ -4,6 +4,7 @@ import SearchItem from "./searchItem/SearchItem";
 import Plates from "./plates/Plates";
 import { useNavigate } from 'react-router-dom';
 import Header from '../header/header';
+import PopUp from './searchItem/components/popUp/PopUp';
 
 function MainPage() {
     return (
@@ -13,7 +14,7 @@ function MainPage() {
             </div>
             <div className="main-container">
                 <div className='text_main'>
-                    Поддержка принятия решений в медицинской практике
+                    Поддержка принятия решений<br /> в медицинской практике
                 </div>
                 <div className='SearchItem'>
                     <SearchItem/>

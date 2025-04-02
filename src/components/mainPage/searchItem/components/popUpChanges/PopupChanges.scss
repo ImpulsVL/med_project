@@ -1,0 +1,123 @@
+.button {
+    padding: 10px 20px;
+    background-color: #EB6190;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+
+    margin-left: 20px;
+
+    &:hover{
+        opacity: 0.8;
+    }
+}
+
+.green{
+    background-color: rgb(73, 116, 33);
+}
+
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: auto;
+}
+
+.popup-content {
+    overflow-y: auto; 
+    width: 900px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    position: relative;
+    z-index: 3;
+
+    height: 750px;
+}
+
+.form_popup{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.popup-text{
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.input-popup{
+    border-radius: 5px;
+    padding: 10px;
+    border: 2px solid rgb(73, 116, 33);
+    outline: none;
+}
+
+.input-popup-spec{
+    border-radius: 5px;
+    padding: 10px;
+    border: 2px solid rgb(150, 159, 196);
+    outline: none;
+}
+
+.input-popup-double-spec{
+    width: 420px;
+    border-radius: 5px;
+    padding: 10px;
+    border: 2px solid rgb(150, 159, 196);
+    background-color: rgb(244, 245, 243);
+    outline: none;
+}
+
+.textarea-popup-spec{
+    height: 125px;
+    border-radius: 5px;
+    padding: 10px;
+    border: 2px solid rgb(73, 116, 33);
+    outline: none;
+    resize: none;
+}
+
+.button-popup{
+    background-color: rgb(73, 116, 33);
+    border-radius: 5px;
+    padding: 10px;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: opacity 0.3s, background-color 0.3s;
+
+    &:hover{
+        opacity: 0.8;
+    }
+
+    &:disabled, &-disabled {
+        background-color: #cccccc !important;
+        cursor: not-allowed;
+        
+        &:hover {
+            opacity: 1;
+        }
+    }
+}
+
+.close {
+    position: absolute;
+    top: -20px;
+    right: 5px;
+    cursor: pointer;
+    font-size: 20px;
+}   
+
+.error-message{
+    font-size: 24px;
+    color: rgb(241, 145, 145);
+}

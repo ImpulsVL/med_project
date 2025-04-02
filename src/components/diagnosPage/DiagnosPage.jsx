@@ -10,6 +10,7 @@ import MoveFooter from './moveFooter/MoveFooter';
 import CommentPlate from './commentPlate/CommentPlate';
 import Header from '../header/header';
 import useFetchData from '../hooks/useFetchData';
+import PopupChanges from '../mainPage/searchItem/components/popUpChanges/PopupChanges';
 
 function DiagnosPage() {
     const { id, section } = useParams();
@@ -84,7 +85,7 @@ function DiagnosPage() {
                     </Link>
                 </div>
                 <div className='text_main_third_page'>
-                    {recommendationData.code} {recommendationData.name}
+                    {recommendationData.code} {recommendationData.name} <PopupChanges name={recommendationData.name} code={recommendationData.code} />
                 </div>
                 <div className='content_wrapper'>
                     <div className='inspection_plate_wrapper'>
