@@ -6,8 +6,8 @@ export const Plates = () => {
     const env = process.env;
 
     const [data, setData] = useState([]);
-    const [loading, setLoading] = useState(true); // Состояние для индикации загрузки
-    const [error, setError] = useState(null); // Состояние для хранения ошибок
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
         const fetchData = async () => {

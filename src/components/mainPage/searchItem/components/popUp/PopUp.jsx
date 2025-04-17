@@ -140,7 +140,6 @@ function PopUp() {
             const result = await response.json();
             console.log(result);
 
-            // Сбрасываем форму и закрываем попап
             resetForm();
             setIsOpen(false);
             alert("Данные успешно отправлены!");
@@ -153,8 +152,8 @@ function PopUp() {
 
     return (
         <div>
-            <button className='button' onClick={togglePopUp}>
-                Предложить изменение диагноза
+            <button className='button green' onClick={togglePopUp}>
+                Предложить новый диагноз
             </button>
 
             {isOpen && (

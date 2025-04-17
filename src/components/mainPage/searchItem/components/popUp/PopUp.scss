@@ -1,6 +1,6 @@
 .button {
     padding: 10px 20px;
-    background-color: #EB6190;
+    background-color: rgb(73, 116, 33);
     color: white;
     border: none;
     border-radius: 8px;
@@ -11,6 +11,10 @@
     &:hover{
         opacity: 0.8;
     }
+}
+
+.green{
+    background-color: rgb(73, 116, 33);
 }
 
 .popup {
@@ -117,7 +121,7 @@
 .close {
     position: absolute;
     top: -20px;
-    right: 5px;
+    right: 20px;
     cursor: pointer;
     font-size: 20px;
 }   
